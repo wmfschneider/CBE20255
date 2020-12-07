@@ -1,0 +1,137 @@
+% Created 2016-02-24 Wed 22:47
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[version=3]{mhchem}
+\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage{natmove}
+\usepackage{url}
+\usepackage{minted}
+\usepackage{underscore}
+\usepackage[linktocpage,pdfstartview=FitH,colorlinks,
+linkcolor=blue,anchorcolor=blue,
+citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue]{hyperref}
+\usepackage{attachfile}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+\geometry{margin=1.0in}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[labelfont=bf]{caption}
+\usepackage{setspace}
+\setlength{\headheight}{10.2pt}
+\setlength{\headsep}{20pt}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\lfoot{\today}
+\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+\rfoot{\thepage}
+\chead{\bf{Introduction to Chemical Engineering (CBE 20255)\vspace{12pt}}}
+\lhead{\bf{Homework 5}}
+\rhead{\bf{Due March 2, 2016}}
+\usepackage{titlesec}
+\titlespacing*{\section}
+{0pt}{0.6\baselineskip}{0.2\baselineskip}
+\title{University of Notre Dame\\Introduction to Chemical Engineering\\(CBE 20255)}
+\author{Prof. William F.\ Schneider}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\usepackage{siunitx}
+\setcounter{secnumdepth}{3}
+\author{William F. Schneider}
+\date{\today}
+\title{CBE 60553 Outline}
+\begin{document}
+
+\begin{options}
+\end{options}
+
+\noindent \textbf{Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.}
+
+
+\section{Looking for the ideal solution..}
+\label{sec-1}
+Sulfuric acid (\ce{H2SO4}) is an important commodity chemical, used in various forms from dilute aqueous to neat (100\%).  Because it is so important, its physical properties are well known and tabulated.  Perry's Handbook (available in the library or through the library \href{http://onesearch.library.nd.edu/NDU:ebook:ndu_aleph003064056}{website}) provides a tabulation of the density of \ce{H2SO4}/\ce{H2O} solutions as a function of weight fraction for a range of temperatures.  (You'll want to write a Matlab program or use a spreadsheet to solve this one.)
+
+\begin{enumerate}
+\item (6 pts) Make a plot of 1/density vs.~wt\% \ce{H2SO4} in water at \SI{25}{\celsius} from 0 to 100\% in 5\% increments.
+\item (6 pts) Make a plot of molar volume (volume/mole of solution) vs.~mole fraction \ce{H2SO4} in water at \SI{25}{\celsius}.
+\item (2 pts) Do sulfuric acid and water make an ideal of non-ideal solution?  If non-ideal, does it deviate positively or negatively from ideality?
+\end{enumerate}
+
+\section{\ldots{}and I found it.}
+\label{sec-2}
+An ideal gas mixture contains 35\%(v/v) He, 20\%(v/v) methane, and 45\%(v/v) \ce{N2} at 2.00 atm absolute and \SI{90}{\celsius}.
+
+\begin{enumerate}
+\item (2 pts) What is the partial pressure of each component?
+\item (2 pts) What is the molar volume of the mixture, in l/mol?
+\item (2 pts) How many SCM (standard cubic meters) does 100\bar{0} l of this gas mixture occupy?
+\item (2 pts) What is the mass in kg of 100\bar{0} l of this gas mixture?
+\end{enumerate}
+
+
+\section{NO, NO, and still NO!}
+\label{sec-3}
+Some chemical reactions are limited by chemical equilibrium.  One prime example is NO(g) oxidation:
+
+\[ \ce{NO (g) + 1/2 O2 (g) <=> NO2 (g)} \]
+
+\noindent The \emph{equilibrium constant} \(K_{p}\) relates the proportions of reactants and products present at chemical equilibrium.  For NO oxidation the equilibrium constant can be written
+
+\[ K_{p} = \frac{p_{\ce{NO2}}}{p_{\ce{NO}}p_{\ce{O2}}^{0.5}}\]
+
+\noindent where \(p_{i}\) are the partial pressures of the components at equilibrium.
+
+NO oxidation is carried out in a batch reactor at constant temperature
+(isothermal).  The reactor is filled with 20.0\%(v/v) NO and balance air at 380
+kPa (absolute).  At the conditions of the experiment, all the gases can be taken
+to be ideal.
+
+\begin{enumerate}
+\item (4 pts) What is the composition of the gas mixture when the NO conversion is 90\%?
+\item (2 pts) What is the total pressure in the batch reaction when the NO conversion is 90\%?
+\item (4 pts) When the NO oxidation reaction comes to equilibrium, the total pressure in the reactor is 360 kPa.  What are the partial pressures of all the components at this point?
+\item (2 pts)  Calculate the NO oxidation equilibrium constant, \(K_{p}\).
+
+\item (4 pts) Assuming \(K_{p}\) only depends on temperature, estimate the final pressure and composition in the reactor if equal molar amounts of NO and \ce{O2} are introduced to the reactor at 380 kPa (absolute).
+\end{enumerate}
+
+\section{Don't be so critical}
+\label{sec-4}
+\begin{enumerate}
+\item (4 pts) Look up the critical constants of methane, ethane, and propane, and butane.  Report on any trend you observe.
+\item (3 pts) Which of these gases is most ``ideal?''  Give two reasons why.
+\end{enumerate}
+
+\section{A non-ideal state of affairs}
+\label{sec-5}
+A \SI{5.0}{\meter\cubed} tank is charged with \SI{75.0}{\kilo\gram} of propane at \SI{25}{\celsius}.
+
+\begin{enumerate}
+\item (2 pts) What does the ideal gas equation of state predict for the pressure in the tank?
+\item (4 pts) How about the van der Waals equation of state?
+\item (4 pts) How about the Soave-Redlich-Kwong equation of state?  (Note the Pitzer acentric factor of propane is \(\omega = 0.152\).)
+\item (2 pts) Compute the reduced temperature and reduced volume of the propane.
+\item (4 pts) Refer to a generalized compressibility chart to estimate the pressure and the compressibility of the propane in the tank.
+\end{enumerate}
+% Emacs 25.0.50.1 (Org mode 8.2.10)
+\end{document}

@@ -1,0 +1,90 @@
+#+BEGIN_OPTIONS
+#+AUTHOR: William F. Schneider
+#+TITLE: CBE 60553 Outline
+#+EMAIL: wschneider@nd.edu
+#+LATEX_CLASS_OPTIONS: [11pt]
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{epstopdf}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\usepackage{hyperref}
+#+LATEX_HEADER:\usepackage[labelfont=bf]{caption}
+#+LATEX_HEADER:\usepackage{setspace}
+#+LATEX_HEADER:\setlength{\headheight}{10.2pt}
+#+LATEX_HEADER:\setlength{\headsep}{20pt}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+#+LATEX_HEADER:\chead{\bf{Introduction to Chemical Engineering (CBE 20255)\vspace{12pt}}}
+#+LATEX_HEADER:\lhead{\bf{Homework 8}}
+#+LATEX_HEADER:\rhead{\bf{Due April 11, 2016}}
+#+LATEX_HEADER:\usepackage{titlesec}
+#+LATEX_HEADER:\titlespacing*{\section}
+#+LATEX_HEADER:{0pt}{0.6\baselineskip}{0.2\baselineskip}
+#+LATEX_HEADER:\title{University of Notre Dame\\Introduction to Chemical Engineering\\(CBE 20255)}
+#+LATEX_HEADER:\author{Prof. William F.\ Schneider}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\usepackage{siunitx}
+
+#+OPTIONS: toc:nil
+#+OPTIONS: H:3 num:3
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+\noindent *Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.*
+
+* Key ideas :no_export:
+- thermo tables
+- open system balance
+- mechanical balances
+
+* I say enthalpy, you say energy
+You find a tabulation that reports the specific enthalpy of liquid /n/-hexane at 1 atm to be 25.8 and \SI{129.8}{\kilo\joule\per\kilo\gram} at 30 and \SI{50}{\celsius}, respectively.
+1. (2 pts) Assuming the enthalpy is approximately linear in temperature, derive an expression for \(\hat{H}(T)\) at 1 atm.
+2. (2 pts) What is the reference state for your enthalpy function?
+3. (2 pts) Derive an analogous expression for \(\hat{U}(T)\) at 1 atm.  (/Hint/: you'll need to look something up.)
+4. (4 pts)  Compute the heat transfer rate \(\dot{q}\) necessary to cool a stream of /n/-hexane flowing at \SI{20}{\kilo\gram\per\minute} from 60 to \SI{25}{\celsius} at a constant pressure of 1 atm.
+
+* Now I'm steamed
+A 200.0-liter water tank can withstand pressures up to \SI{20.0}{\bar} absolute before rupturing.  At a particular time \(t = 0\) the tank contains \SI{165.0}{\kilo\gram} of liquid water, all valves are closed, and the absolute pressure of water vapor in the head space is 3.0 bar.  A technician turns on the heater with the intent to raise the temperature to \SI{155}{\celsius}, but then gets distracted and walks away.
+
+1. (2 pts) What is the temperature in the tank at \(t = 0\)?
+2. (4 pts) What are the volumes of liquid and vapor and mass of vapor at \(t = 0\)?
+3. (2 pts) What is the water temperature when the tank ruptures?
+4. (4 pts) What are the volumes of liquid and vapor and mass of vapor when the tank ruptures?
+5. (4 pts) How much heat was transferred to the water by the time the tank ruptured?
+6. (2 pts) After a review of the accident, the plant decides to put pressure relief valves on all tanks.  The valves open and release steam when the pressure in a tank reaches \SI{10}{\bar}.  At what temperature would the valve open?
+7. (2 pts) At what rate (kg/kJ) would the valve need to release steam to keep the pressure in the tank at \SI{10}{\bar}?
+
+
+* Superheated, more or less
+A turbine discharges \SI{200}{\kilo\gram\per\hour} of saturated steam at \SI{10.0}{\bar} absolute.  You want to generate steam at \SI{250}{\celsius} and \SI{10.0}{\bar} by mixing the turbine discharge with a second stream of superheated steam at \SI{300}{\celsius} and \SI{10.0}{\bar}.
+1. (2 pts) Draw and label a diagram of this mixing system.
+2. (2 pts) What is the temperature of the steam exiting the turbine?
+3. (4 pts) If \SI{300}{\kilo\gram\per\hour} of steam are to be produced, at what rate must the mixer be heated?
+4. (4 pts) If instead the two streams are mixed adiabatically, at what rate is \SI{250}{\celsius}, \SI{10.0}{\bar} steam produced?
+
+* Don't try this at home
+Your friend asked you to help move a \(60 \times 78\) in mattress that weighs 75 lb.  You set it on top of a flatbed trailer that is hitched to your car, but unfortunately have no rope to tie it down.  Common sense tells you that at some speed, the mattress will start to lift off the trailer.  Let's use the Bernoulli equation to perform an energy balance between the stationary air at the base of the mattress and the air flowing over the top of the mattress.
+1. (2 pts) Suppose the air pressure difference between the top and bottom of the mattress is the weight of the mattress per unit area and the density of the air is 0.075 \(\text{lb}_\text{m}/\text{ft}^{3}\). At what speed is this energy difference balanced by the difference in kinetic energy of air flowing over the top of the mattress and the stationary air at the base?
+2. (2 pts) What happens above this speed?  Why, from a simple energy balance perspective?
+3. (2 pts) What weight of books would you have to add to the top of the mattress to allow you to safely (?) drive at 60 mph?
+
+** :no_export:
+- no difference in potential energy of air at bottom and top of mattress.
+- pressure difference due to weight of mattress
+- kinetic energy difference, because bottom is stationary and top is moving.
+- at some point, it is downhill in energy for air to move from the fast side to the slow side, and mattress lifts
+
+* What are they going to do with all that water?
+Water is to be pumped from a lake to a ranger station on the side of a nearby mountain. The pipe starts just below the surface of the lake and rises at a \SI{30}{\degree} angle up the mountain. You have available an 8 hp motor and an ample supply of Schedule 40, 1.049 inch ID steel pipe. The frictional loss through the pipe \(\hat{F}\) (\(\text{ft}\cdot\text{lb}_\text{f}/\text{lb}_\text{m}\)) is \(0.041 L\), where /L/ is the length in feet.
+
+1. (6 pts) If you need to deliver 95 gal/min of \ce{H2O}, how much pipe will you need and what is the maximum elevation of the ranger station?
+2. (2 pts) Your friend remembers that the pressure at the entrance of the pipe will be greater if submerged more deeply below the surface of the water and reasons that a smaller pump could be used to pump the water to the same elevation.  Are they correct?  Why or why not?

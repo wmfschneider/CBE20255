@@ -1,0 +1,201 @@
+#+BEGIN_OPTIONS
+#+AUTHOR: William F. Schneider
+#+TITLE: CBE 60553 Outline
+#+EMAIL: wschneider@nd.edu
+#+LATEX_CLASS_OPTIONS:[11pt]
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{siunitx}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{epstopdf}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\usepackage{hyperref}
+#+LATEX_HEADER:\usepackage[labelfont=bf]{caption}
+#+LATEX_HEADER:\usepackage{setspace}
+#+LATEX_HEADER:\usepackage{sectsty}
+#+LATEX_HEADER:\subsectionfont{\rm}
+# #+LATEX_HEADER:\titlespacing*{\section}
+# #+LATEX_HEADER:{0pt}{0.6\baselineskip}{0.2\baselineskip}
+#+LATEX_HEADER:\setlength{\headheight}{5.2pt}
+#+LATEX_HEADER:\setlength{\headsep}{14pt}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+#+LATEX_HEADER:\rhead{\bf{ND CBE 20255}}
+#+LATEX_HEADER:\lhead{\bf{Exam 2}}
+#+LATEX_HEADER:\chead{\bf{Spring 2016}}
+
+#+OPTIONS: toc:nil
+#+OPTIONS: H:2 num:3
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+#+BEGIN_LaTeX
+\
+\vspace{2cm}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{./centered-2c-NDmark.pdf}
+\end{figure}
+\begin{center}
+{\LARGE\bf Introduction to Chemical Engineering\\(CBE 20255)}
+\vspace{0.5cm}
+
+{\Large Prof. William F.\ Schneider}
+\end{center}
+\vspace{2cm}
+\noindent\large{{\bf NAME (PRINT):}}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\begin{spacing}{1.2}
+\begin{tabular}{|p{5.5in}|}
+\hline
+{\em AS A MEMBER OF THE NOTRE DAME COMMUNITY, I WILL NOT PARTICIPATE IN OR
+TOLERATE ACADEMIC DISHONESTY } \\
+\hline
+\end{tabular}
+\end{spacing}
+\vspace{1.5cm}
+
+\noindent\large{{\bf SIGNED:}} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\noindent{\bf PLEASE SHOW YOUR WORK.  CLEARLY DEMONSTRATE YOUR SOLUTION PROCEDURE
+AND STATE ANY ASSUMPTIONS YOU MAKE.  WRITE YOUR SOLUTIONS IN THE SPACE
+PROVIDED.  BLANK PAGES ARE INCLUDED TO PROVIDE MORE ROOM FOR YOUR
+WORK.  ASK THE PROCTOR IF YOU NEED ADDITIONAL SCRATCH PAPER.}
+\newpage
+#+END_LaTeX
+
+* Key ideas :no_export:
+- mass balances with reaction
+
+- recycle and purge
+
+- ideal and non-ideal fluids, EOS
+
+- ideal and non-ideal mixtures
+
+- phase-equilibria
+
+- dew point, bubble point
+
+
+* Maintaining My Equilibrium (50 pts)
+The equilibrium between the liquid and vapor phases of two fluids (let's call them A and B) is given by the following /Txy/ diagram at a fixed pressure of 1 atmosphere:
+
+#+BEGIN_COMMENT
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import fsolve
+
+def PAs(T):
+    A = 6.89272; B= 1203.531; C=219.888 # benzene Antoine
+    logP = A - B/(T+C)
+    return 10**logP
+#    PA0 = 10
+#    H = 800
+#    return PA0 * np.exp(-H/T)
+
+def PBs(T):
+    A = 6.95805; B= 1346.773; C=219.693 # toluene Antoine
+    logP = A - B/(T+C)
+    return 10**logP
+
+Pressure = 760.0
+
+def PAsopt(T):
+    return PAs(T) - Pressure
+
+def PBsopt(T):
+    return PBs(T) - Pressure
+
+TA = fsolve(PAsopt,100)
+TB = fsolve(PBsopt,100)
+
+# print(TA,TB)
+
+T = np.linspace(TA,TB)
+
+xB = (Pressure - PAs(T))/(PBs(T) - PAs(T))
+
+yB = xB * PBs(T)/Pressure
+
+plt.plot(xB,T,'k',yB,T,'k')
+plt.xlim(0,1)
+plt.ylabel('Temperature (C)')
+plt.xlabel(r'$x_B$, $y_B$')
+plt.title('VLE Phase Diagram')
+plt.text(0.2,95,'1')
+plt.text(0.5,95,'2')
+plt.text(0.8,95,'3')
+# plt.legend(['Bubble (x)','Dew (y)'])
+
+plt.savefig('./TemperatureVLE.png')
+
+#+END_SRC
+#+END_COMMENT
+#+RESULTS:
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width 0.75\textwidth
+[[./TemperatureVLE.png]]
+#+END_CENTER
+
+** (5 pts) What is the normal boiling point of the B component?
+\vspace{2cm}
+** (15 pts) Complete the table below.  For each point, indicate which phase(s) are present and what their compositions are.
+
+#+ATTR_LATEX: :align lcc
+|-------+--------------------------+-------------------------|
+| Point | Liquid phase composition | Vapor phase composition |
+|-------+--------------------------+-------------------------|
+|       |                          |                         |
+|     1 |                          |                         |
+|       |                          |                         |
+|       |                          |                         |
+|     2 |                          |                         |
+|       |                          |                         |
+|       |                          |                         |
+|     3 |                          |                         |
+|       |                          |                         |
+|-------+--------------------------+-------------------------|
+\newpage
+** (5 pts) Which (if any) of the points is superheated?  By how many Celsius degrees?
+\vspace{2cm}
+** (5 pts) What is the *bubble point* temperature when the liquid phase is a 50:50 molar mixture of the two components?
+\vspace{2cm}
+** (5 pts) What is the *dew point* temperature when the vapor phase is a 50:50 molar mixture of the two components?
+\vspace{2cm}
+** (10 pts) Component A has an enthalpy of vaporization of \SI{83.1}{\joule\per\mole}. Estimate the temperature at which pure liquid A is in equilibrium with vapor A at 1 atmosphere gauge pressure.
+\newpage
+** (5 pts) Suppose components A and B were not miscible; that is, when mixed, they made two distinct liquid phases. Is it possible for these two liquids to be in equilibrium with a third vapor phase?  If so, how many and which intensive variables could be specified at the conditions at which these three co-exist?  Explain your answer.
+\newpage
+* Partial oxidation (30 pts)
+Ethylene oxide (\ce{C2H4O}) is produced by the partial oxidation of ethylene (\ce{C2H4}) by \ce{O2}.  The complete oxidation of ethylene oxide to \ce{CO2} and \ce{H2O} is an undesirable side reaction.
+\\ \\
+Ethylene oxide is produced in a recycle reactor.  The reactor feed contains 3 moles \ce{C2H4} per mole \ce{O2}. The single pass ethylene conversion is 20%, and for every 100 moles of ethylene consumed, 90 moles of ethylene oxide are produced.  The reactor effluent is separated into an ethylene oxide stream, which is sold, a combined \ce{CO2}/\ce{H2O} stream, which is discarded, and an ethylene and oxygen stream, which is recycled.
+** (5 pts) Write balanced equations for the partial and complete oxidations of ethylene.
+\vspace{6cm}
+** (5 pts) Make a sketch of this process, labeling all flows and compositions and identifying unknowns by drawing boxes around them. Assume an inlet basis into the reactor of 100 mol/s.
+\newpage
+** (10 pts) What is the composition and molar flow rate of the ethylene/\ce{O2} recycle stream?
+\vspace{10cm}
+** (10 pts) What is the required composition and molar flow rate of the fresh feed?
+\newpage
+* Oh Henry! (20 pts)
+Ionic liquids (ILs) are an unusual class of liquids that have negligible vapor pressure. Amongst other interesting properties is their ability to selectively absorb  gases.  For instances, the Henry's Law constants of \ce{CO2} and \ce{CH4} in a representative IL at ambient temperature are reported by Anthony \textit{et al.}, /J. Phys. Chem. B/ *2002*, to be 53 and 1700 bar, respectively.
+\\ \\
+Your job is to reduce the \ce{CO2} concentration in a 50/50 \ce{CO2}/\ce{CH4} gas mixture by 90%.  The gas mixture is sent into a stripper column at ambient temperature and 100\nbsp{}bar total pressure in parallel with a stream of pure IL.  Exiting the stripper is a gas mixture of the desired composition and the same temperature and pressure, and a liquid IL stream containing the dissolved gases.
+** (5 pts) What is the composition of the exiting gas phase?
+\vspace{3cm}
+** (5 pts) What is the composition of the exiting liquid phase?
+\vspace{4cm}
+** (10 pts) What is the ratio of the inlet molar flow rate of gas mixture to IL?

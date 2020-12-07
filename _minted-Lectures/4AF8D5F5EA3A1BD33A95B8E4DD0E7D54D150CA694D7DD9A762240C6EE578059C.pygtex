@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+
+\PYGemacs{n}{xB} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{linspace}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)}
+\PYGemacs{n}{PAs} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{10}
+\PYGemacs{n}{PBs} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{5}
+
+\PYGemacs{n}{PB} \PYGemacs{o}{=} \PYGemacs{n}{xB} \PYGemacs{o}{*} \PYGemacs{n}{PBs}
+\PYGemacs{n}{PA} \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{xB}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{n}{PAs}
+\PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{n}{PA} \PYGemacs{o}{+} \PYGemacs{n}{PB}
+
+\PYGemacs{n}{yB} \PYGemacs{o}{=} \PYGemacs{n}{PB}\PYGemacs{o}{/}\PYGemacs{n}{P}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{plot}\PYGemacs{p}{(}\PYGemacs{n}{xB}\PYGemacs{p}{,}\PYGemacs{n}{P}\PYGemacs{p}{,}\PYGemacs{n}{yB}\PYGemacs{p}{,}\PYGemacs{n}{P}\PYGemacs{p}{)}
+\PYGemacs{c}{\PYGemacsZsh{} plt.plot(xB,PB,xB,PA,xB,P)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Pressure\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}x\PYGemacsZus{}B, y\PYGemacsZus{}B\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{title}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Isothermal compression\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{legend}\PYGemacs{p}{([}\PYGemacs{l+s}{\PYGemacsZsq{}Bubble\PYGemacsZsq{}}\PYGemacs{p}{,}\PYGemacs{l+s}{\PYGemacsZsq{}Dew\PYGemacsZsq{}}\PYGemacs{p}{])}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{savefig}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}./figs/PressureVLE.png\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}

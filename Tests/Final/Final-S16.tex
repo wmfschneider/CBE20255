@@ -1,0 +1,248 @@
+% Created 2016-05-06 Fri 14:46
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[version=3]{mhchem}
+\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage{natmove}
+\usepackage{url}
+\usepackage{minted}
+\usepackage{underscore}
+\usepackage[linktocpage,pdfstartview=FitH,colorlinks,
+linkcolor=blue,anchorcolor=blue,
+citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue]{hyperref}
+\usepackage{attachfile}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+\geometry{margin=1.0in}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[labelfont=bf]{caption}
+\usepackage{setspace}
+\usepackage{sectsty}
+\subsectionfont{\rm}
+\setlength{\headheight}{5.2pt}
+\setlength{\headsep}{14pt}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\lfoot{\today}
+\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+\rfoot{\thepage}
+\rhead{\bf{ND CBE 20255}}
+\lhead{\bf{Final Exam}}
+\chead{\bf{Spring 2016}}
+\setcounter{secnumdepth}{3}
+\author{William F. Schneider}
+\date{\today}
+\title{CBE 60553 Outline}
+\begin{document}
+
+\begin{options}
+\end{options}
+
+\
+\vspace{2cm}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{../centered-2c-NDmark.pdf}
+\end{figure}
+\begin{center}
+{\LARGE\bf Introduction to Chemical Engineering\\(CBE 20255)}
+\vspace{0.5cm}
+
+{\Large Prof. William F.\ Schneider}
+\end{center}
+\vspace{2cm}
+\noindent\large{{\bf NAME (PRINT):}}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\begin{spacing}{1.2}
+\begin{tabular}{|p{5.5in}|}
+\hline
+{\em AS A MEMBER OF THE NOTRE DAME COMMUNITY, I WILL NOT PARTICIPATE IN OR
+TOLERATE ACADEMIC DISHONESTY } \\
+\hline
+\end{tabular}
+\end{spacing}
+\vspace{1.5cm}
+
+\noindent\large{{\bf SIGNED:}} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\noindent{\bf PLEASE SHOW YOUR WORK.  CLEARLY DEMONSTRATE YOUR SOLUTION PROCEDURE
+AND STATE ANY ASSUMPTIONS YOU MAKE.  WRITE YOUR SOLUTIONS IN THE SPACE
+PROVIDED.  BLANK PAGES ARE INCLUDED TO PROVIDE MORE ROOM FOR YOUR
+WORK.  ASK THE PROCTOR IF YOU NEED ADDITIONAL SCRATCH PAPER.}
+\newpage
+
+
+\section{Don't say I didn't warn you! (10 pts)}
+\label{sec-1}
+The enthalpy \emph{H} and internal energy \emph{U} of a system are related by the expression \(H = U + PV\).
+\subsection{(10 pts) Starting from this relation, derive an expression for the relationship between the constant pressure molar (\(C_{p}\)) and constant volume molar (\(C_{v}\)) heat capacities of an ideal gas.}
+\label{sec-1-1}
+\newpage
+
+\section{Kaboom! (50 pts)}
+\label{sec-2}
+It's dangerous to put combustible gas mixtures into a closed container.  Let's see why.  Suppose methane (\ce{CH4}) and air (79\% \ce{N2}/21\% \ce{O2}) are unadvisedly introduced into a closed vessel at \SI{25}{\celsius} and 4.00 atm absolute pressure. Your job is to estimate the worst that could come from igniting this mixture.  Here's a table of some numbers that might be of some help to you. You can take the heat capacities as constants for the purposes of your estimate and can assume all gases are ideal.
+
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+ & \(\Delta U_{f}^{\circ}(\SI{25}{\celsius})\) & \(C_{p}^{\circ}\) (\SI{25}{\celsius})\\
+ & (\si{\kilo\joule\per\mole}) & (\si{\joule\per\mole\per\celsius})\\
+\hline
+\ce{CH4} (g) & -72 & 34\\
+\ce{N2} (g) & 0 & 32\\
+\ce{O2} (g) & 0 & 33\\
+\ce{H2O} (g) & -241 & 40\\
+\ce{CO } (g) & -112 & 29\\
+\ce{CO2} (g) & -393 & 52\\
+\ce{NO} (g) & 90 & 30\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{(5 pts) Write a balanced equation for the complete combustion of methane in air.}
+\label{sec-2-1}
+\vspace{4cm}
+
+\subsection{(5 pts) Suppose the air is introduced in 30\% stoichiometric excess. Determine the initial composition of the gas mixture. Take as a basis 1 mole of methane.}
+\label{sec-2-2}
+\newpage
+
+\subsection{(10 pts) Determine the final composition of the gas mixture assuming it accidentally and completely combusted.}
+\label{sec-2-3}
+\vspace{10cm}
+
+\subsection{(5 pts) Suppose, worst case scenario, the vessel is perfectly adiabatic and rigid.  Is it appropriate to set up an \emph{energy} or \emph{enthalpy} balance to determine the maximum pressure and temperature?  Why?}
+\label{sec-2-4}
+\newpage
+
+\subsection{(16 pts) Set up an appropriate energy balance and solve for the final temperature assuming the worst case scenario.  Be sure to clearly indicate your balance method, your reference states, and your expressions for enthalpy/energy (as appropriate).}
+\label{sec-2-5}
+\newpage
+
+
+
+\subsection{(5 pts) What is the final pressure in the tank in this worst case scenario?}
+\label{sec-2-6}
+\vspace{10cm}
+
+\subsection{(4 pts) Give two chemical reasons why the actual maximum temperature in such a catastrophic event will be less than your estimate.}
+\label{sec-2-7}
+\newpage
+
+
+\section{Mechanical energy balance (30 pts)}
+\label{sec-3}
+Water in a reservoir is used to drive a turbine and make electricity.  The turbine is located \SI{55}{\meter} below the surface of the reservoir and delivers \SI{0.80}{\mega\watt} of power.
+
+\subsection{(10 pts) Write an energy balance expression in terms of the required mass flow rate assuming the water exits through a pipe of cross-sectional area \emph{A} and neglecting frictional losses.}
+\label{sec-3-1}
+\vspace{5cm}
+
+\subsection{(10 pts) Determine the required mass flow rate assuming the water kinetic energy at the exit is negligible.}
+\label{sec-3-2}
+\vspace{5cm}
+
+\subsection{(10 pts) Suppose the actual pipe area is \(A = \SI{0.4}{\meter\squared}\).  What is the impact on the turbine power, assuming the same mass flow rate is as you computed above?}
+\label{sec-3-3}
+
+\newpage
+
+\section{Flash dancing (88 pts)}
+\label{sec-4}
+An equimolar (50:50) liquid mixture of benzene and toluene initially at \SI{130}{\celsius} is to be separated in a continuous flow flash tank heated to \SI{90}{\celsius} and 0.86 atm. The saturation pressures of benzene and toluene at these conditions are 1.3 and 0.5 atm, respectively, and the liquid and vapor phases in the flash tank can be taken as equilibrated and ideal.  The liquid and vapor phases exit through separate streams.
+
+\subsection{(10 pts) In the space below, sketch a pressure-composition diagram for the benzene-toluene system at \SI{90}{\celsius}.  Be sure to indicate both the bubble and dew lines, and pay attention to the shape of each line.}
+\label{sec-4-1}
+\vspace{9cm}
+
+\subsection{(10 pts) What is the composition of the exiting liquid phase?  Indicate it's location on the diagram above with a dot and an ``L''.}
+\label{sec-4-2}
+\newpage
+
+\subsection{(10 pts) What is the composition of the exiting vapor phase?  Indicate it's location on the diagram above with a dot and a ``V''.}
+\label{sec-4-3}
+\vspace{10cm}
+\subsection{(10 pts) Make a process flow chart for the flash tank.  Assume a 1 mole/s feed basis and identify all unknown process variables.}
+\label{sec-4-4}
+\newpage
+\subsection{(10 pts) Compute the molar flow rates of the exiting liquid and vapor phases.}
+\label{sec-4-5}
+\newpage
+\subsection{(15 pts) The normal boiling point of benzene is \SI{80}{\celsius}, \(\Delta H_{\text{vap}} = \SI{31}{\kilo\joule\per\mole}\), and the heat capacities of liquid and vapor benzene are 140 and \SI{100}{\joule\per\mole\celsius}, respectively, in the temperature range of interest.  Specify a reference state and compute the specific enthalpies of the benzene inlet and outlet streams relative to that reference.}
+\label{sec-4-6}
+\newpage
+\subsection{(15 pts) The specific enthalpies of toluene at the inlet and outlet conditions are given below.  At what rate must the flash tank be heated to maintain steady-state operation?}
+\label{sec-4-7}
+
+\begin{center}
+\begin{tabular}{rc}
+\hline
+ & \(\hat{H}\), \si{\kilo\joule\per\mole}\\
+\hline
+\SI{90}{\celsius}, \emph{l} & 15\\
+\SI{90}{\celsius}, \emph{v} & 34\\
+\SI{130}{\celsius}, \emph{l} & 22\\
+\hline
+\end{tabular}
+\end{center}
+\vspace{10cm}
+\subsection{With reference back to your phase diagram and energy balance, determine  the implications of decreasing the pressure in the flash tank by 0.1 atm on the process variables below.  No calculations required; just indicate directional change.}
+\label{sec-4-8}
+\begin{enumerate}
+\item (2 pts) the composition of the liquid phase
+\label{sec-4-8-1}
+\vspace{1cm}
+\item (2 pts) the composition of the vapor phase
+\label{sec-4-8-2}
+\vspace{1cm}
+\item (2 pts) the ratio of vapor to liquid phase
+\label{sec-4-8-3}
+\vspace{1cm}
+\item (2 pts) the required heating rate
+\label{sec-4-8-4}
+\newpage
+\end{enumerate}
+
+
+\section{Semi-batch reaction (15 pts)}
+\label{sec-5}
+Aqueous A and B react to C according to the reaction:
+
+\[\ce{A (aq) + B (aq) -> C (aq)},\quad\Delta H = \SI{-200}{\kilo\joule\per\mole}\]
+
+\noindent An adiabatic, well-mixed semi-batch reactor contains \SI{1.0}{\liter}
+of \SI{2.0}{\mole\per\liter} B.  A \SI{3.0}{\mole\per\liter} solution of A is
+introduced into the vessel at a rate solutions of \SI{0.10}{\liter\per\minute}.
+Both solutions start at \SI{25}{\celsius}, and the heat capacities and densities of all solutions are the same as that of ambient water.
+
+\subsection{(15 points) At what time does the temperature inside the reactor reach its maximum, and what is that maximum temperature?}
+\label{sec-5-1}
+\section{Hi Rampi}
+\label{sec-6}
+% Emacs 25.0.50.1 (Org mode 8.2.10)
+\end{document}

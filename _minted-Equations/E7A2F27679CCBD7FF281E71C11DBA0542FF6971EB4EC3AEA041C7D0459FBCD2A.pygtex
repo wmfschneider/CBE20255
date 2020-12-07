@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+
+\PYGemacs{n}{Tc} \PYGemacs{o}{=}\PYGemacs{l+m+mf}{304.2}\PYGemacs{p}{;} \PYGemacs{n}{Pc} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{72.9}\PYGemacs{p}{;} \PYGemacs{n}{omega} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.225}\PYGemacs{p}{;}
+\PYGemacs{n}{R} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.0821} \PYGemacs{c}{\PYGemacsZsh{} l atm/mol K}
+
+\PYGemacs{n}{a} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.42747} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{R} \PYGemacs{o}{*} \PYGemacs{n}{Tc}\PYGemacs{p}{)}\PYGemacs{o}{**}\PYGemacs{l+m+mi}{2} \PYGemacs{o}{/} \PYGemacs{n}{Pc}
+
+\PYGemacs{n}{b} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.08664} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{R} \PYGemacs{o}{*} \PYGemacs{n}{Tc}\PYGemacs{p}{)} \PYGemacs{o}{/}\PYGemacs{n}{Pc}
+
+\PYGemacs{n}{m} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.48508} \PYGemacs{o}{+} \PYGemacs{p}{(}\PYGemacs{l+m+mf}{1.55171} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{l+m+mf}{0.1561} \PYGemacs{o}{*} \PYGemacs{n}{omega} \PYGemacs{p}{)}\PYGemacs{o}{*} \PYGemacs{n}{omega}
+
+\PYGemacs{n}{v} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{logspace}\PYGemacs{p}{(}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mf}{1.5}\PYGemacs{p}{,}\PYGemacs{l+m+mf}{0.}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{figure}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)}
+\PYGemacs{k}{for} \PYGemacs{n}{T} \PYGemacs{o+ow}{in} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{arange}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{268}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{390}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{40}\PYGemacs{p}{):}
+    \PYGemacs{n}{alpha} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{1} \PYGemacs{o}{+} \PYGemacs{n}{m} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mi}{1} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{p}{(}\PYGemacs{n}{T} \PYGemacs{o}{/} \PYGemacs{n}{Tc}\PYGemacs{p}{)}\PYGemacs{o}{**}\PYGemacs{l+m+mf}{0.5}\PYGemacs{p}{)}
+    \PYGemacs{n}{Psrk} \PYGemacs{o}{=} \PYGemacs{n}{R} \PYGemacs{o}{*} \PYGemacs{n}{T} \PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{n}{v}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{b}\PYGemacs{p}{)} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{alpha} \PYGemacs{o}{*} \PYGemacs{n}{a} \PYGemacs{o}{/} \PYGemacs{p}{(}\PYGemacs{n}{v}\PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{v}\PYGemacs{o}{+}\PYGemacs{n}{b}\PYGemacs{p}{))}
+    \PYGemacs{n}{Pig} \PYGemacs{o}{=} \PYGemacs{n}{R} \PYGemacs{o}{*} \PYGemacs{n}{T} \PYGemacs{o}{/}\PYGemacs{n}{v}
+    \PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{plot}\PYGemacs{p}{(}\PYGemacs{n}{v}\PYGemacs{p}{,}\PYGemacs{n}{Psrk}\PYGemacs{p}{,}\PYGemacs{n}{label}\PYGemacs{o}{=}\PYGemacs{n}{T}\PYGemacs{p}{)}
+    \PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{plot}\PYGemacs{p}{(}\PYGemacs{n}{v}\PYGemacs{p}{,}\PYGemacs{n}{Pig}\PYGemacs{p}{,}\PYGemacs{n}{label}\PYGemacs{o}{=}\PYGemacs{n}{T}\PYGemacs{p}{,}\PYGemacs{n}{ls}\PYGemacs{o}{=}\PYGemacs{l+s}{\PYGemacsZsq{}\PYGemacsZhy{}\PYGemacsZhy{}\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{title}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}CO2 SRK isotherms\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylim}\PYGemacs{p}{([}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{300}\PYGemacs{p}{])}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlim}\PYGemacs{p}{([}\PYGemacs{l+m+mf}{0.02}\PYGemacs{p}{,}\PYGemacs{l+m+mf}{0.8}\PYGemacs{p}{])}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Volume (l/mol)\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Pressure (atm)\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{legend}\PYGemacs{o}{=}\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{legend}\PYGemacs{p}{()}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{savefig}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}./figs/SRKgas.png\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{c}{\PYGemacsZsh{} plt.figure(2)}
+\PYGemacs{c}{\PYGemacsZsh{} for T in np.arange(268,390,40):}
+\PYGemacs{c}{\PYGemacsZsh{}     alpha = 1 + m * (1 \PYGemacsZhy{} (T / Tc)**0.5)}
+\PYGemacs{c}{\PYGemacsZsh{}     Psrk = R * T /(v\PYGemacsZhy{}b) \PYGemacsZhy{} alpha * a / (v* (v+b))}
+\PYGemacs{c}{\PYGemacsZsh{}     plt.loglog(v,Psrk,label=T,basex=10)}
+
+\PYGemacs{c}{\PYGemacsZsh{} legend = plt.legend()}
+
+\PYGemacs{c}{\PYGemacsZsh{} plt.ylim([1e1,1e4])}
+\PYGemacs{c}{\PYGemacsZsh{} plt.xlim([0.01,1.1])}
+\PYGemacs{c}{\PYGemacsZsh{} plt.xlabel(\PYGemacsZsq{}Log volume (l/mol)\PYGemacsZsq{})}
+\PYGemacs{c}{\PYGemacsZsh{} plt.ylabel(\PYGemacsZsq{}Log pressure (atm)\PYGemacsZsq{})}
+\PYGemacs{c}{\PYGemacsZsh{} plt.title(\PYGemacsZsq{}CO2 SRK vs. Ideal Gas isotherms\PYGemacsZsq{})}
+
+\PYGemacs{c}{\PYGemacsZsh{} plt.savefig(\PYGemacsZsq{}./figs/logSRKgas.png\PYGemacsZsq{})}
+\end{Verbatim}

@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+\PYGemacs{k+kn}{from} \PYGemacs{n+nn}{scipy.optimize} \PYGemacs{k+kn}{import} \PYGemacs{n}{fsolve}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{PAs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{n}{PA0} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{10}
+    \PYGemacs{n}{H} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{1000}
+    \PYGemacs{k}{return} \PYGemacs{n}{PA0} \PYGemacs{o}{*} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{exp}\PYGemacs{p}{(}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{H}\PYGemacs{o}{/}\PYGemacs{n}{T}\PYGemacs{p}{)}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{PBs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{n}{PB0} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{5}
+    \PYGemacs{n}{H} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{1000}
+    \PYGemacs{k}{return} \PYGemacs{n}{PB0} \PYGemacs{o}{*} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{exp}\PYGemacs{p}{(}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{H}\PYGemacs{o}{/}\PYGemacs{n}{T}\PYGemacs{p}{)}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{PAsopt}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{k}{return} \PYGemacs{n}{PAs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{)} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{l+m+mf}{1.0}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{PBsopt}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{k}{return} \PYGemacs{n}{PBs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{)} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{l+m+mf}{1.0}
+
+\PYGemacs{n}{TA} \PYGemacs{o}{=} \PYGemacs{n}{fsolve}\PYGemacs{p}{(}\PYGemacs{n}{PAsopt}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{)}
+\PYGemacs{n}{TB} \PYGemacs{o}{=} \PYGemacs{n}{fsolve}\PYGemacs{p}{(}\PYGemacs{n}{PBsopt}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{)}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{TA}\PYGemacs{p}{,}\PYGemacs{n}{TB}\PYGemacs{p}{)}
+
+\PYGemacs{n}{T} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{linspace}\PYGemacs{p}{(}\PYGemacs{n}{TA}\PYGemacs{p}{,}\PYGemacs{n}{TB}\PYGemacs{p}{)}
+
+
+\PYGemacs{c}{\PYGemacsZsh{} xA = (P \PYGemacsZhy{} PBs(T))/(PAs(T) \PYGemacsZhy{} PBs(T))}
+
+\PYGemacs{c}{\PYGemacsZsh{} plt.plot(xA,T)}
+\PYGemacs{c}{\PYGemacsZsh{} plt.xrange(0,1)}
+\PYGemacs{c}{\PYGemacsZsh{} plt.show()}
+\end{Verbatim}

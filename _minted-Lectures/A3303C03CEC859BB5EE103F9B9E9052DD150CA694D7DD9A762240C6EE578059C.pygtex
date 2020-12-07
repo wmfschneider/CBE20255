@@ -1,0 +1,46 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+\PYGemacs{k+kn}{from} \PYGemacs{n+nn}{scipy.optimize} \PYGemacs{k+kn}{import} \PYGemacs{n}{fsolve}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{PAs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{n}{A} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{6.89272}\PYGemacs{p}{;} \PYGemacs{n}{B}\PYGemacs{o}{=} \PYGemacs{l+m+mf}{1203.531}\PYGemacs{p}{;} \PYGemacs{n}{C}\PYGemacs{o}{=}\PYGemacs{l+m+mf}{219.888} \PYGemacs{c}{\PYGemacsZsh{} benzene Antoine}
+    \PYGemacs{n}{logP} \PYGemacs{o}{=} \PYGemacs{n}{A} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{B}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{o}{+}\PYGemacs{n}{C}\PYGemacs{p}{)}
+    \PYGemacs{k}{return} \PYGemacs{l+m+mi}{10}\PYGemacs{o}{**}\PYGemacs{n}{logP}
+\PYGemacs{c}{\PYGemacsZsh{}    PA0 = 10}
+\PYGemacs{c}{\PYGemacsZsh{}    H = 800}
+\PYGemacs{c}{\PYGemacsZsh{}    return PA0 * np.exp(\PYGemacsZhy{}H/T)}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{PBs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{n}{A} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{6.95805}\PYGemacs{p}{;} \PYGemacs{n}{B}\PYGemacs{o}{=} \PYGemacs{l+m+mf}{1346.773}\PYGemacs{p}{;} \PYGemacs{n}{C}\PYGemacs{o}{=}\PYGemacs{l+m+mf}{219.693} \PYGemacs{c}{\PYGemacsZsh{} toluene Antoine}
+    \PYGemacs{n}{logP} \PYGemacs{o}{=} \PYGemacs{n}{A} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{B}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{o}{+}\PYGemacs{n}{C}\PYGemacs{p}{)}
+    \PYGemacs{k}{return} \PYGemacs{l+m+mi}{10}\PYGemacs{o}{**}\PYGemacs{n}{logP}
+
+\PYGemacs{n}{Pressure} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{760.0}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{PAsopt}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{k}{return} \PYGemacs{n}{PAs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{)} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{Pressure}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{PBsopt}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{k}{return} \PYGemacs{n}{PBs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{)} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{Pressure}
+
+\PYGemacs{n}{TA} \PYGemacs{o}{=} \PYGemacs{n}{fsolve}\PYGemacs{p}{(}\PYGemacs{n}{PAsopt}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{)}
+\PYGemacs{n}{TB} \PYGemacs{o}{=} \PYGemacs{n}{fsolve}\PYGemacs{p}{(}\PYGemacs{n}{PBsopt}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{)}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{TA}\PYGemacs{p}{,}\PYGemacs{n}{TB}\PYGemacs{p}{)}
+
+\PYGemacs{n}{T} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{linspace}\PYGemacs{p}{(}\PYGemacs{n}{TA}\PYGemacs{p}{,}\PYGemacs{n}{TB}\PYGemacs{p}{)}
+
+\PYGemacs{n}{xB} \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{n}{Pressure} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{PAs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{))}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{n}{PBs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{)} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{PAs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{))}
+
+\PYGemacs{n}{yB} \PYGemacs{o}{=} \PYGemacs{n}{xB} \PYGemacs{o}{*} \PYGemacs{n}{PBs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{n}{Pressure}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{plot}\PYGemacs{p}{(}\PYGemacs{n}{xB}\PYGemacs{p}{,}\PYGemacs{n}{T}\PYGemacs{p}{,}\PYGemacs{n}{yB}\PYGemacs{p}{,}\PYGemacs{n}{T}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlim}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Temperature\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}x\PYGemacsZus{}B, y\PYGemacsZus{}B\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{title}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Isobaric heating\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{legend}\PYGemacs{p}{([}\PYGemacs{l+s}{\PYGemacsZsq{}Bubble (x)\PYGemacsZsq{}}\PYGemacs{p}{,}\PYGemacs{l+s}{\PYGemacsZsq{}Dew (y)\PYGemacsZsq{}}\PYGemacs{p}{])}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{savefig}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}./figs/TemperatureVLE.png\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}

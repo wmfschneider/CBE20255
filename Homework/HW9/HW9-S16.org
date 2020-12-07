@@ -1,0 +1,85 @@
+#+BEGIN_OPTIONS
+#+AUTHOR: William F. Schneider
+#+TITLE: CBE 60553 Outline
+#+EMAIL: wschneider@nd.edu
+#+LATEX_CLASS_OPTIONS: [11pt]
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{epstopdf}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\usepackage{hyperref}
+#+LATEX_HEADER:\usepackage[labelfont=bf]{caption}
+#+LATEX_HEADER:\usepackage{setspace}
+#+LATEX_HEADER:\setlength{\headheight}{10.2pt}
+#+LATEX_HEADER:\setlength{\headsep}{20pt}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+#+LATEX_HEADER:\chead{\bf{Introduction to Chemical Engineering (CBE 20255)\vspace{12pt}}}
+#+LATEX_HEADER:\lhead{\bf{Homework 9}}
+#+LATEX_HEADER:\rhead{\bf{Due April 20, 2016}}
+#+LATEX_HEADER:\usepackage{titlesec}
+#+LATEX_HEADER:\titlespacing*{\section}
+#+LATEX_HEADER:{0pt}{0.6\baselineskip}{0.2\baselineskip}
+#+LATEX_HEADER:\title{University of Notre Dame\\Introduction to Chemical Engineering\\(CBE 20255)}
+#+LATEX_HEADER:\author{Prof. William F.\ Schneider}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\usepackage{siunitx}
+
+#+OPTIONS: toc:nil
+#+OPTIONS: H:3 num:3
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+\noindent *Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.*
+
+* Key ideas :no_export:
+- /T/ and /P/ dependence of /U/ and /H/
+- sensible and latent heats
+- energy balances, single phase
+- energy balances, multiple phases, ideal
+- psychrometric chart
+- non-ideal mixtures
+
+* All roads lead to Rome
+A stream of water vapor flowing at a rate of 250 mol/h is cooled from \SI{600}{\celsius} and 10 bar to \SI{100}{\celsius} and 1 atm.
+1. (4 pts) Estimate the required cooling rate using the steam tables.
+2. (4 pts) Estimate the required cooling rate using the water vapor heat capacity in Table B.2 of your book.
+3. (2 pts) Which number do you believe more?  Why?  Be specific.
+
+* Follow the sun :no_export:
+The sun shines down about \SI{900}{\watt\per\meter\squared} onto the earth's surface.  There are many things we might want to do with that energy, but a simple one would be to heat air to keep our house's warm (at least during sunny days!).
+
+* In with the cold, out with the hot
+Saturated steam at \SI{300}{\celsius} is used to heat a stream of methanol vapor from $65$ to \SI{260}{\celsius} in a countercurrent, adiabatic heat exchanger.  The methanol flow rate is 6500 standard liters per minute, and the steam condenses and leaves as liquid water at \SI{90}{\celsius}.
+1. (4 pts) Determine the required steam flow rate, in \SI{}{\meter\cubed\per\minute}.
+2. (4 pts) Calculate the heat transfer rate from water to methanol, in kW.
+3. (2 pts) Suppose you set this system up and are disappointed to discover that the temperature of the exiting methanol is only \SI{240}{\celsius}.  Suggest three plausible explanations.
+4. (2 pts) Suppose you set this system up and are surprised to discover that the temperature of the exiting methanol is  \SI{280}{\celsius}.  Suggest three different, plausible explanations.
+
+* Please be specific
+1. (4 pts) Determine the specific enthalpy (kJ/mol) of /n/-pentane vapor at \SI{200}{\celsius} and 2.0 atm relative to liquid /n/-pentane at \SI{20}{\celsius} and 5.0 atm.  Carefully identify each contribution to the overall enthalpy change.
+2. (2 pts) Assuming that the vapor is ideal, determine the specific internal energy of the /n/-pentane vapor relative to the same reference.
+
+* Cold compression
+A gas stream containing acetone in air flows from a solvent recovery unit into a condenser at a rate of \SI{142}{\liter\per\second}.  The stream  is at \SI{150}{\celsius} and 1.3 atm, and a 3.00 liter sample of this stream contains 0.957 g of acetone. The condenser is cooled and work is done on the stream at a rate of 25.2 kW so that most of the acetone exits as  a liquid stream  \SI{-18}{\celsius} and 5 atm.  This liquid is in equilibrium with a vapor phase of air and acetone that leaves through a separate stream.
+
+1. (4 pts) Draw and carefully label the system, identifying all unknowns.
+2. (2 pts) Perform a degree of freedom analysis to verify that the system is solvable.
+3. (4 pts) Determine the composition of the entering vapor phase.  State any assumptions you make.
+4. (4 pts) Determine the composition of the exiting vapor phase.  State any assumptions you make.
+5. (4 pts) Perform a mass balance to determine the molar flow rates of all streams.
+6. (4 pts) Perform an energy balance to determine the required cooling rate.
+
+* Psych(r)o
+The wet and dry bulb temperatures of humid air provide a convenient way of determining the air composition and extensive properties.  This information is summarized in air psychrometric charts.
+1. (2 pts) On a moderate summer day, the temperature is 78\(^{\circ}\)F and the relative humidity is 40%. You step out of the pool and immediately feel cold.  Estimate the temperature of your skin.
+2. (2 pts) On a less comfortable summer day, the Accuweather says the temperature is \SI{33}{\celsius} and the relative humidity is 40%. Doubting that report, you use a psychrometer to determine the wet and dry bulb temperatures to be 29 and \SI{35}{\celsius}, respectively.  What is the relative humidity?  What is the dew point?
+3. (2 pts) What is the enthalpy difference per mass of dry air between the two days?

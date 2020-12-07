@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{Molarity} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.50}                \PYGemacs{c}{\PYGemacsZsh{} mol/L}
+\PYGemacs{n}{MW}  \PYGemacs{o}{=} \PYGemacs{l+m+mi}{2}\PYGemacs{o}{*}\PYGemacs{l+m+mf}{1.0} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{32.0} \PYGemacs{o}{+} \PYGemacs{l+m+mi}{4} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{16.0}  \PYGemacs{c}{\PYGemacsZsh{} g/mol}
+\PYGemacs{n}{flow} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.25}                    \PYGemacs{c}{\PYGemacsZsh{} m3/min}
+\PYGemacs{n}{density} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.03}                 \PYGemacs{c}{\PYGemacsZsh{} kg/L}
+
+\PYGemacs{n}{mass\PYGemacsZus{}conc} \PYGemacs{o}{=} \PYGemacs{n}{Molarity} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{MW}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{l+m+mi}{1000}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mi}{1000}\PYGemacs{o}{/}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)}  \PYGemacs{c}{\PYGemacsZsh{} kg H2SO4/m3}
+
+\PYGemacs{n}{H2SO4\PYGemacsZus{}mass\PYGemacsZus{}flow} \PYGemacs{o}{=} \PYGemacs{n}{mass\PYGemacsZus{}conc} \PYGemacs{o}{*} \PYGemacs{n}{flow} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{l+m+mi}{60}\PYGemacs{p}{)}          \PYGemacs{c}{\PYGemacsZsh{} kg H2SO4/s}
+
+\PYGemacs{n}{total\PYGemacsZus{}mass\PYGemacsZus{}flow} \PYGemacs{o}{=} \PYGemacs{n}{flow} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{l+m+mi}{60}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mi}{1000}\PYGemacs{o}{/}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{n}{density}  \PYGemacs{c}{\PYGemacsZsh{} kg/s}
+
+\PYGemacs{n}{mass\PYGemacsZus{}frac} \PYGemacs{o}{=} \PYGemacs{n}{H2SO4\PYGemacsZus{}mass\PYGemacsZus{}flow}\PYGemacs{o}{/}\PYGemacs{n}{total\PYGemacsZus{}mass\PYGemacsZus{}flow}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}\PYGemacsZob{}0:5.2f\PYGemacsZcb{} kg H2SO3/m3   \PYGemacsZob{}1:5.2f\PYGemacsZcb{} kg/s   \PYGemacsZob{}2:5.4f\PYGemacsZcb{} kg H2SO4/kg\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{mass\PYGemacsZus{}conc}\PYGemacs{p}{,}\PYGemacs{n}{H2SO4\PYGemacsZus{}mass\PYGemacsZus{}flow}\PYGemacs{p}{,}\PYGemacs{n}{mass\PYGemacsZus{}frac}\PYGemacs{p}{))}
+\end{Verbatim}

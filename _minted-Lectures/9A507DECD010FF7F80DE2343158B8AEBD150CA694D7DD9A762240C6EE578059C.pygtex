@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{hatm} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{760}
+\PYGemacs{n}{hgauge} \PYGemacs{o}{=} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mi}{25}   \PYGemacs{c}{\PYGemacsZsh{} mmHg}
+\PYGemacs{n}{habsolute} \PYGemacs{o}{=} \PYGemacs{n}{hgauge} \PYGemacs{o}{+} \PYGemacs{n}{hatm}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Gauge = \PYGemacsZob{}0:5.1f\PYGemacsZcb{}  Abs = \PYGemacsZob{}1:5.1f\PYGemacsZcb{} mmHg\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{hgauge}\PYGemacs{p}{,}\PYGemacs{n}{habsolute}\PYGemacs{p}{))}
+
+\PYGemacs{n}{g} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{9.807}      \PYGemacs{c}{\PYGemacsZsh{} m/s2}
+\PYGemacs{n}{rhoHg} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{13600}  \PYGemacs{c}{\PYGemacsZsh{} kg/m3}
+\PYGemacs{n}{pgauge} \PYGemacs{o}{=} \PYGemacs{n}{rhoHg} \PYGemacs{o}{*} \PYGemacs{n}{g} \PYGemacs{o}{*} \PYGemacs{n}{hgauge}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{1000.}   \PYGemacs{c}{\PYGemacsZsh{} Pa}
+\PYGemacs{n}{pabsolute} \PYGemacs{o}{=} \PYGemacs{n}{rhoHg} \PYGemacs{o}{*} \PYGemacs{n}{g} \PYGemacs{o}{*} \PYGemacs{n}{habsolute}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{1000.}   \PYGemacs{c}{\PYGemacsZsh{} Pa}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Gauge = \PYGemacsZob{}0:5.0f\PYGemacsZcb{}  Abs = \PYGemacsZob{}1:5.0f\PYGemacsZcb{} Pa\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{pgauge}\PYGemacs{p}{,}\PYGemacs{n}{pabsolute}\PYGemacs{p}{))}
+
+\PYGemacs{n}{pgauge} \PYGemacs{o}{=} \PYGemacs{n}{pgauge} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mf}{14.696}\PYGemacs{o}{/} \PYGemacs{l+m+mf}{1.01325e5}\PYGemacs{p}{)}  \PYGemacs{c}{\PYGemacsZsh{} lbf/in2}
+\PYGemacs{n}{pabsolute} \PYGemacs{o}{=} \PYGemacs{n}{pabsolute} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mf}{14.696}\PYGemacs{o}{/} \PYGemacs{l+m+mf}{1.01325e5}\PYGemacs{p}{)}  \PYGemacs{c}{\PYGemacsZsh{} lbf/in2}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Gauge = \PYGemacsZob{}0:5.3\PYGemacsZcb{}  Abs = \PYGemacsZob{}1:5.3f\PYGemacsZcb{} psi\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{pgauge}\PYGemacs{p}{,}\PYGemacs{n}{pabsolute}\PYGemacs{p}{))}
+\end{Verbatim}

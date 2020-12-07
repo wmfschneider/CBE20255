@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n+nb}{input} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{50000}\PYGemacs{p}{;} \PYGemacs{n}{output}\PYGemacs{o}{=}\PYGemacs{l+m+mi}{75000}\PYGemacs{p}{;} \PYGemacs{n}{generation}\PYGemacs{o}{=}\PYGemacs{l+m+mi}{22000}\PYGemacs{p}{;} \PYGemacs{n}{consumption}\PYGemacs{o}{=}\PYGemacs{l+m+mi}{19000}\PYGemacs{p}{;}
+\PYGemacs{n}{accumulation} \PYGemacs{o}{=}\PYGemacs{n+nb}{input} \PYGemacs{o}{+} \PYGemacs{n}{generation} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{output} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{consumption}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}accumulation = \PYGemacsZob{}0\PYGemacsZcb{} people/year\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{accumulation}\PYGemacs{p}{))}
+\end{Verbatim}

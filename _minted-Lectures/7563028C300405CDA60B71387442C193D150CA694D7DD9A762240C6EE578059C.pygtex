@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{MWNH3} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{17}\PYGemacs{p}{;} \PYGemacs{n}{MWO2} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{32}\PYGemacs{p}{;} \PYGemacs{n}{MWN2} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{28}\PYGemacs{p}{;}
+\PYGemacs{n}{MWair} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.79} \PYGemacs{o}{*} \PYGemacs{n}{MWN2} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{0.21} \PYGemacs{o}{*} \PYGemacs{n}{MWO2}
+
+\PYGemacs{n}{mNH30} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.1}\PYGemacs{p}{;} \PYGemacs{n}{mair0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.0}
+\PYGemacs{n}{nNH30} \PYGemacs{o}{=} \PYGemacs{n}{mNH30} \PYGemacs{o}{/} \PYGemacs{n}{MWNH3}
+\PYGemacs{n}{nO20} \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{n}{mair0} \PYGemacs{o}{/} \PYGemacs{n}{MWair}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{0.21}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}ndot NH3 = \PYGemacsZob{}0:6.4f\PYGemacsZcb{}  ndot O2= \PYGemacsZob{}1:6.4f\PYGemacsZcb{} mol/s}\PYGemacs{l+s+se}{\PYGemacsZbs{}n}\PYGemacs{l+s}{\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{nNH30}\PYGemacs{p}{,}\PYGemacs{n}{nO20}\PYGemacs{p}{))}
+
+\PYGemacs{n}{nuNH3} \PYGemacs{o}{=} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mf}{4.0}\PYGemacs{p}{;} \PYGemacs{n}{nuO2} \PYGemacs{o}{=} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mf}{5.0}\PYGemacs{p}{;}
+
+\PYGemacs{n}{xiNH3} \PYGemacs{o}{=} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{nNH30}\PYGemacs{o}{/}\PYGemacs{n}{nuNH3}\PYGemacs{p}{;} \PYGemacs{n}{xiO2} \PYGemacs{o}{=} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{nO20}\PYGemacs{o}{/}\PYGemacs{n}{nuO2}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}ndot/nu NH3 = \PYGemacsZob{}0:7.5f\PYGemacsZcb{}  ndot/nu O2 = \PYGemacsZob{}1:7.5f\PYGemacsZcb{}}\PYGemacs{l+s+se}{\PYGemacsZbs{}n}\PYGemacs{l+s}{\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{xiNH3}\PYGemacs{p}{,}\PYGemacs{n}{xiO2}\PYGemacs{p}{))}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}O2 limiting}\PYGemacs{l+s+se}{\PYGemacsZbs{}n}\PYGemacs{l+s}{\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{n}{xilim} \PYGemacs{o}{=} \PYGemacs{n}{xiO2}
+
+\PYGemacs{n}{nNH3} \PYGemacs{o}{=} \PYGemacs{n}{nNH30} \PYGemacs{o}{+} \PYGemacs{n}{nuNH3} \PYGemacs{o}{*} \PYGemacs{n}{xilim}\PYGemacs{p}{;} \PYGemacs{n}{nO2} \PYGemacs{o}{=} \PYGemacs{n}{nO20} \PYGemacs{o}{+} \PYGemacs{n}{nuO2} \PYGemacs{o}{*}\PYGemacs{n}{xilim}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}ndot NH3 = \PYGemacsZob{}0:7.5f\PYGemacsZcb{}  ndotO2 = \PYGemacsZob{}1:7.5f\PYGemacsZcb{}}\PYGemacs{l+s+se}{\PYGemacsZbs{}n}\PYGemacs{l+s}{\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{nNH3}\PYGemacs{p}{,}\PYGemacs{n}{nO2}\PYGemacs{p}{))}
+
+\PYGemacs{n}{fNH3} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{100}\PYGemacs{o}{*}\PYGemacs{p}{(}\PYGemacs{n}{nNH30} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{nNH3}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{n}{nNH30}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Fraction NH3 consumed = \PYGemacsZob{}0:4.2f\PYGemacsZcb{}\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{fNH3}\PYGemacs{p}{))}
+\end{Verbatim}

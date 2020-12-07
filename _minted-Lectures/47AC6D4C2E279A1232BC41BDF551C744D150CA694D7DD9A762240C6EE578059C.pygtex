@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{pressure} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.01325e5} \PYGemacs{c}{\PYGemacsZsh{} Pa}
+\PYGemacs{n}{density} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{13594.}  \PYGemacs{c}{\PYGemacsZsh{} kg/m3}
+\PYGemacs{n}{g} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{9.807}  \PYGemacs{c}{\PYGemacsZsh{}  m/s2}
+
+\PYGemacs{n}{heightHg} \PYGemacs{o}{=} \PYGemacs{n}{pressure} \PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{n}{density} \PYGemacs{o}{*} \PYGemacs{n}{g}\PYGemacs{p}{)} \PYGemacs{c}{\PYGemacsZsh{} m}
+\PYGemacs{n}{heightH2O} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{13.6} \PYGemacs{o}{*} \PYGemacs{n}{heightHg}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}\PYGemacsZob{}0:6.1f\PYGemacsZcb{} mmHg   \PYGemacsZob{}1:8.2f\PYGemacsZcb{} mH2O\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{heightHg}\PYGemacs{o}{*}\PYGemacs{l+m+mi}{1000}\PYGemacs{p}{,}\PYGemacs{n}{heightH2O}\PYGemacs{p}{))}
+\end{Verbatim}

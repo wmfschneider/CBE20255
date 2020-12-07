@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{PBs} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{756}  \PYGemacs{c}{\PYGemacsZsh{} torr}
+\PYGemacs{n}{PTs} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{291}  \PYGemacs{c}{\PYGemacsZsh{} torr}
+\PYGemacs{n}{yB}  \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.15}
+\PYGemacs{n}{yT}  \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.10}
+
+\PYGemacs{c}{\PYGemacsZsh{} eliminate xB}
+\PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{p}{((}\PYGemacs{n}{yB}\PYGemacs{o}{/}\PYGemacs{n}{PBs}\PYGemacs{p}{)} \PYGemacs{o}{+} \PYGemacs{p}{(}\PYGemacs{n}{yT}\PYGemacs{o}{/}\PYGemacs{n}{PTs}\PYGemacs{p}{))}
+
+\PYGemacs{n}{xB} \PYGemacs{o}{=} \PYGemacs{n}{yB} \PYGemacs{o}{*} \PYGemacs{n}{P} \PYGemacs{o}{/}\PYGemacs{n}{PBs}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Dew point pressure = \PYGemacsZob{}0:5.0f\PYGemacsZcb{}  Benzene fraction = \PYGemacsZob{}1:5.3f\PYGemacsZcb{}\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{P}\PYGemacs{p}{,}\PYGemacs{n}{xB}\PYGemacs{p}{))}
+\end{Verbatim}

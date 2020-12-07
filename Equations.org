@@ -1,0 +1,235 @@
+#+BEGIN_OPTIONS
+#+Title:Lecture Notes for CBE 20255
+#+Author: William F. Schneider
+#+LaTeX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [11pt]
+#+LATEX_HEADER:\usepackage{siunitx}
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usemintedstyle{emacs}
+#+LATEX_HEADER:\newminted{python}{fontsize=\normalsize}
+#+LATEX_HEADER:\usepackage{framed,color}
+#+LATEX_HEADER:\definecolor{shadecolor}{rgb}{1.0,0.8,0.3}
+
+#+OPTIONS: ':t toc:nil
+#+END_OPTIONS
+
+* Introduction to Engineering Calculation
+- Base units
+
+|-----------------+----+-----+------------|
+| Dimension       | SI | cgs | English    |
+|-----------------+----+-----+------------|
+| Length          | m  | cm  | in, ft, mi |
+| Mass            | kg | g   | lb_{m}     |
+| Time            | s  | s   | s          |
+| Temperature     | K  | K   | F          |
+| Current         | A  | A   |            |
+| Light intensity | cd | cd  |            |
+|-----------------+----+-----+------------|
+
+- Derived units
+|-------------+------------+------+------------------------------|
+| Volume      | liter      | L    | 1000 cm^{3}                  |
+| Force       | Newton     | N    | 1 kg m/s^{2}                 |
+|             | dyne       |      | 1 g cm/s^{2}                 |
+| Energy/Work | Joule      | J    | 1 N m = 1 kg m^{2}/s^{2}     |
+|             | erg        |      | 1 dyne cm = 1 g cm^{2}/s^{2} |
+|             | calorie    | cal  | 4.184 J                      |
+|             | Btu        |      | 1 Btu = 1055.05585 J         |
+| Power       | Watt       | W    | 1 J/s                        |
+|             | Horsepower | hp   | 1 hp = 745.7 W               |
+| Pressure    | Pascal     | Pa   | 1 N/m^{2} = 1 J/m^{3}        |
+|             | bar        |      | 10^{5} Pa                    |
+|             | atmosphere | atm  | 1 atm = 1.01325 bar          |
+|             | torr       | torr | 1/760 atm                    |
+|-------------+------------+------+------------------------------|
+
+- basic statistics
+
+| /sample mean/                  | /Sample variance/                                          | /Standard deviation/        |
+| \(\bar{X}=\sum_{1}^{n}X_{i} \) | \(s_{X}^{2}=\frac{1}{N-1}\sum_{1}^{n}(X_{i}-\bar{X})^{2}\) | \(s_{x}=\sqrt{s_{X}^{2}} \) |
+
+* Processes and process variables
+- Density
+
+\[\rho =\frac{m}{V}=\frac{\dot{m}}{\dot{V}} \]
+
+- Pressure
+
+\[ P = P_{0} + \rho g h \]
+
+\[ P_{gauge} = P_{abs} - P_{atm} \]
+
+- Temperature Scales
+  - Kelvin: absolute scale, 0 \to \infty
+  - Celsius: \(T(^{\circ}C) = T(K) - 273.15)\)
+  - Fahrenheit: \(T(^{\circ}F) = 1.8 T(^{\circ}C) + 32 )\)
+  - Rankine: absolute scale, \(T(^{\circ}R) = T(^{\circ}F)+459.67\)
+- Chemical composition
+
+[[./figs/PeriodicTableMuted.png]]
+
+
+* Material balances
+- general balance
+\begin{framed}
+output = input + generation - consumption - accumulation
+\end{framed}
+
+- Reaction progress
+\begin{equation*}
+n_{j} = n_{j0} + \nu_{j} \xi
+\end{equation*}
+
+- /conversion/
+
+\[X_{j} = \frac{n_{j0}-n_{j}}{n_{j0}} = -\frac{\nu_{j}\xi}{n_{j0}} \]
+
+- Multiple reactions
+
+\[ n_{j} = n_{j0} + \sum_{i} \nu_{ij} \xi_{i} \]
+
+- /yield/ \(=n_{j}/n_{j}^{\text{max}}\)
+
+- /selectivity/ (often) defined as amount of desired product over amount of
+  undesired.
+
+* Properties of single-phase systems
+- Ideal solution
+\[ v \text{ (l/mol)} = \sum_{i} x_{i} v_{i} \]
+
+\[ \frac{1}{\bar{\rho}} = \sum_{i}^{n} \frac{\omega_{i}}{\rho_{i}} \]
+
+- Ideal gases
+\[ P V = n R T \text{ or } P v = R T \text{ or } v = \frac{RT}{P} \]
+
+|R | 8.314472 J / (K mol) | 0.082057 atm l / (K mol) | 1.3806504e-23 J / K |
+
+- Ideal gas mixture
+\[ V(N,T,P) = V_{1}(N_{1},T,P) + V_{2}(N_{2},T,P) \]
+
+\[ \frac{P_{1}}{P} = \frac{N_{1} RT/V}{N RT/V} = y_{1}\]
+
+- van der Waals model
+
+\[ P_{\text{vdW}} = \frac{RT}{v-b} - \frac{a}{v^{2}} \]
+
+\[b = v_{c}/3\quad\quad a = \frac{9}{8}R T_{c} v_{c}\]
+
+- reduced variables
+
+\[ T_{r} = T/T_{c}\quad P_{r} = P/P_{c}\quad v_{r}=v/v_{c}\]
+
+- Soave-Redlich-Kwong (SRK) model
+
+\[P_{\text{SRK}} = \frac{RT}{v-b} - \frac{\alpha(T) a}{v(v+b)} \]
+
+\begin{eqnarray*}
+a & = & 0.42747 \frac{(R T_{c})^{2}}{P_{c}} \\
+b & = & 0.08664 \frac{R T_{c}}{P_{c}} \\
+m & = & 0.48508 + 1.55171 \omega - 0.1561 \omega^{2}\\
+\alpha & = & \[1+m (1-\sqrt{T_{r}})\]^2
+\end{eqnarray*}
+
+- Pitzer "acentric" factor
+
+\[\omega = -\log \left ( \frac{P_{sat}}{P_{c}} \right ) \Big|_{T_{r}=0.7} -1 \]
+
+- Virial expansion
+
+\[ P= \frac{RT}{v} \left ( 1 + \frac{B_{2}(T)}{v} + \frac{B_{3}(T)}{v^{2}} + \cdots \right ) \]
+
+- /compressibility/
+\[ Z = \frac{P(v,T) v}{RT} \]
+
+- Law of corresponding states
+ \[ Z_{c} = 0.27 \]
+
+* Two-phase systems
+
+- Clapeyron equation
+\[ \frac{d P^{*}}{dT} = \frac{\Delta H_{\text{latent}}}{T(v_{b}-v_{a})} \]
+
+- Clausius-Clapeyron equation:
+\[ \ln \frac{P^{*}_{2}}{P^{*}_{1}} \approx -\frac{\Delta H_{\text{vap}}}{R}\left ( \frac{1}{T_{2}} - \frac{1}{T_{1}} \right ) \]
+
+- Antoine equation
+\[ \log_{10}P^{*} = A - \frac{B}{T+C} \]
+
+- Gibbs phase rule
+
+\[ DOF = c - \Pi - r + 2\]
+
+- Raoult's Law
+
+\[ x_{A} P^{*}_{A}(T) = P_{A} = y_{A} P \]
+
+\[ P_{\text{bubble}} = \sum x_{i} P_{i}^{*} \]
+
+\[ P_{\text{dew}} = \left ( \sum_{i}\frac{y_{i}}{P_{i}^{*}} \right )^{-1} \]
+
+- Relative humidity
+
+\[ RH(T) = P_{\ce{H2O}}/P^{*}_{\ce{H2O}}(T) \]
+
+- Henry's Law
+
+\[ x_{A} H_{A}(T) = P_{A} = y_{A} P \]
+
+- Colligative properties
+\[\Delta T_{b} \approx \frac{R T_{b}^{2}}{\Delta H^{*}_{vap}}x \]
+
+\[\Delta T_{m} \approx \frac{R T_{m}^{2}}{\Delta H^{*}_{m}}x \]
+
+* Energy balances
+- Energy types
+  \[ E_{K} = \frac{1}{2} m v^{2}\quad\quad \dot{E}_{K} = \frac{1}{2}\dot{m} u^{2} \]
+
+  \[ E_{V} = m g h \quad\quad \dot{E}_{V} = \dot{m} g z \]
+
+ \[ U = U(T,P,x_{i})\quad\quad H=U+PV\]
+
+- Closed, constant volume system
+
+ \[ \Delta U + \Delta E_{K} + \Delta E_{V} - q - w = 0 \]
+
+- Open system at steady-state
+
+\[ \Delta\dot{H} + \Delta\dot{E}_{K} + \Delta{E}_{P} = \dot{q} + \dot{W}_{s} \]
+
+- Bernoulli equation:
+
+\[ \frac{1}{2} \Delta u^{2} + g\Delta z  + \frac{1}{\rho}\Delta P = 0\]
+
+* Energy balances on non-reactive systems
+- heat capacity
+
+\[ C_{v}(T) = \left ( \frac{\partial\hat{U}}{\partial T} \right )_{v} \]
+
+\[ C_{p}(T) = \left ( \frac{\partial\hat{H}}{\partial T} \right )_{p} \]
+
+- For liquids and solids, \(C_{p} \approx C_{v}\)
+- For ideal gas, \(C_{p} = C_{v} + R\)
+
+* Energy balances on reactive systems
+- Reaction energy
+
+\[ \Delta H^{\circ}_{r} = \sum_{j} \nu_{j} \Delta \hat{H}_{f,j}^{\circ} \]
+
+
+- "Heat of reaction" method
+
+\[ \Delta \dot{H} = \xi\Delta\hat{H}^{\circ}_{r} + \sum_{out}\dot{n}_{out}\hat{H}_{out}-\sum_{in}\dot{n}_{in}\hat{H}_{in} \]
+
+\[ \Delta \dot{H} = \sum_{i}\xi_{i}\Delta\hat{H}^{\circ}_{r} + \sum_{out}\dot{n}_{out}\hat{H}_{out}-\sum_{in}\dot{n}_{in}\hat{H}_{in} \]
+
+- "Heat of formation" method
+
+\[ \Delta \dot{H} = \sum_{out}\dot{n}_{out}\hat{H}_{out}-\sum_{in}\dot{n}_{in}\hat{H}_{in} \]
+
+
+* Transient processes
+- General balance around any system or element of a system
+
+\[ \dot{F}_{out}(t) = \dot{F}_{in}(t) + r(t) - \frac{dF}{dt} \]

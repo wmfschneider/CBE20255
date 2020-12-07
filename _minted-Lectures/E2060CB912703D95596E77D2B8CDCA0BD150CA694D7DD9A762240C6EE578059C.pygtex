@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{psat} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{289.}
+\PYGemacs{n}{yH2O} \PYGemacs{o}{=} \PYGemacs{n}{psat}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{760.}
+\PYGemacs{n}{yair} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{yH2O}
+\PYGemacs{n}{yN2} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.79}\PYGemacs{o}{*}\PYGemacs{n}{yair}
+\PYGemacs{n}{yO2} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.21}\PYGemacs{o}{*}\PYGemacs{n}{yair}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}H2O = \PYGemacsZob{}0:3.0f\PYGemacsZcb{}\PYGemacsZpc{}  N2 = \PYGemacsZob{}1:3.0f\PYGemacsZcb{}\PYGemacsZpc{}  O2 = \PYGemacsZob{}2:3.0f\PYGemacsZcb{}\PYGemacsZpc{}\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{yH2O}\PYGemacs{o}{*}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{,}\PYGemacs{n}{yN2}\PYGemacs{o}{*}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{,}\PYGemacs{n}{yO2}\PYGemacs{o}{*}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{))}
+\end{Verbatim}

@@ -1,0 +1,115 @@
+% Created 2016-03-09 Wed 18:33
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[version=3]{mhchem}
+\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage{natmove}
+\usepackage{url}
+\usepackage{minted}
+\usepackage{underscore}
+\usepackage[linktocpage,pdfstartview=FitH,colorlinks,
+linkcolor=blue,anchorcolor=blue,
+citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue]{hyperref}
+\usepackage{attachfile}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+\geometry{margin=1.0in}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[labelfont=bf]{caption}
+\usepackage{setspace}
+\setlength{\headheight}{10.2pt}
+\setlength{\headsep}{20pt}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\lfoot{\today}
+\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+\rfoot{\thepage}
+\chead{\bf{Introduction to Chemical Engineering (CBE 20255)\vspace{12pt}}}
+\lhead{\bf{Homework 6}}
+\rhead{\bf{Due March 18, 2016}}
+\usepackage{titlesec}
+\titlespacing*{\section}
+{0pt}{0.6\baselineskip}{0.2\baselineskip}
+\title{University of Notre Dame\\Introduction to Chemical Engineering\\(CBE 20255)}
+\author{Prof. William F.\ Schneider}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\usepackage{siunitx}
+\setcounter{secnumdepth}{3}
+\author{William F. Schneider}
+\date{\today}
+\title{CBE 60553 Outline}
+\begin{document}
+
+\begin{options}
+\end{options}
+
+\noindent \textbf{Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.}
+
+
+\section{I'm going through a phase (transition)}
+\label{sec-1}
+The triple point of methanol (\ce{CH3OH}) is at 175.5 K and 0.187 Pa; it's critical point is at 513.1 K and 81 bar;
+it's normal melting and  boiling points are \SI{176}{\kelvin} and \SI{338}{\kelvin}, respectively.
+
+\begin{enumerate}
+\item (6 pts) Sketch the phase diagram of methanol in as much detail as you can based on the available information.
+\item (2 pts) Does the melting temperature of methanol go up or down with increasing pressure?
+\item (4 pts) You take a bottle of methanol from the solvents cabinet and put it in an oil bath at \SI{100}{\celsius}.  (Why would you do this?  I don't know.) Assuming there is only methanol liquid and vapor in the bottle, estimate the pressure in the bottle.
+\item (4 pts) The Antoine equation is one way to more reliably estimate the pressure.  Use this equation with the parameters in the \href{http://webbook.nist.gov/cgi/cbook.cgi?ID=C67561&Units=SI&Mask=4#Thermo-Phase}{NIST webbook} to determine the pressure in the bottle.
+\item (4 pts) In a separate experiment at \SI{100}{\celsius} the gauge pressure in the bottle is 1.5 atm.  Is the vapor superheated?  If so, by how many degrees?
+\item (2 pts) What is the dew pressure of the vapor from the previous question?
+\end{enumerate}
+
+\section{It's raining\ldots{}rain!}
+\label{sec-2}
+Air at \SI{90.0}{\celsius}, 1.00 atm absolute, and 10.0\%(mol/mol) \ce{H2O} is fed into a compressor-condensor, in which the pressure is increased to 3.00 atm and temperature decreased to \SI{15.6}{\celsius}.  Liquid water is separated from the air stream.  The air stream is then heated at constant pressure to \SI{100.0}{\celsius}.  (For this problem refer to Table B.3 in your text or a similar tabulation of \ce{H2O} saturation pressures.)
+
+\begin{enumerate}
+\item (6 pts) What fraction of \ce{H2O} is condensed from the air?
+\item (6 pts) What is the relative humidity of the final air stream?
+\item (4 pts) What is the ratio of outlet to inlet air volumetric flow rate?
+\end{enumerate}
+
+\section{Many components, many phases}
+\label{sec-3}
+A liquid mixture comprising 50, 30, and 20\%(mol/mol) of propane, \emph{n}-butane, and \emph{iso}-butane, respectively, is in a sealed container at \SI{20.0}{\celsius}. The saturation pressure of each component is well described by the Antoine equation, parameters in the NIST webbook, and the mixture can be assumed to obey Raoult's Law.
+
+\begin{enumerate}
+\item (6 pts) What is the pressure in the container?
+\item (6 pts) What is the composition of the vapor phase?
+\item (4 pts) At about what temperature will the pressure exceed the safe operating pressure of 400 psig?
+\item (2 pts) One way to separate this mixture would be to freeze out the various components.  Is it possible for solids of all three components to be in equilibrium with the liquid mixture?
+\end{enumerate}
+
+\section{Dew drops}
+\label{sec-4}
+A closed system contains an equimolar mixture of \emph{n}-pentane and \emph{iso}-pentane.
+\begin{enumerate}
+\item (6 pts) Suppose the vessel is initially at \SI{120}{\celsius} and sufficiently  high pressure that only liquid is present.  As the pressure is lowered isothermally, determine the point at which the first bubble of vapor appears and the composition of that bubble.
+\item (6 pts) As the pressure is lowered further, determine the point at which the last drop of liquid is present, and the composition of that drop.
+\item (6 pts) Suppose instead the vessel is at 2.5 atm and at sufficiently high temperature that everything is present as vapor.  As the system is cooled at constant pressure, determine the temperature at which the first dew drop appears, and the composition of that drop.
+\item (6 pts) As the system is cooled further, determine the temperature at which the last bubble of vapor disappears and the composition of that bubble.
+\end{enumerate}
+% Emacs 25.0.50.1 (Org mode 8.2.10)
+\end{document}

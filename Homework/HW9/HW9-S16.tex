@@ -1,0 +1,119 @@
+% Created 2016-06-01 Wed 21:33
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[version=3]{mhchem}
+\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage{natmove}
+\usepackage{url}
+\usepackage{minted}
+\usepackage{underscore}
+\usepackage[linktocpage,pdfstartview=FitH,colorlinks,
+linkcolor=blue,anchorcolor=blue,
+citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue]{hyperref}
+\usepackage{attachfile}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+\geometry{margin=1.0in}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[labelfont=bf]{caption}
+\usepackage{setspace}
+\setlength{\headheight}{10.2pt}
+\setlength{\headsep}{20pt}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\lfoot{\today}
+\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+\rfoot{\thepage}
+\chead{\bf{Introduction to Chemical Engineering (CBE 20255)\vspace{12pt}}}
+\lhead{\bf{Homework 9}}
+\rhead{\bf{Due April 20, 2016}}
+\usepackage{titlesec}
+\titlespacing*{\section}
+{0pt}{0.6\baselineskip}{0.2\baselineskip}
+\title{University of Notre Dame\\Introduction to Chemical Engineering\\(CBE 20255)}
+\author{Prof. William F.\ Schneider}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\usepackage{siunitx}
+\setcounter{secnumdepth}{3}
+\author{William F. Schneider}
+\date{\today}
+\title{CBE 60553 Outline}
+\begin{document}
+
+\begin{options}
+\end{options}
+
+\noindent \textbf{Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.}
+
+
+\section{All roads lead to Rome}
+\label{sec-1}
+A stream of water vapor flowing at a rate of 250 mol/h is cooled from \SI{600}{\celsius} and 10 bar to \SI{100}{\celsius} and 1 atm.
+\begin{enumerate}
+\item (4 pts) Estimate the required cooling rate using the steam tables.
+\item (4 pts) Estimate the required cooling rate using the water vapor heat capacity in Table B.2 of your book.
+\item (2 pts) Which number do you believe more?  Why?  Be specific.
+\end{enumerate}
+
+
+\section{In with the cold, out with the hot}
+\label{sec-2}
+Saturated steam at \SI{300}{\celsius} is used to heat a stream of methanol vapor from $65$ to \SI{260}{\celsius} in a countercurrent, adiabatic heat exchanger.  The methanol flow rate is 6500 standard liters per minute, and the steam condenses and leaves as liquid water at \SI{90}{\celsius}.
+\begin{enumerate}
+\item (4 pts) Determine the required steam flow rate, in \SI{}{\meter\cubed\per\minute}.
+\item (4 pts) Calculate the heat transfer rate from water to methanol, in kW.
+\item (2 pts) Suppose you set this system up and are disappointed to discover that the temperature of the exiting methanol is only \SI{240}{\celsius}.  Suggest three plausible explanations.
+\item (2 pts) Suppose you set this system up and are surprised to discover that the temperature of the exiting methanol is  \SI{280}{\celsius}.  Suggest three different, plausible explanations.
+\end{enumerate}
+
+\section{Please be specific}
+\label{sec-3}
+\begin{enumerate}
+\item (4 pts) Determine the specific enthalpy (kJ/mol) of \emph{n}-pentane vapor at \SI{200}{\celsius} and 2.0 atm relative to liquid \emph{n}-pentane at \SI{20}{\celsius} and 5.0 atm.  Carefully identify each contribution to the overall enthalpy change.
+\item (2 pts) Assuming that the vapor is ideal, determine the specific internal energy of the \emph{n}-pentane vapor relative to the same reference.
+\end{enumerate}
+
+\section{Cold compression}
+\label{sec-4}
+A gas stream containing acetone in air flows from a solvent recovery unit into a condenser at a rate of \SI{142}{\liter\per\second}.  The stream  is at \SI{150}{\celsius} and 1.3 atm, and a 3.00 liter sample of this stream contains 0.957 g of acetone. The condenser is cooled and work is done on the stream at a rate of 25.2 kW so that most of the acetone exits as  a liquid stream  \SI{-18}{\celsius} and 5 atm.  This liquid is in equilibrium with a vapor phase of air and acetone that leaves through a separate stream.
+
+\begin{enumerate}
+\item (4 pts) Draw and carefully label the system, identifying all unknowns.
+\item (2 pts) Perform a degree of freedom analysis to verify that the system is solvable.
+\item (4 pts) Determine the composition of the entering vapor phase.  State any assumptions you make.
+\item (4 pts) Determine the composition of the exiting vapor phase.  State any assumptions you make.
+\item (4 pts) Perform a mass balance to determine the molar flow rates of all streams.
+\item (4 pts) Perform an energy balance to determine the required cooling rate.
+\end{enumerate}
+
+\section{Psych(r)o}
+\label{sec-5}
+The wet and dry bulb temperatures of humid air provide a convenient way of determining the air composition and extensive properties.  This information is summarized in air psychrometric charts.
+\begin{enumerate}
+\item (2 pts) On a moderate summer day, the temperature is 78\(^{\circ}\)F and the relative humidity is 40\%. You step out of the pool and immediately feel cold.  Estimate the temperature of your skin.
+\item (2 pts) On a less comfortable summer day, the Accuweather says the temperature is \SI{33}{\celsius} and the relative humidity is 40\%. Doubting that report, you use a psychrometer to determine the wet and dry bulb temperatures to be 29 and \SI{35}{\celsius}, respectively.  What is the relative humidity?  What is the dew point?
+\item (2 pts) What is the enthalpy difference per mass of dry air between the two days?
+\end{enumerate}
+% Emacs 25.0.50.1 (Org mode 8.2.10)
+\end{document}

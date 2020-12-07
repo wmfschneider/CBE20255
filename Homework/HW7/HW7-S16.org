@@ -1,0 +1,75 @@
+#+BEGIN_OPTIONS
+#+AUTHOR: William F. Schneider
+#+TITLE: CBE 60553 Outline
+#+EMAIL: wschneider@nd.edu
+#+LATEX_CLASS_OPTIONS: [11pt]
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{epstopdf}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\usepackage{hyperref}
+#+LATEX_HEADER:\usepackage[labelfont=bf]{caption}
+#+LATEX_HEADER:\usepackage{setspace}
+#+LATEX_HEADER:\setlength{\headheight}{10.2pt}
+#+LATEX_HEADER:\setlength{\headsep}{20pt}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+#+LATEX_HEADER:\chead{\bf{Introduction to Chemical Engineering (CBE 20255)\vspace{12pt}}}
+#+LATEX_HEADER:\lhead{\bf{Homework 7}}
+#+LATEX_HEADER:\rhead{\bf{Due April 4, 2016}}
+#+LATEX_HEADER:\usepackage{titlesec}
+#+LATEX_HEADER:\titlespacing*{\section}
+#+LATEX_HEADER:{0pt}{0.6\baselineskip}{0.2\baselineskip}
+#+LATEX_HEADER:\title{University of Notre Dame\\Introduction to Chemical Engineering\\(CBE 20255)}
+#+LATEX_HEADER:\author{Prof. William F.\ Schneider}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\usepackage{siunitx}
+
+#+OPTIONS: toc:nil
+#+OPTIONS: H:3 num:3
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+\noindent *Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.*
+
+* Key ideas :no_export:
+- closed system energy balance
+- open system balance
+- thermo tables
+
+* [[https://www.youtube.com/watch?v=RvV3nn_de2k][I Can't Drive 55]]
+You are driving down the road at 55 mph in your 5500 lb_{\text{m}} automobile.  When the traffic light ahead turns amber, you step on the brakes to bring your vehicle to a complete stop.
+
+1. (4 pts) What is the initial kinetic energy of the vehicle, in kJ?
+2. (2 pts) Where does that energy go when you stop the car?
+4. (4 pts) Make a ballpark estimate of how many times in a day this type of braking event happens in the US. Explain your approach.
+5. (4 pts) Estimate the average rate of energy dissipation resulting from all these braking events in day (in MW).
+6. (4 pts) Look up the average household electric usage in the US.  How many homes could in principle be powered by the energy dissipated by braking?
+7. (2 pts) What is "regenerative braking"?  Is it a good idea?
+
+* A Pipe Dream
+Methane enters a 3-cm ID pipe at \SI{30}{\celsius} and \SI{10}{\bar} with a average linear velocity of \SI{5.00}{\meter\per\second} and emerges at a point \SI{200}{\meter} lower than the inlet at \SI{30}{\celsius} and \SI{9}{\bar}. At these conditions, methane is well described as an ideal gas.
+
+1. (4 pts) What is the kinetic energy of the entering methane, in W?
+2. (4 pts) What is the change in potential energy of the methane, in W?
+3. (4 pts) What is the kinetic energy of the exiting methane, in W?
+4. (2 pts) Do the potential and kinetic energy changes balance each other?  If not, how is that possible?
+
+
+* Work = heat
+A piston-fitted cylinder with a 6 cm inner diameter contains 1.40 g of \ce{N2}.  The piston itself has a mass of \SI{4.50}{\kilo\gram} and on top of it rests an additional \SI{25.00}{\kilo\gram} mass.  The gas is at \SI{30.0}{\celsius}, and the pressure outside the cylinder is 2.50 atm.
+
+1. (4 pts) What is the pressure in the cylinder?
+2. (4 pts) What is the volume occupied by the gas?
+3. (4 pts) Suppose the weight is removed and the piston rapidly rises to a new equilibrium height, so fast that there is no time for heat to flow in or out of the cylinder. What energy terms are non-zero in this process, and what are their signs?  (You can neglect any small changes in potential and kinetic energy.)
+4. (2 pts) Is the gas warmer or cooler after this first step?
+5. (4 pts) After the piston stops, the gas inside slowly returns to \SI{30}{\celsius}.  What energy terms are non-zero in this process, and what are their signs?  (You can neglect any small changes in potential and kinetic energy.)
+6. (4 pts) The work done in the expansion process is the distance traveled by the piston times the resisting force (due to the weight of the piston and the atmosphere).  How much work is done in the expansion, and how much heat flows in or out of the system throughout the whole process?

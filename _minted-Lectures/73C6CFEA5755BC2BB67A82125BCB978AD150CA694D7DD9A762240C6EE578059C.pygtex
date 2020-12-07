@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{MW} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{2.}\PYGemacs{o}{*}\PYGemacs{p}{(}\PYGemacs{l+m+mf}{1.008}\PYGemacs{p}{)} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{32.0} \PYGemacs{o}{+} \PYGemacs{l+m+mi}{4} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{16.0}   \PYGemacs{c}{\PYGemacsZsh{} g/g\PYGemacsZhy{}mol}
+\PYGemacs{n}{mass} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{500} \PYGemacs{o}{*} \PYGemacs{n}{MW}                     \PYGemacs{c}{\PYGemacsZsh{} g}
+\PYGemacs{n}{mass\PYGemacsZus{}soln} \PYGemacs{o}{=} \PYGemacs{n}{mass} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mf}{100.}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{35.0}\PYGemacs{p}{)}      \PYGemacs{c}{\PYGemacsZsh{} g}
+\PYGemacs{n}{rho} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.2563}                        \PYGemacs{c}{\PYGemacsZsh{} g/mL}
+\PYGemacs{n}{volume} \PYGemacs{o}{=} \PYGemacs{n}{mass\PYGemacsZus{}soln}\PYGemacs{o}{/}\PYGemacs{n}{rho}\PYGemacs{o}{/}\PYGemacs{l+m+mi}{1000}         \PYGemacs{c}{\PYGemacsZsh{} L}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}Volume=\PYGemacsZob{}0:6.3f\PYGemacsZcb{} L\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{volume}\PYGemacs{p}{))}
+\end{Verbatim}

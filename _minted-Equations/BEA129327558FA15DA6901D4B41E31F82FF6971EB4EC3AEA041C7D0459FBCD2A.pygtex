@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{VSCFH} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{3.95e5} \PYGemacs{c}{\PYGemacsZsh{} std ft3/hr}
+\PYGemacs{n}{PS} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.0} \PYGemacs{c}{\PYGemacsZsh{}}
+\PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.30} \PYGemacs{c}{\PYGemacsZsh{}}
+\PYGemacs{n}{TS} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{459.67} \PYGemacs{o}{+} \PYGemacs{l+m+mi}{32} \PYGemacs{c}{\PYGemacsZsh{} R}
+\PYGemacs{n}{T} \PYGemacs{o}{=} \PYGemacs{n}{TS} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{285.}
+
+\PYGemacs{n}{Vs} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{359.05} \PYGemacs{c}{\PYGemacsZsh{} std ft3/lb\PYGemacsZhy{}mol}
+
+\PYGemacs{n}{ndot} \PYGemacs{o}{=} \PYGemacs{n}{VSCFH} \PYGemacs{o}{/}\PYGemacs{n}{Vs}  \PYGemacs{c}{\PYGemacsZsh{} lb\PYGemacsZhy{}mol/hr}
+
+\PYGemacs{n}{V} \PYGemacs{o}{=} \PYGemacs{n}{VSCFH} \PYGemacs{o}{*} \PYGemacs{p}{(} \PYGemacs{n}{PS}\PYGemacs{o}{/}\PYGemacs{n}{P}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{o}{/}\PYGemacs{n}{TS}\PYGemacs{p}{)}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}\PYGemacsZob{}0:6.2e\PYGemacsZcb{} mol/hr   \PYGemacsZob{}1:6.2e\PYGemacsZcb{} ft\PYGemacsZca{}3/hr\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{ndot}\PYGemacs{p}{,}\PYGemacs{n}{V}\PYGemacs{p}{))}
+\end{Verbatim}

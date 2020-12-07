@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{V}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+\PYGemacs{c}{\PYGemacsZsh{} Volume relative to volume at 0 C}
+    \PYGemacs{n}{a} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.18182e\PYGemacsZhy{}3}
+    \PYGemacs{n}{b} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.0078e\PYGemacsZhy{}6}
+    \PYGemacs{k}{return} \PYGemacs{l+m+mf}{1.} \PYGemacs{o}{+} \PYGemacs{n}{T} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{a} \PYGemacs{o}{+} \PYGemacs{n}{b}\PYGemacs{o}{*}\PYGemacs{n}{T}\PYGemacs{p}{)}
+\PYGemacs{k}{def} \PYGemacs{n+nf}{h}\PYGemacs{p}{(}\PYGemacs{n}{V}\PYGemacs{p}{):}
+    \PYGemacs{n}{area} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{pi} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mf}{0.25}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{12.}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{2.}\PYGemacs{p}{)}\PYGemacs{o}{**}\PYGemacs{l+m+mi}{2}
+    \PYGemacs{k}{return} \PYGemacs{n}{V}\PYGemacs{o}{/}\PYGemacs{n}{area}
+
+\PYGemacs{n}{V20} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.560}
+\PYGemacs{n}{h20} \PYGemacs{o}{=} \PYGemacs{n}{h}\PYGemacs{p}{(}\PYGemacs{n}{V20}\PYGemacs{p}{)}
+\PYGemacs{n}{V100} \PYGemacs{o}{=} \PYGemacs{n}{V20} \PYGemacs{o}{*} \PYGemacs{n}{V}\PYGemacs{p}{(}\PYGemacs{l+m+mf}{100.}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{n}{V}\PYGemacs{p}{(}\PYGemacs{l+m+mf}{20.}\PYGemacs{p}{)}
+\PYGemacs{n}{h100} \PYGemacs{o}{=} \PYGemacs{n}{h}\PYGemacs{p}{(}\PYGemacs{n}{V100}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Temperature    Volume (ft3)   Height (ft)\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}\PYGemacsZob{}0:8.1f\PYGemacsZcb{}       \PYGemacsZob{}1:6.3f\PYGemacsZcb{}       \PYGemacsZob{}2:6.2f\PYGemacsZcb{}\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{20}\PYGemacs{p}{,}\PYGemacs{n}{V20}\PYGemacs{p}{,}\PYGemacs{n}{h20}\PYGemacs{p}{))}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}\PYGemacsZob{}0:8.1f\PYGemacsZcb{}       \PYGemacsZob{}1:6.3f\PYGemacsZcb{}       \PYGemacsZob{}2:6.2f\PYGemacsZcb{}\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{,}\PYGemacs{n}{V100}\PYGemacs{p}{,}\PYGemacs{n}{h100}\PYGemacs{p}{))}
+
+\PYGemacs{n}{deltah} \PYGemacs{o}{=} \PYGemacs{n}{h100}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{h20}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}Delta h = \PYGemacsZob{}0:6.2f\PYGemacsZcb{} ft\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{deltah}\PYGemacs{p}{))}
+\end{Verbatim}

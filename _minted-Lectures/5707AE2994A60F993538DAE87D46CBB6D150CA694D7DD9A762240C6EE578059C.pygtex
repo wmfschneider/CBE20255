@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{MWH2SO4} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{2}\PYGemacs{o}{*}\PYGemacs{l+m+mf}{1.008} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{32.0} \PYGemacs{o}{+} \PYGemacs{l+m+mi}{4} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{16.00}
+\PYGemacs{n}{MWH2O} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{2} \PYGemacs{o}{*}\PYGemacs{l+m+mf}{1.008} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{16.00}
+
+\PYGemacs{n}{molH2SO4} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{35.0} \PYGemacs{o}{/} \PYGemacs{n}{MWH2SO4}    \PYGemacs{c}{\PYGemacsZsh{} mol H2SO4}
+\PYGemacs{n}{molH2O}   \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{l+m+mf}{100.}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mf}{35.0}\PYGemacs{p}{)}\PYGemacs{o}{/} \PYGemacs{n}{MWH2O} \PYGemacs{c}{\PYGemacsZsh{} mol H2O}
+
+\PYGemacs{n}{fracH2SO4} \PYGemacs{o}{=} \PYGemacs{n}{molH2SO4}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{n}{molH2SO4}\PYGemacs{o}{+}\PYGemacs{n}{molH2O}\PYGemacs{p}{)}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}\PYGemacsZob{}0:6.3f\PYGemacsZcb{}\PYGemacsZpc{}(mol/mol) H2SO4\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{fracH2SO4}\PYGemacs{o}{*}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{))}
+\end{Verbatim}

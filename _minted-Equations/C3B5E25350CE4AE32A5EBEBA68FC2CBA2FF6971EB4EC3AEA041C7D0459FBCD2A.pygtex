@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{rho\PYGemacsZus{}acetone} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.791} \PYGemacs{c}{\PYGemacsZsh{} g/cm3}
+\PYGemacs{n}{vdot\PYGemacsZus{}acetone} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{400.} \PYGemacs{c}{\PYGemacsZsh{} l/min}
+\PYGemacs{n}{MW\PYGemacsZus{}acetone} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{58.08} \PYGemacs{c}{\PYGemacsZsh{} g/mol}
+
+\PYGemacs{n}{ndot\PYGemacsZus{}acetone} \PYGemacs{o}{=} \PYGemacs{n}{vdot\PYGemacsZus{}acetone} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{1000.} \PYGemacs{o}{*} \PYGemacs{n}{rho\PYGemacsZus{}acetone} \PYGemacs{o}{/} \PYGemacs{n}{MW\PYGemacsZus{}acetone}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}acetone = \PYGemacsZob{}0:6.0f\PYGemacsZcb{} mol/min\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{ndot\PYGemacsZus{}acetone}\PYGemacs{p}{))}
+
+\PYGemacs{n}{P\PYGemacsZus{}atm} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{763.}
+\PYGemacs{n}{P\PYGemacsZus{}exit} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{6.2} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{760.} \PYGemacs{o}{+} \PYGemacs{n}{P\PYGemacsZus{}atm}  \PYGemacs{c}{\PYGemacsZsh{} mm Hg}
+\PYGemacs{n}{P\PYGemacsZus{}acetone} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{501.} \PYGemacs{o}{+} \PYGemacs{n}{P\PYGemacsZus{}atm} \PYGemacs{c}{\PYGemacsZsh{} mm Hg}
+\PYGemacs{n}{P\PYGemacsZus{}N2} \PYGemacs{o}{=} \PYGemacs{n}{P\PYGemacsZus{}exit} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{P\PYGemacsZus{}acetone}
+\PYGemacs{n}{y\PYGemacsZus{}N2} \PYGemacs{o}{=} \PYGemacs{n}{P\PYGemacsZus{}N2}\PYGemacs{o}{/}\PYGemacs{n}{P\PYGemacsZus{}exit}\PYGemacs{p}{;} \PYGemacs{n}{y\PYGemacsZus{}acetone} \PYGemacs{o}{=} \PYGemacs{n}{P\PYGemacsZus{}acetone}\PYGemacs{o}{/}\PYGemacs{n}{P\PYGemacsZus{}exit}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}acetone = \PYGemacsZob{}0:5.3f\PYGemacsZcb{}  N2 = \PYGemacsZob{}1:5.3f\PYGemacsZcb{} mol/mol\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{y\PYGemacsZus{}acetone}\PYGemacs{p}{,}\PYGemacs{n}{y\PYGemacsZus{}N2}\PYGemacs{p}{))}
+
+\PYGemacs{n}{n\PYGemacsZus{}exit} \PYGemacs{o}{=} \PYGemacs{n}{ndot\PYGemacsZus{}acetone} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mi}{1} \PYGemacs{o}{+} \PYGemacs{n}{y\PYGemacsZus{}N2}\PYGemacs{o}{/}\PYGemacs{n}{y\PYGemacsZus{}acetone}\PYGemacs{p}{)} \PYGemacs{c}{\PYGemacsZsh{} mol/min}
+
+\PYGemacs{n}{T\PYGemacsZus{}exit} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{325} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{273.15}  \PYGemacs{c}{\PYGemacsZsh{} K}
+
+\PYGemacs{n}{R} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{62.36} \PYGemacs{c}{\PYGemacsZsh{} L mm Hg/mol K}
+
+\PYGemacs{n}{V\PYGemacsZus{}exit} \PYGemacs{o}{=} \PYGemacs{n}{n\PYGemacsZus{}exit} \PYGemacs{o}{*} \PYGemacs{n}{R} \PYGemacs{o}{*} \PYGemacs{n}{T\PYGemacsZus{}exit} \PYGemacs{o}{/}\PYGemacs{n}{P\PYGemacsZus{}exit}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}exit \PYGemacsZob{}0:6.1f\PYGemacsZcb{} mol/min  \PYGemacsZob{}1:6.1f\PYGemacsZcb{} l/min\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{n\PYGemacsZus{}exit}\PYGemacs{p}{,}\PYGemacs{n}{V\PYGemacsZus{}exit}\PYGemacs{p}{))}
+\end{Verbatim}

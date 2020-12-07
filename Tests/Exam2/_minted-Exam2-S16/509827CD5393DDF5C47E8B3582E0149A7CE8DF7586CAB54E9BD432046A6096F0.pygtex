@@ -1,0 +1,49 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{numpy} \PYGdefault{k+kn}{as} \PYGdefault{n+nn}{np}
+\PYGdefault{k+kn}{import} \PYGdefault{n+nn}{matplotlib.pyplot} \PYGdefault{k+kn}{as} \PYGdefault{n+nn}{plt}
+\PYGdefault{k+kn}{from} \PYGdefault{n+nn}{scipy.optimize} \PYGdefault{k+kn}{import} \PYGdefault{n}{fsolve}
+
+\PYGdefault{k}{def} \PYGdefault{n+nf}{PAs}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{p}{):}
+    \PYGdefault{n}{A} \PYGdefault{o}{=} \PYGdefault{l+m+mf}{6.89272}\PYGdefault{p}{;} \PYGdefault{n}{B}\PYGdefault{o}{=} \PYGdefault{l+m+mf}{1203.531}\PYGdefault{p}{;} \PYGdefault{n}{C}\PYGdefault{o}{=}\PYGdefault{l+m+mf}{219.888} \PYGdefault{c}{\PYGdefaultZsh{} benzene Antoine}
+    \PYGdefault{n}{logP} \PYGdefault{o}{=} \PYGdefault{n}{A} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{B}\PYGdefault{o}{/}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{o}{+}\PYGdefault{n}{C}\PYGdefault{p}{)}
+    \PYGdefault{k}{return} \PYGdefault{l+m+mi}{10}\PYGdefault{o}{**}\PYGdefault{n}{logP}
+\PYGdefault{c}{\PYGdefaultZsh{}    PA0 = 10}
+\PYGdefault{c}{\PYGdefaultZsh{}    H = 800}
+\PYGdefault{c}{\PYGdefaultZsh{}    return PA0 * np.exp(\PYGdefaultZhy{}H/T)}
+
+\PYGdefault{k}{def} \PYGdefault{n+nf}{PBs}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{p}{):}
+    \PYGdefault{n}{A} \PYGdefault{o}{=} \PYGdefault{l+m+mf}{6.95805}\PYGdefault{p}{;} \PYGdefault{n}{B}\PYGdefault{o}{=} \PYGdefault{l+m+mf}{1346.773}\PYGdefault{p}{;} \PYGdefault{n}{C}\PYGdefault{o}{=}\PYGdefault{l+m+mf}{219.693} \PYGdefault{c}{\PYGdefaultZsh{} toluene Antoine}
+    \PYGdefault{n}{logP} \PYGdefault{o}{=} \PYGdefault{n}{A} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{B}\PYGdefault{o}{/}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{o}{+}\PYGdefault{n}{C}\PYGdefault{p}{)}
+    \PYGdefault{k}{return} \PYGdefault{l+m+mi}{10}\PYGdefault{o}{**}\PYGdefault{n}{logP}
+
+\PYGdefault{n}{Pressure} \PYGdefault{o}{=} \PYGdefault{l+m+mf}{760.0}
+
+\PYGdefault{k}{def} \PYGdefault{n+nf}{PAsopt}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{p}{):}
+    \PYGdefault{k}{return} \PYGdefault{n}{PAs}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{p}{)} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{Pressure}
+
+\PYGdefault{k}{def} \PYGdefault{n+nf}{PBsopt}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{p}{):}
+    \PYGdefault{k}{return} \PYGdefault{n}{PBs}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{p}{)} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{Pressure}
+
+\PYGdefault{n}{TA} \PYGdefault{o}{=} \PYGdefault{n}{fsolve}\PYGdefault{p}{(}\PYGdefault{n}{PAsopt}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{100}\PYGdefault{p}{)}
+\PYGdefault{n}{TB} \PYGdefault{o}{=} \PYGdefault{n}{fsolve}\PYGdefault{p}{(}\PYGdefault{n}{PBsopt}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{100}\PYGdefault{p}{)}
+
+\PYGdefault{c}{\PYGdefaultZsh{} print(TA,TB)}
+
+\PYGdefault{n}{T} \PYGdefault{o}{=} \PYGdefault{n}{np}\PYGdefault{o}{.}\PYGdefault{n}{linspace}\PYGdefault{p}{(}\PYGdefault{n}{TA}\PYGdefault{p}{,}\PYGdefault{n}{TB}\PYGdefault{p}{)}
+
+\PYGdefault{n}{xB} \PYGdefault{o}{=} \PYGdefault{p}{(}\PYGdefault{n}{Pressure} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{PAs}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{p}{))}\PYGdefault{o}{/}\PYGdefault{p}{(}\PYGdefault{n}{PBs}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{p}{)} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{PAs}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{p}{))}
+
+\PYGdefault{n}{yB} \PYGdefault{o}{=} \PYGdefault{n}{xB} \PYGdefault{o}{*} \PYGdefault{n}{PBs}\PYGdefault{p}{(}\PYGdefault{n}{T}\PYGdefault{p}{)}\PYGdefault{o}{/}\PYGdefault{n}{Pressure}
+
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{plot}\PYGdefault{p}{(}\PYGdefault{n}{xB}\PYGdefault{p}{,}\PYGdefault{n}{T}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZsq{}k\PYGdefaultZsq{}}\PYGdefault{p}{,}\PYGdefault{n}{yB}\PYGdefault{p}{,}\PYGdefault{n}{T}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZsq{}k\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{xlim}\PYGdefault{p}{(}\PYGdefault{l+m+mi}{0}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{1}\PYGdefault{p}{)}
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{ylabel}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZsq{}Temperature (C)\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{xlabel}\PYGdefault{p}{(}\PYGdefault{l+s}{r\PYGdefaultZsq{}\PYGdefaultZdl{}x\PYGdefaultZus{}B\PYGdefaultZdl{}, \PYGdefaultZdl{}y\PYGdefaultZus{}B\PYGdefaultZdl{}\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{title}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZsq{}VLE Phase Diagram\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{text}\PYGdefault{p}{(}\PYGdefault{l+m+mf}{0.2}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{95}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZsq{}1\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{text}\PYGdefault{p}{(}\PYGdefault{l+m+mf}{0.5}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{95}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZsq{}2\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{text}\PYGdefault{p}{(}\PYGdefault{l+m+mf}{0.8}\PYGdefault{p}{,}\PYGdefault{l+m+mi}{95}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZsq{}3\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\PYGdefault{c}{\PYGdefaultZsh{} plt.legend([\PYGdefaultZsq{}Bubble (x)\PYGdefaultZsq{},\PYGdefaultZsq{}Dew (y)\PYGdefaultZsq{}])}
+
+\PYGdefault{n}{plt}\PYGdefault{o}{.}\PYGdefault{n}{savefig}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZsq{}./TemperatureVLE.png\PYGdefaultZsq{}}\PYGdefault{p}{)}
+\end{Verbatim}

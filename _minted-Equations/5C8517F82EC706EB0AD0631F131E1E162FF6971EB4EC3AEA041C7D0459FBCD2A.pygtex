@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+
+\PYGemacs{n}{R} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{8.314}
+\PYGemacs{n}{T1} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{353.2}
+\PYGemacs{n}{T2} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{373.2}
+\PYGemacs{n}{deltaH} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{30800.}
+
+\PYGemacs{n}{lnP} \PYGemacs{o}{=} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{p}{(}\PYGemacs{n}{deltaH}\PYGemacs{o}{/}\PYGemacs{n}{R}\PYGemacs{p}{)}\PYGemacs{o}{*}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{n}{T2} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{n}{T1}\PYGemacs{p}{)} \PYGemacs{o}{+} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{log}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{760}\PYGemacs{p}{)}
+
+\PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{exp}\PYGemacs{p}{(}\PYGemacs{n}{lnP}\PYGemacs{p}{)}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}ln P = \PYGemacsZob{}0:6.2f\PYGemacsZcb{}  P = \PYGemacsZob{}1:6.0f\PYGemacsZcb{} torr\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{lnP}\PYGemacs{p}{,}\PYGemacs{n}{P}\PYGemacs{p}{))}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Experiment = 1360 torr\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}

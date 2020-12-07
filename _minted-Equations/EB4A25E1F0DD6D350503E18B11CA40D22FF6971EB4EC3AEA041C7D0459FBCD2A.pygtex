@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+
+\PYGemacs{n}{R} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.0821} \PYGemacs{c}{\PYGemacsZsh{} l atm/mol K}
+\PYGemacs{n}{v} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{logspace}\PYGemacs{p}{(}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mf}{0.2}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)}
+
+\PYGemacs{k}{for} \PYGemacs{n}{T} \PYGemacs{o+ow}{in} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{arange}\PYGemacs{p}{(}\PYGemacs{l+m+mf}{100.}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{1000}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{):}
+    \PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{n}{R} \PYGemacs{o}{*} \PYGemacs{n}{T} \PYGemacs{o}{*}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{n}{v}\PYGemacs{p}{)}
+    \PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{plot}\PYGemacs{p}{(}\PYGemacs{n}{v}\PYGemacs{p}{,}\PYGemacs{n}{P}\PYGemacs{p}{,}\PYGemacs{n}{label}\PYGemacs{o}{=}\PYGemacs{n}{T}\PYGemacs{p}{)}
+
+\PYGemacs{n}{legend} \PYGemacs{o}{=} \PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{legend}\PYGemacs{p}{()}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Volume (L/mol)\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Pressure (atm)\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{savefig}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}./figs/idealgas.png\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}

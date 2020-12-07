@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{Uhat} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{3800} \PYGemacs{c}{\PYGemacsZsh{} J/mol}
+
+\PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{1}         \PYGemacs{c}{\PYGemacsZsh{} atm}
+\PYGemacs{n}{Vhat} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{24.63}  \PYGemacs{c}{\PYGemacsZsh{} L/mol}
+
+\PYGemacs{n}{Ratm} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.0821}  \PYGemacs{c}{\PYGemacsZsh{} L atm /mol K}
+\PYGemacs{n}{RJ} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{8.314}     \PYGemacs{c}{\PYGemacsZsh{} J/mol K}
+
+\PYGemacs{n}{Hhat} \PYGemacs{o}{=} \PYGemacs{n}{Uhat} \PYGemacs{o}{+} \PYGemacs{n}{P} \PYGemacs{o}{*} \PYGemacs{n}{Vhat} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{RJ}\PYGemacs{o}{/}\PYGemacs{n}{Ratm}\PYGemacs{p}{)}
+
+\PYGemacs{n}{Vdot} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{250000}  \PYGemacs{c}{\PYGemacsZsh{} mol/h}
+
+\PYGemacs{n}{Hdot} \PYGemacs{o}{=} \PYGemacs{n}{Hhat} \PYGemacs{o}{*} \PYGemacs{n}{Vdot}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Hhat = \PYGemacsZob{}0:6.1f\PYGemacsZcb{} J/mol    Hdot = \PYGemacsZob{}1:6.3e\PYGemacsZcb{} J/h\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{Hhat}\PYGemacs{p}{,}\PYGemacs{n}{Hdot}\PYGemacs{p}{))}
+\end{Verbatim}

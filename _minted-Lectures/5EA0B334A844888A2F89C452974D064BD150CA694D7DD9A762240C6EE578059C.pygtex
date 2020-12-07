@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+
+\PYGemacs{n}{nu} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{array}\PYGemacs{p}{([}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mi}{4}\PYGemacs{p}{,} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{l+m+mi}{6}\PYGemacs{p}{,} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mi}{3}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{5}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{6}\PYGemacs{p}{])}
+\PYGemacs{n}{n0} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{array}\PYGemacs{p}{([}\PYGemacs{l+m+mi}{4}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{6}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{3}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{0}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{0}\PYGemacs{p}{])}
+
+\PYGemacs{n}{xi} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{linspace}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)}
+
+
+\PYGemacs{n}{n} \PYGemacs{o}{=} \PYGemacs{n}{n0} \PYGemacs{o}{+} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{multiply}\PYGemacs{p}{(}\PYGemacs{n}{nu}\PYGemacs{p}{,}\PYGemacs{n}{xi}\PYGemacs{p}{)}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{n}\PYGemacs{p}{)}
+\PYGemacs{c}{\PYGemacsZsh{} plt.plot(xi,n)}
+\PYGemacs{c}{\PYGemacsZsh{} plt.savefig(\PYGemacsZsq{}./figs/advancement1.png\PYGemacsZsq{})}
+\end{Verbatim}

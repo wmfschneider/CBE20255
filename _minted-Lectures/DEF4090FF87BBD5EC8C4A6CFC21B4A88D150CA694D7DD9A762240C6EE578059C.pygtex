@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{c}{\PYGemacsZsh{} 100 g basis}
+\PYGemacs{n}{MWN2} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{28.0}
+\PYGemacs{n}{MWO2} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{32.0}
+\PYGemacs{n}{molN2} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{76.7} \PYGemacs{o}{/} \PYGemacs{n}{MWN2}
+\PYGemacs{n}{molO2} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{23.3} \PYGemacs{o}{/} \PYGemacs{n}{MWO2}
+\PYGemacs{n}{moltot}\PYGemacs{o}{=} \PYGemacs{n}{molN2} \PYGemacs{o}{+} \PYGemacs{n}{molO2}
+\PYGemacs{n}{fracN2} \PYGemacs{o}{=} \PYGemacs{n}{molN2}\PYGemacs{o}{/}\PYGemacs{n}{moltot}
+\PYGemacs{n}{fracO2} \PYGemacs{o}{=} \PYGemacs{n}{molO2}\PYGemacs{o}{/}\PYGemacs{n}{moltot}
+\PYGemacs{n}{MWbar} \PYGemacs{o}{=} \PYGemacs{n}{fracN2}\PYGemacs{o}{*}\PYGemacs{n}{MWN2} \PYGemacs{o}{+} \PYGemacs{n}{fracO2}\PYGemacs{o}{*}\PYGemacs{n}{MWO2}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}100 g basis\PYGemacsZdq{}}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}              N2      O2\PYGemacsZdq{}}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}MW:          \PYGemacsZob{}0:4.2f\PYGemacsZcb{}    \PYGemacsZob{}1:4.2f\PYGemacsZcb{}\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{MWN2}\PYGemacs{p}{,}\PYGemacs{n}{MWO2}\PYGemacs{p}{))}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}moles:       \PYGemacsZob{}0:4.2f\PYGemacsZcb{}    \PYGemacsZob{}1:4.2f\PYGemacsZcb{}\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{molN2}\PYGemacs{p}{,}\PYGemacs{n}{molO2}\PYGemacs{p}{))}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}mole frac:   \PYGemacsZob{}0:4.2f\PYGemacsZcb{}    \PYGemacsZob{}1:4.2f\PYGemacsZcb{}\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{fracN2}\PYGemacs{p}{,}\PYGemacs{n}{fracO2}\PYGemacs{p}{))}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}}\PYGemacs{l+s+se}{\PYGemacsZbs{}n}\PYGemacs{l+s}{MWbar = \PYGemacsZob{}0:6.2f\PYGemacsZcb{} g/mol\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{MWbar}\PYGemacs{p}{))}
+\end{Verbatim}

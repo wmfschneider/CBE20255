@@ -1,0 +1,110 @@
+#+BEGIN_OPTIONS
+#+AUTHOR: William F. Schneider
+#+TITLE: CBE 60553 Outline
+#+EMAIL: wschneider@nd.edu
+#+LATEX_CLASS_OPTIONS:[11pt]
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{siunitx}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{epstopdf}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\usepackage{hyperref}
+#+LATEX_HEADER:\usepackage[labelfont=bf]{caption}
+#+LATEX_HEADER:\usepackage{setspace}
+#+LATEX_HEADER:\usepackage{sectsty}
+#+LATEX_HEADER:\subsectionfont{\rm}
+# #+LATEX_HEADER:\titlespacing*{\section}
+# #+LATEX_HEADER:{0pt}{0.6\baselineskip}{0.2\baselineskip}
+#+LATEX_HEADER:\setlength{\headheight}{5.2pt}
+#+LATEX_HEADER:\setlength{\headsep}{14pt}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+#+LATEX_HEADER:\rhead{\bf{ND CBE 20255}}
+#+LATEX_HEADER:\lhead{\bf{Quiz 2}}
+#+LATEX_HEADER:\chead{\bf{Spring 2016}}
+
+#+OPTIONS: toc:nil
+#+OPTIONS: H:2 num:3
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+#+BEGIN_LaTeX
+\
+\vspace{2cm}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{../centered-2c-NDmark.pdf}
+\end{figure}
+\begin{center}
+{\LARGE\bf Introduction to Chemical Engineering\\(CBE 20255)}
+\vspace{0.5cm}
+
+{\Large Prof. William F.\ Schneider}
+\end{center}
+\vspace{2cm}
+\noindent\large{{\bf NAME (PRINT):}}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\begin{spacing}{1.2}
+\begin{tabular}{|p{5.5in}|}
+\hline
+{\em AS A MEMBER OF THE NOTRE DAME COMMUNITY, I WILL NOT PARTICIPATE IN OR
+TOLERATE ACADEMIC DISHONESTY } \\
+\hline
+\end{tabular}
+\end{spacing}
+\vspace{1.5cm}
+
+\noindent\large{{\bf SIGNED:}} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\noindent{\bf PLEASE SHOW YOUR WORK.  CLEARLY DEMONSTRATE YOUR SOLUTION PROCEDURE
+AND STATE ANY ASSUMPTIONS YOU MAKE.  WRITE YOUR SOLUTIONS IN THE SPACE
+PROVIDED.  BLANK PAGES ARE INCLUDED TO PROVIDE MORE ROOM FOR YOUR
+WORK.  ASK THE PROCTOR IF YOU NEED ADDITIONAL SCRATCH PAPER.}
+\newpage
+#+END_LaTeX
+
+* Key ideas :no_export:
+- mass balance on reactive system
+- recycle, purge
+- single phase mixtures
+
+- ideal and non-ideal gases
+
+* Clean combustion
+Catalytic combustion in \ce{O2} is a potentially clean way of getting the energy out of methane (\ce{CH4}):
+\[ \ce{CH4 + 2 O2 -> CO2 + 2 H2O} \]
+but the catalytic process can be contaminated by the undesirable formation of formaldehyde (\ce{HCHO}):
+\[\ce{CH4 + O2 -> HCHO + H2O}\]
+\ce{CH4} and \ce{O2} are fed to a catalytic reactor in equimolar proportions at an assumed basis of \SI{100}{\mole\per\second} and allowed to come to steady state.
+
+** (4 pts) Draw a process diagram and label all the unknown variables.
+\vspace{6cm}
+** (4 pts) Write down all possible atomic species balances.
+\newpage
+
+** (2 pts) Compare the number of unknowns to the number of balances.
+\vspace{3cm}
+** (4 pts) The yield of formaldehyde (amount produced relative to the maximum possible produced) is 0.20.  What is the formaldehyde flow rate exiting the reactor?
+
+\vspace{6cm}
+** (6 pts) The methane conversion is 0.90. What is the selectivity to \ce{CO2} over \ce{HCHO}?
+
+IMPOSSIBLE!!!!  O2 flow rate becomes negative.
+
+\newpage
+* Full of gas, part 2
+A \SI{10.0}{\liter} bottle contains \SI{0.500}{\mole} of a gas at \SI{298}{\celsius}.
+
+** (4 pts) Not knowing anything about the gas, what would you estimate the pressure inside the bottle to be?  (Recall /R/ = 0.0821 l atm/mol K.)
+\vspace{8cm}
+** (4 pts) A friend tells you, "Oh, no, at these conditions the compressibility of that gas is 0.90."  What is the pressure inside the bottle?

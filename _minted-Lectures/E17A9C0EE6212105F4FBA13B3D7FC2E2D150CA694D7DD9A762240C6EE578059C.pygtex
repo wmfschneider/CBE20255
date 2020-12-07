@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+\PYGemacs{k+kn}{from} \PYGemacs{n+nn}{scipy.optimize} \PYGemacs{k+kn}{import} \PYGemacs{n}{fsolve}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{PBs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{n}{A} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{6.89272}\PYGemacs{p}{;} \PYGemacs{n}{B}\PYGemacs{o}{=} \PYGemacs{l+m+mf}{1203.531}\PYGemacs{p}{;} \PYGemacs{n}{C}\PYGemacs{o}{=}\PYGemacs{l+m+mf}{219.888} \PYGemacs{c}{\PYGemacsZsh{} benzene Antoine, C and mmHg}
+    \PYGemacs{n}{logP} \PYGemacs{o}{=} \PYGemacs{n}{A} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{B}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{o}{+}\PYGemacs{n}{C}\PYGemacs{p}{)}
+    \PYGemacs{k}{return} \PYGemacs{l+m+mi}{10}\PYGemacs{o}{**}\PYGemacs{n}{logP}
+
+\PYGemacs{k}{def} \PYGemacs{n+nf}{PTs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{n}{A} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{6.95805}\PYGemacs{p}{;} \PYGemacs{n}{B}\PYGemacs{o}{=} \PYGemacs{l+m+mf}{1346.773}\PYGemacs{p}{;} \PYGemacs{n}{C}\PYGemacs{o}{=}\PYGemacs{l+m+mf}{219.693} \PYGemacs{c}{\PYGemacsZsh{} toluene Antoine, C and mmHg}
+    \PYGemacs{n}{logP} \PYGemacs{o}{=} \PYGemacs{n}{A} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{B}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{o}{+}\PYGemacs{n}{C}\PYGemacs{p}{)}
+    \PYGemacs{k}{return} \PYGemacs{l+m+mi}{10}\PYGemacs{o}{**}\PYGemacs{n}{logP}
+
+\PYGemacs{n}{T} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{50.}
+
+\PYGemacs{n}{xB} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.4}\PYGemacs{p}{;} \PYGemacs{n}{xT}\PYGemacs{o}{=}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{xB}
+
+\PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{n}{xB}\PYGemacs{o}{*}\PYGemacs{n}{PBs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{)} \PYGemacs{o}{+} \PYGemacs{n}{xT}\PYGemacs{o}{*}\PYGemacs{n}{PTs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{)}
+
+\PYGemacs{n}{yB} \PYGemacs{o}{=} \PYGemacs{n}{xB}\PYGemacs{o}{*}\PYGemacs{n}{PBs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{n}{P}\PYGemacs{p}{;} \PYGemacs{n}{yT} \PYGemacs{o}{=} \PYGemacs{n}{xT}\PYGemacs{o}{*}\PYGemacs{n}{PTs}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{n}{P}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Raoult\PYGemacsZsq{}}\PYGemacs{n}{s} \PYGemacs{n}{Law} \PYGemacs{n}{Pressure} \PYGemacs{o}{=} \PYGemacs{p}{\PYGemacsZob{}}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{:}\PYGemacs{l+m+mf}{6.1}\PYGemacs{n}{f}\PYGemacs{p}{\PYGemacsZcb{}} \PYGemacs{n}{mmHg}\PYGemacs{l+s}{\PYGemacsZsq{}.format(P))}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Vapor yB,yT)}
+\end{Verbatim}

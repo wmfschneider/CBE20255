@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{Psat75} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{289.}  \PYGemacs{c}{\PYGemacsZsh{} mmHg}
+\PYGemacs{n}{RH} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.30}
+\PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.1} \PYGemacs{o}{*} \PYGemacs{l+m+mi}{760} \PYGemacs{o}{/} \PYGemacs{l+m+mf}{1.01325} \PYGemacs{c}{\PYGemacsZsh{} torr}
+
+\PYGemacs{n}{PH2O} \PYGemacs{o}{=} \PYGemacs{n}{RH}\PYGemacs{o}{*}\PYGemacs{n}{Psat75}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}PH2O = \PYGemacsZob{}0\PYGemacsZcb{} torr\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{PH2O}\PYGemacs{p}{))}
+
+\PYGemacs{n}{yH2O} \PYGemacs{o}{=} \PYGemacs{n}{PH2O}\PYGemacs{o}{/}\PYGemacs{n}{P}
+\PYGemacs{n}{yN2}  \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{yH2O}\PYGemacs{p}{)}\PYGemacs{o}{*}\PYGemacs{l+m+mf}{0.79}
+\PYGemacs{n}{yO2}  \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{yH2O}\PYGemacs{p}{)}\PYGemacs{o}{*}\PYGemacs{l+m+mf}{0.21}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}H2O = \PYGemacsZob{}0\PYGemacsZcb{}  N2 = \PYGemacsZob{}1\PYGemacsZcb{}  O2 = \PYGemacsZob{}2\PYGemacsZcb{} mol/mol\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{yH2O}\PYGemacs{p}{,}\PYGemacs{n}{yN2}\PYGemacs{p}{,}\PYGemacs{n}{yO2}\PYGemacs{p}{))}
+
+\PYGemacs{c}{\PYGemacsZsh{} MWavg = (18. * yH2O + 28 * yN2 + 32 * yO2)/1000.   \PYGemacsZsh{} kg/mol}
+
+\PYGemacs{n}{R} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{8.314}
+\PYGemacs{n}{T} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{75} \PYGemacs{o}{+} \PYGemacs{l+m+mi}{273}
+\PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.1e5}         \PYGemacs{c}{\PYGemacsZsh{} Pa}
+\PYGemacs{n}{vdot} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1000.}      \PYGemacs{c}{\PYGemacsZsh{} m3/hr}
+\PYGemacs{n}{ndot} \PYGemacs{o}{=} \PYGemacs{n}{P} \PYGemacs{o}{*} \PYGemacs{n}{vdot} \PYGemacs{o}{/} \PYGemacs{p}{(} \PYGemacs{n}{R} \PYGemacs{o}{*} \PYGemacs{n}{T}\PYGemacs{p}{)}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}H2O = \PYGemacsZob{}0\PYGemacsZcb{}  N2 = \PYGemacsZob{}1\PYGemacsZcb{}  O2 = \PYGemacsZob{}2\PYGemacsZcb{} mol/hr\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{yH2O}\PYGemacs{o}{*}\PYGemacs{n}{ndot}\PYGemacs{p}{,}\PYGemacs{n}{yN2}\PYGemacs{o}{*}\PYGemacs{n}{ndot}\PYGemacs{p}{,}\PYGemacs{n}{yO2}\PYGemacs{o}{*}\PYGemacs{n}{ndot}\PYGemacs{p}{))}
+\end{Verbatim}

@@ -1,0 +1,158 @@
+% Created 2016-01-30 Sat 16:37
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[version=3]{mhchem}
+\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage{natmove}
+\usepackage{url}
+\usepackage{minted}
+\usepackage{underscore}
+\usepackage[linktocpage,pdfstartview=FitH,colorlinks,
+linkcolor=blue,anchorcolor=blue,
+citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue]{hyperref}
+\usepackage{attachfile}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+\geometry{margin=1.0in}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage[labelfont=bf]{caption}
+\usepackage{setspace}
+\setlength{\headheight}{10.2pt}
+\setlength{\headsep}{20pt}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\lfoot{\today}
+\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+\rfoot{\thepage}
+\chead{\bf{Introduction to Chemical Engineering (CBE 20255)\vspace{12pt}}}
+\lhead{\bf{Homework 2}}
+\rhead{\bf{Due January 29, 2016}}
+\usepackage{titlesec}
+\titlespacing*{\section}
+{0pt}{0.6\baselineskip}{0.2\baselineskip}
+\title{University of Notre Dame\\Introduction to Chemical Engineering\\(CBE 20255)}
+\author{Prof. William F.\ Schneider}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\usepackage{siunitx}
+\setcounter{secnumdepth}{3}
+\author{William F. Schneider}
+\date{\today}
+\title{CBE 60553 Outline}
+\begin{document}
+
+\begin{options}
+\end{options}
+
+\noindent \textbf{Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.}
+
+
+\section{That's where I draw the line.}
+\label{sec-1}
+In homework 1, you learned about a solution containing hazardous waste that is charged into a storage tank and subjected to a treatment that decomposes the waste into harmless products.  The concentration of the decomposing waste (\(C_{W}\)) is reported to vary according to the model
+
+\[ C_{W} = 1/(a + bt) \]
+
+\noindent When \(C_{W}\) decreases to \(< \SI{0.01}{\g\per\L}\) the contents of the tank are discharged appropriately.  The following are some data for \(C_{W}\) vs. \emph{t}:
+
+\begin{center}
+\begin{tabular}{lrrrrr}
+\emph{t} (hr) & 1.0 & 2.0 & 3.0 & 4.0 & 5.0\\
+\hline
+\(C_{W}\) (g/L) & 1.43 & 1.02 & 0.73 & 0.53 & 0.38\\
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item (4~pts) Suggest a linearization of the model (a rearrangement that allows the data to
+be plotted to fit a straight line).  Plot the linearized data on a new graph,
+again using good plotting practices.
+\item (4~pts) Use the method of least squares to estimate the values of \emph{a}
+and \emph{b} from the data (remember to include appropriate units!).  Plot the
+line on the same graph as the linearized data.
+\item (4~pts) Use the fitted model to estimate the initial value of \(C_{W}\)
+   and the time necessary for \(C_{W}\) to reach the discharge concentration.
+\item (2~pts) How much faith do you have in this time estimate?  Why?
+\end{enumerate}
+
+
+\section{Can't take take the heat}
+\label{sec-2}
+Two thermocouples are tested by inserting their probes into boiling \ce{H2O}, recording readings, drying, and repeating.  Here's the results:
+
+\begin{center}
+\begin{tabular}{l|cccccccc}
+\hline
+T (\si{\celsius}) Thermocouple A: & 72.4 & 73.1 & 72.6 & 72.8 & 73.0 & 73.2 & 72.6 & 72.5\\
+T (\si{\celsius}) Thermocouple B: & 97.3 & 101.4 & 98.7 & 103.1 & 100.4 & 99.9 & 98.2 & 99.6\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item (4~pts) Construct a \emph{histogram} of each data set, using an appropriate bin width in each case. (Recall a histogram is a bar plot of the number of data points within a series of bins.)
+
+\item (6~pts) Compute the mean, range, and standard deviation of each data set.
+
+\item (2~pts) Which thermocouple is more \emph{precise} (shows least scatter)?  Which is more \emph{accurate}?
+
+\item (1~pts) Which would you choose to use if you needed to get a quick estimate of the temperature of some other boiling fluid?
+
+\item (1~pts) Which would you choose to use on a process control unit designed to hold the temperature of a bath at \SI{100.}{\celsius}?
+\end{enumerate}
+
+
+\section{A pipe runs through it}
+\label{sec-3}
+A 10.00\%(w/w) aqueous nitric acid solution ($\rho$ = 1.03 g/ml) flows through a \SI{45}{\meter} long pipe with a 6.0 cm diameter at a rate of 82 L/min.
+
+\begin{enumerate}
+\item (2~pts) What is the molarity of the nitric acid solution?
+
+\item (2~pts) How long in seconds would it take to fill a 55-gal drum?
+
+\item (2~pts) How much nitric acid would the drum contain, in kg?
+
+\item (2~pts) How long does it take for a bit of nitric acid solution to make it from the inlet to the outlet of the pipe?
+\end{enumerate}
+
+\section{Chill out, man}
+\label{sec-4}
+A gas stream contains 18.0 mole \% hexane and balance of nitrogen.  The stream flows through a condensor, where it is chilled to room temperature and some of the hexane is removed as a pure liquid condensate, at a rate of 1.50 L/min.  The gas leaving the condensor contains 5.00 mole \% hexane.
+
+\begin{enumerate}
+\item (4~pts) Draw a diagram of this system.  Indicate the condensor as a box, and use arrows to label all the inlet and exit streams along with whatever information you have about each stream.
+
+\item (4~pts) Compute the molar flow rate of the condensate.  (\emph{Note}: You need to know a physical property of hexane that I didn't tell you.  Look it up in Perry's Handbook or a similar resource.)
+
+\item (6~pts) What is the molar flow rate of the gas stream leaving the condensor?  (\emph{Hint}: What must be true about the total molar flow rate of nitrogen into and out of the condensor?  How about hexane?)
+
+\item (4~pts) What percent (by moles) of hexane is recovered as liquid?
+
+\item (4~pts) Suggest two different process modifications you could make to increase the amount of hexane recovered.
+\end{enumerate}
+
+\noindent Congratulations!  You just did your first mass balance!
+% Emacs 25.0.50.1 (Org mode 8.2.10)
+\end{document}

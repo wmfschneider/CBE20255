@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{MWNH3} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{17}\PYGemacs{p}{;} \PYGemacs{n}{MWO2} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{32}\PYGemacs{p}{;} \PYGemacs{n}{MWN2} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{28}\PYGemacs{p}{;}
+\PYGemacs{n}{MWair} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.79} \PYGemacs{o}{*} \PYGemacs{n}{MWN2} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{0.21} \PYGemacs{o}{*} \PYGemacs{n}{MWO2}
+
+\PYGemacs{n}{mNH3} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.1}\PYGemacs{p}{;} \PYGemacs{n}{mair} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.0}
+\PYGemacs{n}{nNH3} \PYGemacs{o}{=} \PYGemacs{n}{mNH3} \PYGemacs{o}{/} \PYGemacs{n}{MWNH3}
+\PYGemacs{n}{nO2} \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{n}{mair} \PYGemacs{o}{/} \PYGemacs{n}{MWair}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{0.21}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}ndot NH3 = \PYGemacsZob{}0:6.4f\PYGemacsZcb{}  ndot O2= \PYGemacsZob{}1:6.4f\PYGemacsZcb{} mol/s\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{nNH3}\PYGemacs{p}{,}\PYGemacs{n}{nO2}\PYGemacs{p}{))}
+
+\PYGemacs{n}{nuNH3} \PYGemacs{o}{=} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mf}{4.0}\PYGemacs{p}{;} \PYGemacs{n}{nuO2} \PYGemacs{o}{=} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mf}{5.0}\PYGemacs{p}{;}
+\end{Verbatim}

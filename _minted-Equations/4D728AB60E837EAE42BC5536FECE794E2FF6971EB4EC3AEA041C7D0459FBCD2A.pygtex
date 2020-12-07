@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{V0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{10.}
+\PYGemacs{n}{T0} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{70} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{459.67} \PYGemacs{c}{\PYGemacsZsh{} R}
+\PYGemacs{n}{T} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{610} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{459.67}
+\PYGemacs{n}{P0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.} \PYGemacs{c}{\PYGemacsZsh{} atm}
+\PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{2.50} \PYGemacs{c}{\PYGemacsZsh{} atm}
+
+\PYGemacs{n}{V} \PYGemacs{o}{=} \PYGemacs{n}{V0}\PYGemacs{o}{*}\PYGemacs{p}{(}\PYGemacs{n}{P0}\PYGemacs{o}{/}\PYGemacs{n}{P}\PYGemacs{p}{)}\PYGemacs{o}{*}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{o}{/}\PYGemacs{n}{T0}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}\PYGemacsZob{}0:6.2f\PYGemacsZcb{} ft3\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{V}\PYGemacs{p}{))}
+\end{Verbatim}

@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{Tc} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{305.4} \PYGemacs{c}{\PYGemacsZsh{} K}
+\PYGemacs{n}{Pc} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{48.2}  \PYGemacs{c}{\PYGemacsZsh{} atm}
+
+\PYGemacs{n}{T} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{25} \PYGemacs{o}{+} \PYGemacs{l+m+mi}{273} \PYGemacs{c}{\PYGemacsZsh{} K}
+\PYGemacs{n}{P} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{30}       \PYGemacs{c}{\PYGemacsZsh{} atm}
+
+\PYGemacs{n}{Tr} \PYGemacs{o}{=} \PYGemacs{n}{T}\PYGemacs{o}{/}\PYGemacs{n}{Tc}
+\PYGemacs{n}{Pr} \PYGemacs{o}{=} \PYGemacs{n}{P}\PYGemacs{o}{/}\PYGemacs{n}{Pc}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Tr = \PYGemacsZob{}0:5.2f\PYGemacsZcb{}  Pr = \PYGemacsZob{}1:5.2f\PYGemacsZcb{}\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{Tr}\PYGemacs{p}{,}\PYGemacs{n}{Pr}\PYGemacs{p}{))}
+\end{Verbatim}

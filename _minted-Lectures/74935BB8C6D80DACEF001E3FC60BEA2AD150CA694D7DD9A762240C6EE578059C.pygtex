@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+\PYGemacs{k+kn}{from} \PYGemacs{n+nn}{scipy} \PYGemacs{k+kn}{import} \PYGemacs{n}{stats}
+
+\PYGemacs{n}{EHxy} \PYGemacs{o}{=} \PYGemacs{p}{[} \PYGemacs{l+m+mi}{144}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{144}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{132}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{132}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{116}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{116}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{190}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{190}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{173}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{173}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{111}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{111}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{91}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{91}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{207}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{207}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{199}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{199}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{110}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{110}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{83}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{83}\PYGemacs{p}{]}
+\PYGemacs{n}{RDxy} \PYGemacs{o}{=} \PYGemacs{p}{[}\PYGemacs{l+m+mi}{152}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{150}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{141}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{134}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{117}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{117}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{204}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{202}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{184}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{183}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{123}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{118}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{94}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{96}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{225}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{224}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{213}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{213}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{114}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{115}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{89}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{93}\PYGemacs{p}{]}
+
+\PYGemacs{n}{m}\PYGemacs{p}{,} \PYGemacs{n}{b}\PYGemacs{p}{,} \PYGemacs{n}{r}\PYGemacs{p}{,} \PYGemacs{n}{p}\PYGemacs{p}{,} \PYGemacs{n}{e} \PYGemacs{o}{=} \PYGemacs{n}{stats}\PYGemacs{o}{.}\PYGemacs{n}{linregress}\PYGemacs{p}{(}\PYGemacs{n}{EHxy}\PYGemacs{p}{,}\PYGemacs{n}{RDxy}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}Slope       Intercept          r**2\PYGemacsZdq{}}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{m}\PYGemacs{p}{,}\PYGemacs{n}{b}\PYGemacs{p}{,}\PYGemacs{n}{r}\PYGemacs{o}{**}\PYGemacs{l+m+mi}{2}\PYGemacs{p}{)}
+
+\PYGemacs{n}{nu} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{linspace}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{80}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{230}\PYGemacs{p}{)}
+\PYGemacs{n}{fit} \PYGemacs{o}{=} \PYGemacs{n}{m} \PYGemacs{o}{*} \PYGemacs{n}{nu} \PYGemacs{o}{+} \PYGemacs{n}{b}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{scatter}\PYGemacs{p}{(}\PYGemacs{n}{EHxy}\PYGemacs{p}{,}\PYGemacs{n}{RDxy}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{plot}\PYGemacs{p}{(}\PYGemacs{n}{nu}\PYGemacs{p}{,}\PYGemacs{n}{fit}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlim}\PYGemacs{p}{((}\PYGemacs{l+m+mi}{50}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{250}\PYGemacs{p}{))}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylim}\PYGemacs{p}{((}\PYGemacs{l+m+mi}{50}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{250}\PYGemacs{p}{))}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Effective harmonic frequencies (cm\PYGemacsZdl{}\PYGemacsZca{}\PYGemacsZob{}\PYGemacsZob{}\PYGemacsZhy{}1\PYGemacsZcb{}\PYGemacsZcb{}\PYGemacsZdl{})\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Relaxed displacement frequencies (cm\PYGemacsZdl{}\PYGemacsZca{}\PYGemacsZob{}\PYGemacsZob{}\PYGemacsZhy{}1\PYGemacsZcb{}\PYGemacsZcb{}\PYGemacsZdl{})\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{savefig}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}./figs/freq.png\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}

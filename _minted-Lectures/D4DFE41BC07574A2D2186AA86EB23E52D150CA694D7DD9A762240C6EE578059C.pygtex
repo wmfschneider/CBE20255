@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{T0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{100.}        \PYGemacs{c}{\PYGemacsZsh{} C}
+\PYGemacs{n}{P0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{5260.}       \PYGemacs{c}{\PYGemacsZsh{} mmHg}
+\PYGemacs{n}{yH2O0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.10}
+\PYGemacs{n}{Psat} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{760.}      \PYGemacs{c}{\PYGemacsZsh{} duh!  Psat = Patm at 100 C!  We all know that.}
+
+\PYGemacs{n}{PH2O} \PYGemacs{o}{=} \PYGemacs{n}{P0} \PYGemacs{o}{*} \PYGemacs{n}{yH2O0}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Partial pressure of H2O = \PYGemacsZob{}0:4.0f\PYGemacsZcb{} mmHg\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{PH2O}\PYGemacs{p}{))}
+
+\PYGemacs{n}{dewpoint} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{90.0}   \PYGemacs{c}{\PYGemacsZsh{} from table}
+\PYGemacs{n}{superheat} \PYGemacs{o}{=} \PYGemacs{n}{T0} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{dewpoint}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Dew point = \PYGemacsZob{}0:4.0f\PYGemacsZcb{} degC    Superheat = \PYGemacsZob{}1:4.0f\PYGemacsZcb{} degC\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{dewpoint}\PYGemacs{p}{,}\PYGemacs{n}{superheat}\PYGemacs{p}{))}
+
+
+
+\PYGemacs{n}{Psat80} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{355.1}  \PYGemacs{c}{\PYGemacsZsh{} mmHg}
+\PYGemacs{n}{yH2O80} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{355.1}\PYGemacs{o}{/}\PYGemacs{l+m+mi}{5250}
+\PYGemacs{n}{deltay80} \PYGemacs{o}{=} \PYGemacs{n}{yH2O0}
+\end{Verbatim}

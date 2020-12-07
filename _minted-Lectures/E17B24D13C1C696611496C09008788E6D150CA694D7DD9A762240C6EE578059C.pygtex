@@ -1,0 +1,37 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{c}{\PYGemacsZsh{} Convert stream 2 to mass basis}
+\PYGemacs{n}{MWb} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{6} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{12.0} \PYGemacs{o}{+} \PYGemacs{l+m+mi}{6} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{1.008}
+\PYGemacs{n}{MWt} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{7} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{12.0} \PYGemacs{o}{+}\PYGemacs{l+m+mi}{8} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{1.008}
+\PYGemacs{n}{x2B} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.95}
+\PYGemacs{n}{x2T} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.05}
+
+\PYGemacs{n}{basis} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{100.}
+\PYGemacs{n}{m2B} \PYGemacs{o}{=} \PYGemacs{n}{basis} \PYGemacs{o}{*} \PYGemacs{n}{x2B} \PYGemacs{o}{*} \PYGemacs{n}{MWb}
+\PYGemacs{n}{m2T} \PYGemacs{o}{=} \PYGemacs{n}{basis} \PYGemacs{o}{*} \PYGemacs{n}{x2T} \PYGemacs{o}{*} \PYGemacs{n}{MWt}
+\PYGemacs{n}{m2tot} \PYGemacs{o}{=} \PYGemacs{n}{m2B} \PYGemacs{o}{+} \PYGemacs{n}{m2T}
+
+\PYGemacs{n}{z2B} \PYGemacs{o}{=} \PYGemacs{n}{m2B}\PYGemacs{o}{/}\PYGemacs{n}{m2tot}
+\PYGemacs{n}{z2T} \PYGemacs{o}{=} \PYGemacs{n}{m2T}\PYGemacs{o}{/}\PYGemacs{n}{m2tot}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Z2Benzene = \PYGemacsZob{}0:5.3f\PYGemacsZcb{} Z2Toluene = \PYGemacsZob{}1:5.3f\PYGemacsZcb{} kg/kg\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{z2B}\PYGemacs{p}{,}\PYGemacs{n}{z2T}\PYGemacs{p}{))}
+
+\PYGemacs{c}{\PYGemacsZsh{} total mass flow rate}
+\PYGemacs{n}{SG} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.872}
+\PYGemacs{n}{v1} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{2000}  \PYGemacs{c}{\PYGemacsZsh{} l/h}
+\PYGemacs{n}{m1} \PYGemacs{o}{=} \PYGemacs{n}{v1} \PYGemacs{o}{*} \PYGemacs{n}{SG}
+
+\PYGemacs{c}{\PYGemacsZsh{} benzene flow rates}
+\PYGemacs{n}{z1B} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.45}
+\PYGemacs{n}{m3B} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.08} \PYGemacs{o}{*} \PYGemacs{n}{m1} \PYGemacs{o}{*} \PYGemacs{n}{z1B}
+\PYGemacs{n}{m2B} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.92} \PYGemacs{o}{*} \PYGemacs{n}{m1} \PYGemacs{o}{*} \PYGemacs{n}{z1B}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Mdot1 = \PYGemacsZob{}0:6.1f\PYGemacsZcb{}  Mdot2B = \PYGemacsZob{}1:6.1f\PYGemacsZcb{}   Mdot3B = \PYGemacsZob{}2:6.1f\PYGemacsZcb{} kg/hr\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{m1}\PYGemacs{p}{,}\PYGemacs{n}{m2B}\PYGemacs{p}{,}\PYGemacs{n}{m3B}\PYGemacs{p}{))}
+
+\PYGemacs{c}{\PYGemacsZsh{} mass balances}
+\PYGemacs{n}{m2} \PYGemacs{o}{=} \PYGemacs{n}{m2B}\PYGemacs{o}{/}\PYGemacs{n}{z2B}
+\PYGemacs{n}{m3} \PYGemacs{o}{=} \PYGemacs{n}{m1} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{m2}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Mdot2 = \PYGemacsZob{}0:6.1f\PYGemacsZcb{}  Mdot3 = \PYGemacsZob{}1:6.1f\PYGemacsZcb{} kg/hr\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{m2}\PYGemacs{p}{,}\PYGemacs{n}{m3}\PYGemacs{p}{))}
+
+\PYGemacs{c}{\PYGemacsZsh{} last gasp}
+\PYGemacs{n}{z3B} \PYGemacs{o}{=} \PYGemacs{n}{m3B}\PYGemacs{o}{/}\PYGemacs{n}{m3}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Z3Benzene = \PYGemacsZob{}0:5.3f\PYGemacsZcb{}  Z3Toluene = \PYGemacsZob{}1:5.3f\PYGemacsZcb{} kg/kg\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{z3B}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{z3B}\PYGemacs{p}{))}
+\end{Verbatim}

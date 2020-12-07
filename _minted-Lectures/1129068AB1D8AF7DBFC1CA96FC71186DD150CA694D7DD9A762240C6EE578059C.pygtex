@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{earth} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{2} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{62.4} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{32.174}
+\PYGemacs{n}{moon} \PYGemacs{o}{=} \PYGemacs{n}{w} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{1.62519}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{9.8066}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}earth:\PYGemacsZsq{}}\PYGemacs{p}{,}\PYGemacs{n}{earth}\PYGemacs{p}{,}\PYGemacs{l+s}{\PYGemacsZsq{}lbf\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}moon:\PYGemacsZsq{}}\PYGemacs{p}{,}\PYGemacs{n}{moon}\PYGemacs{p}{,}\PYGemacs{l+s}{\PYGemacsZsq{}lbf\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}

@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{R} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{8.31441}
+\PYGemacs{n}{Hb} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{40656.}   \PYGemacs{c}{\PYGemacsZsh{} J/mol}
+\PYGemacs{n}{Tb} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{273.16} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{100.}   \PYGemacs{c}{\PYGemacsZsh{} K}
+\PYGemacs{n}{dT} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{100.421} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{l+m+mf}{100.}
+
+\PYGemacs{n}{x} \PYGemacs{o}{=} \PYGemacs{n}{dT} \PYGemacs{o}{*} \PYGemacs{n}{Hb} \PYGemacs{o}{/} \PYGemacs{p}{(}\PYGemacs{n}{R} \PYGemacs{o}{*} \PYGemacs{n}{Tb} \PYGemacs{o}{*} \PYGemacs{n}{Tb} \PYGemacs{p}{)} \PYGemacs{c}{\PYGemacsZsh{} mol fraction solute}
+
+\PYGemacs{n}{nH2O} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{100.0} \PYGemacs{o}{/} \PYGemacs{l+m+mf}{18.011}   \PYGemacs{c}{\PYGemacsZsh{} mol}
+
+\PYGemacs{n}{nSol} \PYGemacs{o}{=} \PYGemacs{n}{nH2O} \PYGemacs{o}{*} \PYGemacs{n}{x} \PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{n}{x}\PYGemacs{p}{)}
+
+\PYGemacs{n}{MW} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{5.000}\PYGemacs{o}{/}\PYGemacs{n}{nSol}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Moles solute = \PYGemacsZob{}0:5.3f\PYGemacsZcb{}   MW = \PYGemacsZob{}1:5.3f\PYGemacsZcb{} g/mol\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{nSol}\PYGemacs{p}{,}\PYGemacs{n}{MW}\PYGemacs{p}{))}
+\end{Verbatim}

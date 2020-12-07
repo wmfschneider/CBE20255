@@ -1,0 +1,102 @@
+#+BEGIN_OPTIONS
+#+AUTHOR: William F. Schneider
+#+TITLE: CBE 60553 Outline
+#+EMAIL: wschneider@nd.edu
+#+LATEX_CLASS_OPTIONS:[11pt]
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{siunitx}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{epstopdf}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\usepackage{hyperref}
+#+LATEX_HEADER:\usepackage[labelfont=bf]{caption}
+#+LATEX_HEADER:\usepackage{setspace}
+#+LATEX_HEADER:\usepackage{sectsty}
+#+LATEX_HEADER:\subsectionfont{\rm}
+# #+LATEX_HEADER:\titlespacing*{\section}
+# #+LATEX_HEADER:{0pt}{0.6\baselineskip}{0.2\baselineskip}
+#+LATEX_HEADER:\setlength{\headheight}{5.2pt}
+#+LATEX_HEADER:\setlength{\headsep}{14pt}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+#+LATEX_HEADER:\rhead{\bf{ND CBE 20255}}
+#+LATEX_HEADER:\lhead{\bf{Exam 1}}
+#+LATEX_HEADER:\chead{\bf{Spring 2016}}
+
+#+OPTIONS: toc:nil
+#+OPTIONS: H:2 num:3
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+#+BEGIN_LaTeX
+\
+\vspace{2cm}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{./centered-2c-NDmark.pdf}
+\end{figure}
+\begin{center}
+{\LARGE\bf Introduction to Chemical Engineering\\(CBE 20255)}
+\vspace{0.5cm}
+
+{\Large Prof. William F.\ Schneider}
+\end{center}
+\vspace{2cm}
+\noindent\large{{\bf NAME (PRINT):}}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\begin{spacing}{1.2}
+\begin{tabular}{|p{5.5in}|}
+\hline
+{\em AS A MEMBER OF THE NOTRE DAME COMMUNITY, I WILL NOT PARTICIPATE IN OR
+TOLERATE ACADEMIC DISHONESTY } \\
+\hline
+\end{tabular}
+\end{spacing}
+\vspace{1.5cm}
+
+\noindent\large{{\bf SIGNED:}} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\noindent{\bf PLEASE SHOW YOUR WORK.  CLEARLY DEMONSTRATE YOUR SOLUTION PROCEDURE
+AND STATE ANY ASSUMPTIONS YOU MAKE.  WRITE YOUR SOLUTIONS IN THE SPACE
+PROVIDED.  BLANK PAGES ARE INCLUDED TO PROVIDE MORE ROOM FOR YOUR
+WORK.  ASK THE PROCTOR IF YOU NEED ADDITIONAL SCRATCH PAPER.}
+\newpage
+#+END_LaTeX
+
+\noindent *Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.*
+
+* Key ideas :no_export:
+- pressure
+- mass balance single
+- mass balance multi-stage
+- weight
+- statistics
+- density
+- flow rates
+- chemical compositions
+- mixtures
+
+* (Don't) put a light under it
+A mixture of methane (\ce{CH4}) and air will burn only if the methane mole fraction is between 5% and 15% (these are called the lower and upper flammability limits, respectively).  \(7.00 \times 10^{2}\) kg/hr of 9.0%(mol/mol) methane in air is flowing out of a process you are managing.
+
+** (8 pts) What is the molar flow rate of methane out of the process?  Note that the molecular weight of methane is 16.0 lb\(_\mathrm{m}\)/lb\cdot{}mole and the mean molecular weight of air is 28.8 lb\(_\mathrm{m}\)/lb\cdot{}mole.
+\newpage
+** (8 pts) What flow rate (in kmol/hr) of air would you need to add to this stream to bring it to a safe concentration?
+\vspace{13cm}
+* Full of gas
+Gases are often delivered to the laboratory or plant in steel or aluminum cylinders (you've probably seen one if you've ever bought helium-filled balloons).
+
+** (2 pts) Which has greater /mass/, a rigid aluminum tank filled with helium to a pressure of 0.9 atm or one that is completely empty (i.e., under vacuum)?
+   \vspace{1cm}
+** (2 pts) Which has greater /weight/ on the earth's surface, the rigid aluminum tank when filled with helium or when completely empty?
+\vspace{1cm}

@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k}{def} \PYGemacs{n+nf}{V}\PYGemacs{p}{(}\PYGemacs{n}{T}\PYGemacs{p}{):}
+    \PYGemacs{n}{a} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.18182e\PYGemacsZhy{}3}
+    \PYGemacs{n}{b} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.0078e\PYGemacsZhy{}6}
+    \PYGemacs{k}{return} \PYGemacs{l+m+mf}{1.} \PYGemacs{o}{+} \PYGemacs{n}{T} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{a} \PYGemacs{o}{+} \PYGemacs{n}{b}\PYGemacs{o}{*}\PYGemacs{n}{T}\PYGemacs{p}{)}
+
+\PYGemacs{n}{V100} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.560} \PYGemacs{o}{*} \PYGemacs{n}{V}\PYGemacs{p}{(}\PYGemacs{l+m+mf}{100.}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{n}{V}\PYGemacs{p}{(}\PYGemacs{l+m+mf}{20.}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{V100}\PYGemacs{p}{,}\PYGemacs{l+s}{\PYGemacsZsq{}ft3\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}

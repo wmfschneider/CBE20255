@@ -1,0 +1,172 @@
+% Created 2016-10-04 Tue 23:54
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[version=3]{mhchem}
+\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage{natmove}
+\usepackage{url}
+\usepackage{minted}
+\usepackage{underscore}
+\usepackage[linktocpage,pdfstartview=FitH,colorlinks,
+linkcolor=blue,anchorcolor=blue,
+citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue]{hyperref}
+\usepackage{attachfile}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+\geometry{margin=1.0in}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[labelfont=bf]{caption}
+\usepackage{setspace}
+\usepackage{sectsty}
+\subsectionfont{\rm}
+\setlength{\headheight}{5.2pt}
+\setlength{\headsep}{14pt}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\lfoot{\today}
+\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+\rfoot{\thepage}
+\rhead{\bf{ND CBE 20255}}
+\lhead{\bf{Exam 1}}
+\chead{\bf{Spring 2016}}
+\setcounter{secnumdepth}{3}
+\author{William F. Schneider}
+\date{\today}
+\title{CBE 60553 Outline}
+\begin{document}
+
+\begin{options}
+\end{options}
+
+\
+\vspace{2cm}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{./centered-2c-NDmark.pdf}
+\end{figure}
+\begin{center}
+{\LARGE\bf Introduction to Chemical Engineering\\(CBE 20255)}
+\vspace{0.5cm}
+
+{\Large Prof. William F.\ Schneider}
+\end{center}
+\vspace{2cm}
+\noindent\large{{\bf NAME (PRINT):}}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\begin{spacing}{1.2}
+\begin{tabular}{|p{5.5in}|}
+\hline
+{\em AS A MEMBER OF THE NOTRE DAME COMMUNITY, I WILL NOT PARTICIPATE IN OR
+TOLERATE ACADEMIC DISHONESTY } \\
+\hline
+\end{tabular}
+\end{spacing}
+\vspace{1.5cm}
+
+\noindent\large{{\bf SIGNED:}} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\noindent{\bf PLEASE SHOW YOUR WORK.  CLEARLY DEMONSTRATE YOUR SOLUTION PROCEDURE
+AND STATE ANY ASSUMPTIONS YOU MAKE.  WRITE YOUR SOLUTIONS IN THE SPACE
+PROVIDED.  BLANK PAGES ARE INCLUDED TO PROVIDE MORE ROOM FOR YOUR
+WORK.  ASK THE PROCTOR IF YOU NEED ADDITIONAL SCRATCH PAPER.}
+\newpage
+
+
+\section{It all adds up (25 pts) \label{Q:ideal}}
+\label{sec-1}
+Two liquids are said to form an \emph{ideal mixture} if the volume of a mixture of the two is equal to the sum of the volumes of the individual components.  An ideal mixture has the property that:
+
+\[ \frac{1}{\rho} = \sum_{i} \frac{x_{i}}{\rho_{i}} \]
+
+\noindent where \(\rho\) is the density of the mixture, \(\rho_{i}\) is the density of component \emph{i}, and \(x_{i}\) is the \emph{mass fraction} of component \emph{i}.  Following is some data for mixtures of ethanol and hexane:
+
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+ & ethanol wt \% & density (g/cm\(^{3}\))\\
+\hline
+Mixture 1 & 10.0 & 0.68\\
+Mixture 2 & 90.0 & 0.78\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{(10 pts) The gauge pressure at the bottom of a \SI{1.00}{\meter} tall drum of some ethanol/hexane mixture is \SI{7120}{\pascal}.  What is the density of the mixture?}
+\label{sec-1-1}
+
+\newpage
+\noindent \textbf{Problem 1 continued}
+\subsection{(15 pts) Estimate the composition (wt \%) of the mixture in the drum, assuming ethanol and hexane form an ideal mixture.}
+\label{sec-1-2}
+
+\newpage
+\section{All mixed up (45 pts)}
+\label{sec-2}
+Two liquid streams flow into a \SI{2000.}{\liter} tank.  One stream is
+10.0\%(w/w) ethanol and balance hexane, while the other is just the opposite,
+10.0\%(w/w) hexane in ethanol. The densities of these two streams is given in
+Problem \ref{Q:ideal}. It takes 22 minutes for the two streams combined to fill
+the tank.  When it is full, the tank is found to contain a 60.0\%(w/w) ethanol
+mixture with a density of \SI{0.74}{\grams\per\centimeter\cubed}.
+
+\subsection{(10 pts) Make a sketch of this process, labeling all flows and compositions and identifying any unknowns by placing a box around them.}
+\label{sec-2-1}
+\vspace{10cm}
+\subsection{(5 pts) Is this process steady-state or transient?}
+\label{sec-2-2}
+\vspace{1.5cm}
+\subsection{(5 pts) What is the name of this type of process?}
+\label{sec-2-3}
+\vspace{1.5cm}
+\subsection{(5 pts) Below is the general material balance expression.  Identify which terms are zero, which are non-zero, and the signs of the non-zero terms for the species in this process.}
+\label{sec-2-4}
+\vspace{0.5cm}
+\begin{center}
+output = input + generation - consumption - accumulation
+\end{center}
+\newpage
+\noindent \textbf{Problem 2 continued}
+\subsection{(10 pts) Write down integral mass balance expressions for ethanol and for hexane.  Your mass balance expressions should have the same two unknowns as in your diagram above.}
+\label{sec-2-5}
+\vspace{10cm}
+\subsection{(10 pts) Solve your mass balances for the two unknowns.}
+\label{sec-2-6}
+\newpage
+\section{You gotta keep them separated (30 pts)}
+\label{sec-3}
+A 50\% mixture by weight of ethanol and hexane is introduced continuously into a steady-state separator.  One outlet stream gets 60\% (by weight) of the inlet ethanol and 50\% of the inlet hexane while a second outlet contains the remainder of each.
+
+\subsection{(10 pts) Make a sketch of this process, labeling all flows and compositions and identifying unknowns by drawing boxes around them. Assume an inlet basis of 100 kg/s.}
+\label{sec-3-1}
+\vspace{10cm}
+\subsection{(5 pts) Count the number of unknowns and identify the equations and other pieces of information that relate them.  How many degrees of freedom does the system have?}
+\label{sec-3-2}
+\newpage
+\subsection{(15 pts) Based on your degree of freedom analysis, determine all the flow rates and compositions that can be determined.}
+\label{sec-3-3}
+% Emacs 25.0.50.1 (Org mode 8.2.10)
+\end{document}

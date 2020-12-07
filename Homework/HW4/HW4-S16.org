@@ -1,0 +1,95 @@
+#+BEGIN_OPTIONS
+#+AUTHOR: William F. Schneider
+#+TITLE: CBE 60553 Outline
+#+EMAIL: wschneider@nd.edu
+#+LATEX_CLASS_OPTIONS: [11pt]
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{epstopdf}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\usepackage{hyperref}
+#+LATEX_HEADER:\usepackage[labelfont=bf]{caption}
+#+LATEX_HEADER:\usepackage{setspace}
+#+LATEX_HEADER:\setlength{\headheight}{10.2pt}
+#+LATEX_HEADER:\setlength{\headsep}{20pt}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+#+LATEX_HEADER:\chead{\bf{Introduction to Chemical Engineering (CBE 20255)\vspace{12pt}}}
+#+LATEX_HEADER:\lhead{\bf{Homework 4}}
+#+LATEX_HEADER:\rhead{\bf{Due February 22, 2016}}
+#+LATEX_HEADER:\usepackage{titlesec}
+#+LATEX_HEADER:\titlespacing*{\section}
+#+LATEX_HEADER:{0pt}{0.6\baselineskip}{0.2\baselineskip}
+#+LATEX_HEADER:\title{University of Notre Dame\\Introduction to Chemical Engineering\\(CBE 20255)}
+#+LATEX_HEADER:\author{Prof. William F.\ Schneider}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\usepackage{siunitx}
+
+#+OPTIONS: toc:nil
+#+OPTIONS: H:3 num:3
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+\noindent *Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.*
+
+* Key ideas :no_export:
+- stoichiometry
+- limiting reagent
+- conversion, selectivity, yield
+- mass balance with reactions
+
+* NO!
+One of the steps in the production of nitric acid is the oxidation of ammonia (\ce{NH3}) with \ce{O2} to form nitric oxide and water.
+
+1. (2 pts) Write a balanced equation for \ce{NH3} oxidation.
+2. (2 pts) How many lb-mole of \ce{O2} does it take to completely react 10 lb-mole \ce{NH3}?
+3. (2 pts) \ce{NH3} flows into an oxidation reactor at a rate of 100 kmol/hr.  What rate must oxygen be fed to maintain a 40% excess of \ce{O2}?
+4. (4 pts) 50.0 kg/hr of \ce{NH3} and 100.0 kg/hr \ce{O2} are fed to a continuous reactor.  Plot the mass flow rates of all the reactants and products as a function of the conversion of the limiting reagent.
+
+* [[https://www.youtube.com/watch?v=yykSHeVXD8I][Deacon Blues (Or an Ode to Wake Forest)]]
+In the Deacon process, \ce{Cl2} is made by oxidizing \ce{HCl} with \ce{O2}.  Sufficient dry air is fed to provide 35% excess oxygen, and the conversion of \ce{HCl} is 85%.
+1. (2 pts) Write a balanced equation for the Deacon process.
+2. (4 pts) Draw and label a flow chart for this process.
+3. (4 pts) Use atomic species balances to determine the product stream composition, in mole fractions.
+4. (4 pts) Use advancements to determine the product stream composition, in mole fractions.
+5. (2 pts) The Deacon process could be run with pure \ce{O2} rather than air.  Speculate on one cost advantage and one cost disadvantage of doing so.
+
+* Commonly known as alcohol
+Industrial ethanol can be produced by the hydration of ethylene:
+\begin{equation}
+\label{eq:1}
+\ce{C2H4 + H2O -> C2H5OH}
+\end{equation}
+Some of the product is converted to diethyl ether in a side reaction:
+\begin{equation}
+\label{eq:2}
+\ce{2 C2H5OH -> (C2H5)2O + H2O}
+\end{equation}
+The reactor feed contains ethylene, steam, and an inert diluent.  The reactor effluent is found to contain 43.3%(mol/mol) ethylene, 2.5% ethanol, 0.14% ether,  9.3% diluent, and balance \ce{H2O}.
+
+1. (3 pts) Draw molecular representations of ethylene, ethanol, and diethyl ether. Pay attention to single, double, ..., bonds, as well as appropriate representations of bond angles and torsions.
+2. (4 pts) Draw and label a process flow chart for this process, assuming a 100 mol/hr effluent basis.
+3. (2 pts) Determine the number of degrees of freedom in the problem as stated.
+4. (4 pts) Compute the composition and flow rate of the reactor feed.
+5. (2 pts) Compute the ethylene conversion.
+6. (2 pts) Compute the ethanol yield.
+7. (2 pts) Compute the selectivity to ethanol over the ether.
+8. (2 pts) What would you expect to happen to (a) the ethanol yield and (b) the selectivity if the reactor was run to higher conversion?
+
+* Reduce, reuse, recycle
+Methanol is synthesized from carbon monoxide and hydrogen in a catalytic reactor.  The fresh feed contains 32.0%(mol/mol) CO, 64.0%(mol/mol) \ce{H2}, and 4.0%(mol/mol) \ce{N2}.  The fresh stream is mixed with a recycle stream in a 1:5 fresh:recycle mole ratio.  As a result, the inlet to the reactor is 13.0% \ce{N2}.  The reactor effluent goes to a condenser that separates a pure liquid stream of only methanol from a gas stream of CO, \ce{H2}, and \ce{N2}.  Part of the gas stream is removed as a purge, while the remainder is recycled.
+
+1. (2 pts) Write a balanced equation for methanol synthesis from CO and \ce{H2}.
+2. (6 pts) Draw and fully label a process flow chart for this process.
+3. (6 pts) Assuming a methanol production rate of 100 kmol/hr, calculate the required fresh feed rate, the composition of the purge stream, and the purge flow rate.
+4. (2 pts) Compute the overall CO conversion.
+5. (4 pts) Compute the single-pass reactor conversion.
+6. (2 pts) What is the point of including (a) a recycle and (b) a purge in this process?

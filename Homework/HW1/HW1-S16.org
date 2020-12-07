@@ -1,0 +1,106 @@
+#+BEGIN_OPTIONS
+#+AUTHOR: William F. Schneider
+#+TITLE: CBE 60553 Outline
+#+EMAIL: wschneider@nd.edu
+#+LATEX_CLASS_OPTIONS: [11pt]
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{epstopdf}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\usepackage{hyperref}
+#+LATEX_HEADER:\usepackage[labelfont=bf]{caption}
+#+LATEX_HEADER:\usepackage{setspace}
+#+LATEX_HEADER:\setlength{\headheight}{10.2pt}
+#+LATEX_HEADER:\setlength{\headsep}{20pt}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+#+LATEX_HEADER:\chead{\bf{Introduction to Chemical Engineering (CBE 20255)\vspace{12pt}}}
+#+LATEX_HEADER:\lhead{\bf{Homework 1}}
+#+LATEX_HEADER:\rhead{\bf{Due January 20, 2016}}
+#+LATEX_HEADER:\usepackage{titlesec}
+#+LATEX_HEADER:\titlespacing*{\section}
+#+LATEX_HEADER:{0pt}{0.6\baselineskip}{0.2\baselineskip}
+#+LATEX_HEADER:\title{University of Notre Dame\\Introduction to Chemical Engineering\\(CBE 20255)}
+#+LATEX_HEADER:\author{Prof. William F.\ Schneider}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\usepackage{siunitx}
+
+#+OPTIONS: toc:nil
+#+OPTIONS: H:3 num:3
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+\noindent *Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.*
+
+* Key ideas :no_export:
+- Units, dimensions, conversions, sig figs
+- Weight
+- Data modeling
+
+* How far for how much?
+You are trying to decide which of two automobiles to drive.  The first is a
+   domestic, costs $28,500, and has an EPA-rated fuel economy of 28 mpg.  The
+   second is an import, costs $35,700 US, and has an EPA-equivalent fuel
+   consumption of 5.3 L/100 km.
+
+1. (4\nbsp{} pts) Create a dimensionally consistent equation for the number of miles you would
+   have to drive for the difference in fuel cost to compensate for the extra
+   cost of the import if fuel costs /x/ $/gal and your vehicle usage delivers the stated performance.
+
+2. (4\nbsp{} pts) Compare your answer for /x/ = 2, 3, 4, and 5 $/gal.
+
+3. (4\nbsb{} pts) Gasoline has an approximate stoichiometry of \ce{C10H17} and a density of about 6 lb_{m}/gal.  Compare the mass in kg of \ce{CO2} produced from driving each vehicle 100 km.
+
+* Weight weight, don't tell me!
+A *poundal* is the force required to accelerate a mass of 1 lb_{m} at a rate of \SI{1}{ft\per\s\squared}.  A *slug* is the mass of an object that will accelerate at a rate of \SI{1}{ft\per\s\squared} when subjected to a force of 1 lb_{f}.  (Note that these /unit definitions/ carry infinite precision.)
+1. (4\nbsp{}pts) Calculate the mass in slugs and the weight in poundals (i) on the earth and (ii) on the surface of the moon of a certain chemical engineering professor who weighs 170 lb_{f} measured on his bathroom scale at home.
+
+2. (2\nbsp{}pts) What force, in N, lb_{f}, and poundal, is required to accelerate said professor at a rate of \SI{2.0}{\meter\per\second\squared} (the acceleration of a reasonably sporty sports car)?
+
+* That's where I draw the line.
+A solution containing hazardous waste is charged into a storage tank and subjected to a treatment that decomposes the waste into harmless products.  The concentration of the decomposing waste (\(C_{W}\) is reported to vary according to the model
+
+\[ C_{W} = 1/(a + bt) \]
+
+\noindent When \(C_{W}\) decreases to \(< \SI{0.01}{\g\per\L}\) the contents of the tank are discharged appropriately.  The following are some data for \(C_{W}\) vs. /t/:
+
+| /t/ (hr)        |  1.0 |  2.0 |  3.0 |  4.0 |  5.0 |
+|-----------------+------+------+------+------+------|
+| \(C_{W}\) (g/L) | 1.43 | 1.02 | 0.73 | 0.53 | 0.38 |
+
+1. (4\nbsp{}pts) Plot the raw data.  You may use Excel, Matlab, or whatever
+   plotting package you prefer.  Whatever you use, apply good plotting
+   practices: scale and label the axes appropriately and plot the points using
+   solid circles of appropriate size.
+2. (4\nbsp{}pts) Suggest a linearization of the model (a rearrangement that allows the data to
+   be plotted to fit a straight line).  Plot the linearized data on a new graph,
+   again using good plotting practices.
+3. (4\nbsp{}pts) Use the method of least squares to estimate the values of /a/
+   and /b/ from the data (remember to include appropriate units!).  Plot the
+   line on the same graph as the linearized data.
+4. (4\nbsp{}pts) Use the fitted model to estimate the initial value of \(C_{W}\)
+   and the time necessary for \(C_{W}\) to reach the discharge concentration.
+5. (2\nbsp{}pts) How much faith do you have in this time estimate?  Why?
+
+
+# A chemical reaction has the stoichiometry \ce{A -> B} and is run in a closed vessel of fixed volume at constant temperature.  The concentration of \ce{A} vs.\nbsp{} time is observed to be
+
+# | /t/ (min)       |      0 |     36 |     65 |    100 |    160 |    500 |
+# |-----------------+--------+--------+--------+--------+--------+--------|
+# | /C/_{A} (mol/L) | 0.1823 | 0.1453 | 0.1216 | 0.1025 | 0.0795 | 0.0495 |
+
+# The reaction mechanism suggests that the data should fit a model
+
+# \[ C_{A} = C_{A\infty}\ + (C_{A0}-C_{A\infty}) e^{-kt} \]
+
+
+# 2. (4\nbsp{}pts) Linearize the data model.  That is, rearrange it such that the two unknowns (the rate constant, /k/, and the limiting concentration, \(C_{A\infty}\), can be obtained from the slope and intercept of appropriately plotted
+# #+C

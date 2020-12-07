@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{g} \PYGemacs{o}{=}  \PYGemacs{l+m+mf}{980.7}  \PYGemacs{c}{\PYGemacsZsh{} cm/s\PYGemacsZca{}2}
+\PYGemacs{n}{Dh} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.8}    \PYGemacs{c}{\PYGemacsZsh{} cm}
+\PYGemacs{n}{rhom} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.05} \PYGemacs{c}{\PYGemacsZsh{} g/cm\PYGemacsZca{}3}
+\PYGemacs{n}{rhof} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.00} \PYGemacs{c}{\PYGemacsZsh{} g/cm\PYGemacsZca{}3}
+
+\PYGemacs{n}{dP} \PYGemacs{o}{=} \PYGemacs{n}{g} \PYGemacs{o}{*} \PYGemacs{n}{Dh} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{rhof} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{rhom}\PYGemacs{p}{)} \PYGemacs{c}{\PYGemacsZsh{} dyne/cm2}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}\PYGemacsZbs{}Delta P = \PYGemacsZob{}0:5.1f\PYGemacsZcb{} dyne/cm2\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{dP}\PYGemacs{p}{))}
+\end{Verbatim}

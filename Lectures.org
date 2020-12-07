@@ -1,0 +1,3471 @@
+
+
+
+#+BEGIN_OPTIONS
+
+#+Title:Lecture Notes for CBE 20255
+#+Author: William F. Schneider
+#+LaTeX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [11pt]
+#+LATEX_HEADER:\usepackage{siunitx}
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usemintedstyle{emacs}
+#+LATEX_HEADER:\newminted{python}{fontsize=\normalsize}
+#+LATEX_HEADER:\usepackage{framed,color}
+#+LATEX_HEADER:\definecolor{shadecolor}{rgb}{1.0,0.8,0.3}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+
+
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+* Revised order
+- variables
+- mass balances, single phase, mixtures, ...
+  - systems of linear equations
+- energy balances, single phase, mechanical, ...
+- single component, two-phase
+- two-component, two-phase, ideal
+- reactions
+- two-component, two-phase, non-ideal
+
+* Intro to Chemical Engineering
+1. Pop quiz
+   1. Which weighs more, the Earth or the moon?
+   2. Mix together 100 mL \ce{H2O} and 50 mL alcohol.  What's the final volume?
+   3. Add 10 g Fe ball at 100 C to 10 g H2O at 20 C.  What's the final temperature?
+   4. My pool holds 20,000 gal of \ce{H2O}.  Pump circulates at 10 gpm.  How
+      long does it take for all the \ce{H2O} to pass through the filter?
+      (Depends on whether it recirculates!)
+2. Instructor
+3. Students
+4. Syllabus
+5. Assignment: Read Chapter 1
+* Introduction to Engineering Calculation
+** Objectives
+1. unit conversions
+2. SI, cgs, English systems
+3. sig figs
+4. Is my answer reasonable?
+5. Basic stats
+6. Data fitting
+** Units and dimensions
+- Engineering always deal with quantifiable, computable things.
+- Anything we can quantify has a *value* (number) and a *unit* (number of what? meters, bananas, bits, seconds)
+- A *dimension* is a property of a quantity, like /length/, /time/, /speed/ = /length/ / /time/, /density/ = /mass/ / /volume/.  Most physical quantities have a dimension (other than pesky dimensionless quantities!).
+- Quantities of the *same dimension* can be added or subtracted.  First they have to be put into the *same units*.
+
+\[\boxed{\SI{3}{cm}+\SI{43}{mm} = \SI{30}{mm} + \SI{43}{mm} = \SI{73}{mm}} \]
+
+- Quantities of different dimension can be multiplied or divided and carry the combined dimension
+\[\boxed{ \SI{44}{m} / \SI{11}{s} = \SI[per-mode=symbol]{4}{\m\per\s}} \]
+
+- Units /not welcome/ inside transcendental functions, sin, cos, ln, \ldots
+
+- Equations must be /dimensionally homogeneous/: all additive terms on either side of an equality must have the same units
+
+- *ALWAYS* carry units in engineering computations
+
+** Systems of units
+- Base units
+
+|-----------------+----+-----+------------|
+| Dimension       | SI | cgs | English    |
+|-----------------+----+-----+------------|
+| Length          | m  | cm  | in, ft, mi |
+| Mass            | kg | g   | lb_{m}     |
+| Time            | s  | s   | s          |
+| Temperature     | K  | K   | F          |
+| Current         | A  | A   |            |
+| Light intensity | cd | cd  |            |
+|-----------------+----+-----+------------|
+
+- Multiplicative factors: T, G, M, k, c, d, m, \mu, n, f
+
+- Important chemical eng. derived units
+|-------------+------------+------+------------------------------|
+| Volume      | liter      | L    | 1000 cm^{3}                  |
+| Force       | Newton     | N    | 1 kg m/s^{2}                 |
+|             | dyne       |      | 1 g cm/s^{2}                 |
+| Energy/Work | Joule      | J    | 1 N m = 1 kg m^{2}/s^{2}     |
+|             | erg        |      | 1 dyne cm = 1 g cm^{2}/s^{2} |
+|             | calorie    | cal  | 4.184 J                      |
+|             | Btu        |      | 1 Btu = 1055.05585 J         |
+| Power       | Watt       | W    | 1 J/s                        |
+|             | Horsepower | hp   | 1 hp = 745.7 W               |
+| Pressure    | Pascal     | Pa   | 1 N/m^{2} = 1 J/m^{3}        |
+|             | bar        |      | 10^{5} Pa                    |
+|             | atmosphere | atm  | 1 atm = 1.01325 bar          |
+|             | torr       | torr | 1/760 atm                    |
+|-------------+------------+------+------------------------------|
+
+- Inside book cover has many useful conversions
+
+- Fun facts: 1 L of \ce{H2O} has a mass of 1 kg or about 2.2 lb_{m}.  What about a liter of gasoline?
+
+- Fun facts: 1 Btu is amount of heat released in burning 1 4 in wood match, or heat needed to raise the temperature of 1 lb_{m} water by 1^{\circ} F. "Horsepower" used by Watt to compare the power output of a draft horse to his steam engine.  Definitions abound!
+- Pain in the neck to go between systems of units.  Need conversion factors.  E.g,. 1 lb_{m} = 453.5932 g.  1 in = 2.54 cm.  Unless /forced/ otherwise, use SI!
+
+** Unit conversions
+- Conversion factors are ratios
+
+\[ \boxed{\SI[per-mode=fraction]{4}{\m\per\s} * \SI[per-mode=fraction]{100}{\cm\per\m} = \SI[per-mode=fraction]{400}{\cm\per\s}} \]
+
+- Conversion factors can be ganged.  Example: show that
+\[ \boxed{\SI{1.00}{\cm\per\s\squared} = \SI{9.95e9}{\km\per year\squared}} \]
+
+** Dimensional homogeneity
+\begin{framed}
+\noindent As you will learn in Thermodynamics, the internal energy \(U\) is related to other thermodynamic quantities by  the relation
+\begin{equation}
+U = T S - P V + \mu N
+\end{equation}
+\noindent What are units on the entropy, \(S\)?  Chemical potential, \(\mu\)?  What does this say about the dimensionality of pressure?
+\end{framed}
+
+
+\begin{framed}
+\noindent The Schr\"{o}dinger equation is the fundamental equation of quantum mechanics:
+\begin{equation}
+-\frac{\hbar^{2}}{2 m} \frac{\partial^{2}\psi}{\partial x^{2}} + V(x) \psi = E \psi
+\end{equation}
+\(E\) has units of energy and \(m\) units of mass.  What are the units on \(V(x)\)?  \(\hbar\)?  \(\psi(x)\)?
+\end{framed}
+
+** Mass, force, weight
+- /mass/ of an object is an intrinsic property, resistance to an applied force
+- Newton's 3rd Law
+\[\boxed{F = m a } \]
+- English force units messy
+\[\boxed{\SI{1}{lb_{f}}=\SI{32.174}{lb_{m} ft\per\s\squared}} \]
+- /weight/ is force exerted by a gravitational field on a mass
+\[ \boxed{w = m g} \]
+- /g/ depends on the planet you are standing on, as well as where you are standing
+\begin{eqnarray*}
+g &= & \SI{9.8066}{\m\per\s\squared}\\
+  & = & \SI{32.174}{ft\per\s\squared}
+\end{eqnarray*}
+
+\begin{framed}
+\noindent Water has a density of \( \SI{62.4}{lb_{m}\per ft\cubed}\).  How much does 2 ft$^{3}$ of water weigh on the earth?  On the moon (\(g = \SI{1.62519}{\m\per\s\squared})?
+\end{framed}
+#+BEGIN_SRC python
+earth = 2 * 62.4 * 32.174 * (1./32.174)
+moon = earth * 1.62519/9.8066
+print('earth:',earth,'lbf')
+print('moon:',moon,'lbf')
+#+END_SRC
+
+#+RESULTS:
+: earth: 124.80000000000001 lbf
+: moon: 20.682368201007485 lbf
+
+** Numerical calculations
+*** Scientific notation, significant figures, precision
+- Significant figures imply a precision
+- /Always/ report numbers with reasonable significant figures.
+- Examples of adding and multiplying with sig figs.
+- Round to even number: 1.35 to 1.45 all round to 1.4.
+*** Validating results
+- Does the result make physical sense?
+- Do a ballpark estimate.
+- Back-substitute
+*** Sources of error
+- Few, if anything, can be measured exactly.  Processes have intrinsic variability
+- CSTR example: flow rate may fluctuate, temperature fluctuate, slightly inhomogeneous.  So do measurements (thermocouple).  Best we can do is estimate the "truth."
+  - random error
+  - systematic error
+  - Show random scatter, systematic drift, oscillation
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.arange(40.)
+sigma = 1.
+T = 25. + sigma*np.random.randn(40)
+T1 = 20. + .2 * x + sigma*np.random.randn(40)
+T2 = 25. + 4. * np.sin(x/4.) + sigma*np.random.randn(40)
+
+plt.subplot(311)
+plt.scatter(x,T)
+plt.ylim(15,35)
+plt.xlim(0,40)
+plt.ylabel('Temperature (C)')
+
+plt.subplot(312)
+plt.scatter(x,T1)
+plt.ylim(15,35)
+plt.xlim(0,40)
+plt.ylabel('Temperature (C)')
+
+plt.subplot(313)
+plt.scatter(x,T2)
+plt.ylim(15,35)
+plt.xlim(0,40)
+plt.xlabel('Sample (hour)')
+plt.ylabel('Temperature (C)')
+plt.savefig('./figs/random.png')
+
+#+END_SRC
+
+#+RESULTS:
+
+#+ATTR_ODT: :scale 0.5
+ [[./figs/random.png]]
+
+*** Sample mean
+- /sample mean/ to estimate truth
+\[\boxed{\bar{X}=\sum_{1}^{n}X_{i}} \]
+
+*** Measures of scatter
+- /Range/
+- /Sample variance/
+\[\boxed{s_{X}^{2}=\frac{1}{N-1}\sum_{1}^{n}(X_{i}-\bar{X})^{2}}\]
+- /Standard deviation/ has same units as /X/
+\[\boxed{s_{x}=\sqrt{s_{X}^{2}}} \]
+- If a random variable is Gaussian, about 2/3 of measurements are within \(s_{x}\) of the mean, 95% within \(2s_{x}\), 99% within \(3s_{x}\).
+- Example 2.5.2
+
+\begin{framed}
+\noindent QA on pigment.  Let \(Y\) be the number of batches that fail QA out of 500 in a week.  If process is shutdown for maintenance if \(Y > \bar{Y} + 3 S_{Y}\), how many bad batches are required for a shutdown?
+\end{framed}
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+Week = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+Y = np.array([17,  27,  18,  18,  23,  19,  18,  21,  20,  19,  21,  18 ])
+plt.scatter(Week,Y)
+plt.ylim(0,30)
+plt.xlabel('Week')
+plt.ylabel('Fails out of 500')
+plt.savefig('./figs/QA.png')
+
+N = Y.size
+Sum = np.sum(Y)
+Average = Sum/N
+
+Variance = np.sum((Y - Average)**2)/(N-1)
+StdDev = Variance**0.5
+
+print('N   Sum   Average  Variance  Std. Dev')
+print("{0:3d} {1:4d} {2:5.2f}   {3:5.2f}   {4:5.2f}".format(N,Sum,Average,Variance,StdDev))
+
+Shutdown = Average + 3 * StdDev
+print('Shutdown if Y > {0:5.2f}'.format(Shutdown))
+#+END_SRC
+
+#+RESULTS:
+: N   Sum   Average  Variance  Std. Dev
+:  12  239 19.92    7.90    2.81
+: Shutdown if Y > 28.35
+
+#+ATTR_LATEX: :width 0.5\textwidth :center
+[[./figs/QA.png]]
+
+** Process data modeling
+- Often interested in the relationship between two correlated variables.  E.g. a correlation curve between a thermocouple resistance and a temperature.  An optical density and a concentration.
+- /Linear regression/ to fit linear data (Appendix A); minimizes /residuals/ between data and a fit line
+- \(r^{2}\) measures fraction of variance in /y/ "explained" by variance in /x/; 1 is best, 0 is worst
+\[ r^{2} = 1. - \frac{\sum \text{res}_\text{lg}^{2}}{\sum \text{res}_\text{null}^{2}} \]
+- Linearizing data (e.g. Arrhenius plot).  (/Danger/: Error can be scewed by linearizing.  Non-linear regression a good alternative.)
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+EHxy = [ 144,144, 132, 132, 116, 116, 190, 190, 173, 173, 111, 111, 91, 91, 207, 207, 199, 199, 110, 110, 83, 83]
+RDxy = [152, 150, 141, 134, 117, 117, 204, 202, 184, 183, 123, 118, 94, 96, 225, 224, 213, 213, 114, 115, 89, 93]
+
+m, b, r, p, e = stats.linregress(EHxy,RDxy)
+print("Slope       Intercept          r**2")
+print(m,b,r**2)
+
+nu = np.linspace(80,230)
+fit = m * nu + b
+
+plt.scatter(EHxy,RDxy)
+plt.plot(nu,fit)
+plt.xlim((50,250))
+plt.ylim((50,250))
+plt.xlabel('Effective harmonic frequencies (cm$^{{-1}}$)')
+plt.ylabel('Relaxed displacement frequencies (cm$^{{-1}}$)')
+plt.savefig('./figs/freq.png')
+#+END_SRC
+
+#+RESULTS:
+: Slope       Intercept          r**2
+: 1.08962211596 -4.08654658558 0.995318037198
+
+#+ATTR_LATEX: :width 0.5\textwidth
+ [[./figs/freq.png]]
+
+\newpage
+
+* Processes and process variables
+** Learning objectives
+- density
+- flow rates
+- composition
+- pressure
+** Mass, volume, density
+- mass, volume are /extensive/ quantities
+- /density/ (\rho) = mass / volume is /intensive/, characteristic of a substance at some /T/ and /P/
+- tabulated in common handbooks, allows us to convert between /m/ and /V/
+- /specific gravity/ is density relative to some reference, commonly \ce{H2O} at \SI{4}{\celsius}
+\begin{equation}
+ \rho_{\ce{H2O}}(\SI{4}{\celsius}) = \SI{1.00}{\gram\per\cm\cubed} = \SI{62.43}{lb_{m}\per ft\cubed}
+\end{equation}
+- mass is independent of /T/, volume changes with /T/, therefore so does \rho
+- can find tabulations of \(\rho(T)\), \(V(T)\), or /coefficient of thermal expansion/
+\begin{equation}
+\alpha(T) = \frac{1}{V}\left ( \frac{\partial V}{\partial T} \right )_{P}
+\end{equation}
+- *Example 3.1.1*
+
+#+BEGIN_QUOTE
+Specific gravity of Hg at \SI{20}{\celsius} is 13.456.  Density?  Volume of 215 kg?
+#+END_QUOTE
+
+#+BEGIN_SRC python
+rho = 13.546 * 62.43
+print('Density = ',rho,' lbm/ft^3')
+print('Volume = mass/density')
+volume = 215 * (1./0.454) / rho
+print('Volume =',volume,'ft3')
+#+END_SRC
+
+#+RESULTS:
+: Density =  845.67678  lbm/ft^3
+: Volume = mass/density
+: Volume = 0.5599873298381516 ft3
+
+\hline
+- *Example 3.1.2*
+
+#+BEGIN_QUOTE
+(a) What is volume of 215 kg Hg at \SI{100}{\celsius}?
+
+(b) What is change in height between 20 and \SI{100}{\celsius} of a 0.25 in diameter Hg cylinder?
+#+END_QUOTE
+\[ V_{Hg}(T) = V(0) [ 1 + 0.18182\times 10^{-3} T + 0.0078\times 10^{-6} T^{2} ] \]
+\[ V(100) = V(20) * \frac{V(100)}{V(20)} \]
+\[h = V/A\]
+
+#+BEGIN_SRC python
+import numpy as np
+
+def V(T):
+# Volume relative to volume at 0 C
+    a = 0.18182e-3
+    b = 0.0078e-6
+    return 1. + T * (a + b*T)
+def h(V):
+    area = np.pi * (0.25/12./2.)**2
+    return V/area
+
+V20 = 0.560
+h20 = h(V20)
+V100 = V20 * V(100.)/V(20.)
+h100 = h(V100)
+print('Temperature    Volume (ft3)   Height (ft)')
+print("{0:8.1f}       {1:6.3f}       {2:6.2f}".format(20,V20,h20))
+print("{0:8.1f}       {1:6.3f}       {2:6.2f}".format(100,V100,h100))
+
+deltah = h100-h20
+print("Delta h = {0:6.2f} ft".format(deltah))
+#+END_SRC
+
+#+RESULTS:
+: Temperature    Volume (ft3)   Height (ft)
+:     20.0        0.560       1642.78
+:    100.0        0.568       1666.72
+: Delta h =  23.93 ft
+
+\hline
+** Flow rate
+- mass flow rate \(\dot{m}\): mass passing an area in a time
+- volume flow rate \(\dot{V}\): volume passing an area in a time
+
+\[\rho =\frac{m}{V}=\frac{\dot{m}}{\dot{V}} \]
+
+- Gas flows down a tapered cone.  How does mass flow rate compare at entrance and exit?
+  - Same
+- If density is constant, how does volumetric flow rate compare?
+  - Same
+- How does linear velocity compare
+  - Goes up!
+- Molar flow rate, \(\dot{F}\)?  Need to know MW!
+
+** Chemical composition
+*** Moles and molecular weights
+- atomic theory, we can count atoms and molecules.  They are tiny, so need a big unit to count with!
+- molecular "weight" (/MW/) is mass relative to \ce{^{12}C}, defined to have a mass of 12
+- Avogadro's number \(N_{A}=6.022\times 10^{23}\) number of \ce{^{12}C} to make 12 grams, called a =mole= or =gram-mole= (yech!)
+- =kmol= makes 12 kg, =lb-mole= makes 12 lbm
+- periodic table records masses of all elements relative to \ce{12C}
+
+[[./figs/PeriodicTableMuted.png]]
+
+- \ce{CO2} = 44 g/g-mol = 44 kg/kg-mol = 44 lbm/lb-mol = 44 ton/ton-mol
+- calculate molar flow rate from mass flow rate
+#+BEGIN_QUOTE
+*EXAMPLE* What is molar flow rate of O in a stream of 4400 kg/hr \ce{CO2}?
+#+END_QUOTE
+
+#+BEGIN_SRC python
+F = 4400 * (1./44.) * 2
+print("{0:6.2f} kmol O/hr".format(F))
+#+END_SRC
+
+#+RESULTS:
+: 200.00 kmol/hr
+
+** Mixtures
+- Always expressed as something/something
+- Generally faced with two types of problems: turn one concentration measure into another (intensive \to intensive); or use in conversions of extensive \to extensive
+*** Mass and mole fractions
+- mass fraction A = mass A/total mass
+- mole fraction A = mol A/total mol
+- vol fraction A = vol A/total vol
+
+#+BEGIN_QUOTE
+*EXAMPLE* 35.0 %(w/w) \ce{H2SO4} has a specific gravity of 1.2563.  What volume of solution is needed to obtain 500 g-mol \ce{H2SO4}? (Extensive to extensive)
+#+END_QUOTE
+#+BEGIN_SRC python
+MW = 2.*(1.008) + 32.0 + 4 * 16.0   # g/g-mol
+mass = 500 * MW                     # g
+mass_soln = mass * (100./35.0)      # g
+rho = 1.2563                        # g/mL
+volume = mass_soln/rho/1000         # L
+print("Volume={0:6.3f} L".format(volume))
+#+END_SRC
+
+#+RESULTS:
+: Volume=111.457 L
+
+
+#+BEGIN_QUOTE
+*EXAMPLE* What is mole fraction \ce{H2SO4} in 35.0%(w/w) solution? (intensive to intensive)
+#+END_QUOTE
+#+BEGIN_SRC python
+MWH2SO4 = 2*1.008 + 32.0 + 4 * 16.00
+MWH2O = 2 *1.008 + 16.00
+
+molH2SO4 = 35.0 / MWH2SO4    # mol H2SO4
+molH2O   = (100.-35.0)/ MWH2O # mol H2O
+
+fracH2SO4 = molH2SO4/(molH2SO4+molH2O)
+
+print("{0:6.3f}%(mol/mol) H2SO4".format(fracH2SO4*100))
+#+END_SRC
+
+#+RESULTS:
+:  9.006%(mol/mol) H2SO4
+
+- trace species in a gas often expressed as ppm or ppb rather than %
+- EPA ozone standard is 70 ppb, 70 ozone molecules/billion molecules of air
+- less frequently mass rather than mole basis
+*** Average molecular weight
+\[ \bar{MW} = \sum_{i} y_{i} MW_{i} \]
+
+#+BEGIN_QUOTE
+*EXAMPLE* What is average molecular weight of air, which is 76.7% \ce{N2} and 23.3% \ce{O2} by mass?
+#+END_QUOTE
+
+#+BEGIN_SRC python
+# 100 g basis
+MWN2 = 28.0
+MWO2 = 32.0
+molN2 = 76.7 / MWN2
+molO2 = 23.3 / MWO2
+moltot= molN2 + molO2
+fracN2 = molN2/moltot
+fracO2 = molO2/moltot
+MWbar = fracN2*MWN2 + fracO2*MWO2
+
+print("100 g basis")
+print("              N2      O2")
+print("MW:          {0:4.2f}    {1:4.2f}".format(MWN2,MWO2))
+print("moles:       {0:4.2f}    {1:4.2f}".format(molN2,molO2))
+print("mole frac:   {0:4.2f}    {1:4.2f}".format(fracN2,fracO2))
+print("\nMWbar = {0:6.2f} g/mol".format(MWbar))
+#+END_SRC
+
+#+RESULTS:
+: 100 g basis
+:               N2      O2
+: MW:          28.00    32.00
+: moles:       2.74    0.73
+: mole frac:   0.79    0.21
+:
+: MWbar =  28.84 g/mol
+
+*** Concentrations
+- "concentration" sometimes reserved for amount/volume
+- =molarity= = mol/volume; mass/volume less common
+
+#+BEGIN_QUOTE
+*EXAMPLE* 0.50 M \ce{H2SO4} flows into a process unit at \SI{1.25}{\meter\cubed\per\minute}.  S.G. = 1.03.  (a) Mass concentration? (b) mass flow rate of \ce{H2SO4}? (c) mass fraction \ce{H2SO4}?
+#+END_QUOTE
+
+#+BEGIN_SRC python
+Molarity = 0.50                # mol/L
+MW  = 2*1.0 + 32.0 + 4 * 16.0  # g/mol
+flow = 1.25                    # m3/min
+density = 1.03                 # kg/L
+
+mass_conc = Molarity * (MW) * (1/1000) * (1000/1)  # kg H2SO4/m3
+
+H2SO4_mass_flow = mass_conc * flow * (1/60)          # kg H2SO4/s
+
+total_mass_flow = flow * (1/60) * (1000/1) * density  # kg/s
+
+mass_frac = H2SO4_mass_flow/total_mass_flow
+
+print("{0:5.2f} kg H2SO3/m3   {1:5.2f} kg/s   {2:5.4f} kg H2SO4/kg".format(mass_conc,H2SO4_mass_flow,mass_frac))
+#+END_SRC
+#+RESULTS:
+: 49.00 kg H2SO3/m3    1.02 kg/s   0.0476 kg H2SO4/kg
+
+** Pressure
+*** Measures of pressure
+- Pressure = Force/area required to resist motion of a frictional piston against a fluid
+- Internal fluid pressure arises from molecular motions and is present in any confined fluid
+- /hydrostatic pressure/ arises from gravitational force
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Pressure.png]]
+
+- /air pressure/ is hydrostatic pressure of the atmosphere (1 atm)
+- measured in standard pressure units (Pa, bar, atm)
+- /or/ measured in equivalent height of a fluid column in vacuum, most commonly mmHg, \(\rho_{\ce{Hg}} = \SI{13.6}{\gram\per\cm\cubed} = \SI{13594}{\kilogram\per\meter\cubed} (\SI{0}{\celsius}) \)
+
+\begin{framed}
+\[ h = P / \rho  g \]
+\end{framed}
+
+#+BEGIN_QUOTE
+*EXAMPLE* Express 1 atm in mmHg and mmH2O.
+#+END_QUOTE
+
+#+BEGIN_SRC python
+pressure = 1.01325e5 # Pa
+density = 13594.  # kg/m3
+g = 9.807  #  m/s2
+
+heightHg = pressure /(density * g) # m
+heightH2O = 13.6 * heightHg
+print('{0:6.1f} mmHg   {1:8.2f} mH2O'.format(heightHg*1000,heightH2O))
+#+END_SRC
+
+#+RESULTS:
+:  760.0 mmHg      10.34 mH2O
+
+- open column of fluid (or solid) will have a total hydrostatic pressure at the base of atmospheric pressure plus column pressure
+\[ P = P_{0} + \rho g h \]
+
+#+BEGIN_QUOTE
+*EXAMPLE* Hydrostatic pressure 30.0 m below the surface of a lake?
+#+END_QUOTE
+
+#+BEGIN_SRC python
+print('Easy way...40.3 m H2O!')
+
+rho = 1000.   # kg/m3
+g = 9.807   # m/s2
+h = 30.0    # m
+P0 = 1.01325e5 # Pa
+
+pressure = P0 + rho*g*h  # Pa
+pressureatm = pressure *( 1/P0)
+pressurepsi = pressureatm * 14.696
+print('Hard way...')
+print('{0:5.2f} bar   {1:5.2f} atm    {2:5.2f} psi'.format(pressure/1e5,pressureatm,pressurepsi))
+#+END_SRC
+
+#+RESULTS:
+: Easy way...40.3 m H2O!
+: Hard way...
+:  3.96 bar    3.90 atm    57.37 psi
+
+*** Absolute vs.\nbsp{}gauge
+- absolute pressure = pressure relative to a vacuum, always > 0
+- gauge pressure difference from atmosphere, can be positive or negative
+  \[ P_{gauge} = P_{abs} - P_{atm} \]
+*** Pressure gauges
+- electronic devices (e.g. piezoelectric)
+- mechanical, based on a diaphragm or other deformable object
+- manometers: two-armed device.  Pressures at equivalent heights within fluid must be the same.
+*** open-end manometer:
+#+ATTR_LATEX: :width \textwidth
+
+[[./figs/Manometer-open.png]]
+#+BEGIN_QUOTE
+*EXAMPLE* Manometer fluid is Hg and \(h_{2} = -\SI{25}{\mm}\).  What is gauge pressure?  What is absolute pressure? In mmHg and in psi.
+#+END_QUOTE
+#+BEGIN_SRC python
+hatm = 760
+hgauge = -25   # mmHg
+habsolute = hgauge + hatm
+print('Gauge = {0:5.1f}  Abs = {1:5.1f} mmHg'.format(hgauge,habsolute))
+
+g = 9.807      # m/s2
+rhoHg = 13600  # kg/m3
+pgauge = rhoHg * g * hgauge/1000.   # Pa
+pabsolute = rhoHg * g * habsolute/1000.   # Pa
+print('Gauge = {0:5.0f}  Abs = {1:5.0f} Pa'.format(pgauge,pabsolute))
+
+pgauge = pgauge * (14.696/ 1.01325e5)  # lbf/in2
+pabsolute = pabsolute * (14.696/ 1.01325e5)  # lbf/in2
+print('Gauge = {0:5.3}  Abs = {1:5.3f} psi'.format(pgauge,pabsolute))
+#+END_SRC
+
+#+RESULTS:
+: Gauge = -25.0  Abs = 735.0 mmHg
+: Gauge = -3334  Abs = 98031 Pa
+: Gauge = -0.484  Abs = 14.218 psi
+
+*** differential manometer
+#+ATTR_LATEX: :width \textwidth
+
+[[./figs/Manometer-diff.png]]
+
+\[ P_{2}- P_{1} = g(\rho_{f} - \rho_{m}) \Delta h \]
+
+#+BEGIN_SRC python
+g =  980.7  # cm/s^2
+Dh = 0.8    # cm
+rhom = 1.05 # g/cm^3
+rhof = 1.00 # g/cm^3
+
+dP = g * Dh * (rhof - rhom) # dyne/cm2
+
+print("\Delta P = {0:5.1f} dyne/cm2".format(dP))
+#+END_SRC
+
+#+RESULTS:
+: \Delta P = -39.2 dyne/cm2
+
+*** Closed manometer
+** Temperature
+*** Scales
+- Kelvin: absolute scale, 0 \to \infty
+- Celsius: \(T(^{\circ}C) = T(K) - 273.15)\)
+- Fahrenheit: \(T(^{\circ}F) = 1.8 T(^{\circ}C) + 32 )\)
+- Rankine: absolute scale, \(T(^{\circ}R) = T(^{\circ}F)+459.67\)
+- *Use care* in using in unit conversion calculations.  Ratios work for converting temperature /differences/, but not for converting absolute temperatures
+
+*** Measurement devices
+- volume-based (thermometer)
+- radiation-based (pyrometer)
+- voltage-based (thermocouple) - change in potential between two dissimilar metals
+- resistance-based (thermistor)
+
+
+\newpage
+* Material balances on non-reactive systems
+** Process types
+- batch
+- continuous
+- semi-batch (filling a balloon)
+- steady-state vs. transient
+
+** General balance equation
+\begin{framed}
+output = input + generation - consumption - accumulation
+\end{framed}
+
+#+BEGIN_QUOTE
+*EXAMPLE* Every year 50,000 Leute move into a city, 75,000 move out, 22,000 are born, and 19,000 die.  Write a differential balance on the population, i.e., what is change in population with time?
+#+END_QUOTE
+#+BEGIN_SRC python
+input = 50000; output=75000; generation=22000; consumption=19000;
+accumulation =input + generation - output - consumption
+print('accumulation = {0} people/year'.format(accumulation))
+#+END_SRC
+
+#+RESULTS:
+: accumulation = -22000 people/year
+
+- example of /differential/ balance, a change over time (or space)
+- /integral/ balance is sum of differential balance over some unit of time or space
+
+- batch: input = output = 0
+- continuous, steady-state, non-reactive: accumulation = generation = consumption = 0
+
+- Can balance /total mass/: generation = consumption = 0
+- Can balance /mass/ or /moles/ of an element or molecular species
+
+#+BEGIN_QUOTE
+*EXAMPLE* Differential balance on a continuous, steady-state process
+
+\SI{1000}{\kilogram\per\hour} mixture of 50%(w/w) benzene and toluene is distilled into two streams, one containing \SI{450}{\kilogram\per\hour} benzene and other containing \SI{475}{\kilogram\per\hour} toluene.  Solve for unknown flow rates.
+#+END_QUOTE
+
+#+ATTR_LATEX: :width \textwidth
+
+[[./figs/diff-balance1.png]]
+
+** Mass balance procedure
+- Illustrates general procedure:
+
+\hline
+1. Create a flow chart
+2. Label all known quantities along each stream
+   1. molar or mass flow rates
+   2. concentrations
+3. Label all /unknown/ quantities with symbols
+4. Work in only mass or molar quantities
+\hline
+
+- A flow sheet is /balanced/ if all material balances are closed
+- A balanced flow sheet can be /scaled/; all flows multiplied by a constant value
+- Allows one to choose arbitrarily a /basis/
+
+#+BEGIN_QUOTE
+*EXAMPLE* Air humidification example.  Three inputs are fed into an evaporation chamber:
+
+- Liquid \ce{H2O}, \SI{20}{\centimeter\cubed\per\minute}
+- Air
+- \ce{O2}, at a rate 1/5 of the air
+
+The output contains 1.5% \ce{H20}.  What are the output compositions and other flow rates?
+#+END_QUOTE
+
+[[./figs/Diff-balance3.png]]
+
+[[./figs/Diff-balance4.png]]
+
+- Number of equations = number of unknowns.  Say /degrees of freedom/ = 0.
+
+#+BEGIN_QUOTE
+*EXAMPLE* DOF analysis. Humid air passes through a condenser that removes 95% of \ce{H2O}. Condensate removed at 225 L/min.  Calculate flow rate and composition of gas stream leaving condenser.
+#+END_QUOTE
+
+[[./figs/DOF.png]]
+
+#+BEGIN_QUOTE
+*EXAMPLE* 45.0%(w/w) benzene and balance toluene are fed to a distillation column.  The overhead product contains 95.0%(mol/mol) benzene and accounts for 92% of total fed benzene.  The fed enters at 2000 L/h and has specific gravity 0.872.  Determine mass flow rates of overhead and bottom streams and bottom composition.
+#+END_QUOTE
+
+#+BEGIN_SRC python
+# Convert stream 2 to mass basis
+MWb = 6 * 12.0 + 6 * 1.008
+MWt = 7 * 12.0 +8 * 1.008
+x2B = 0.95
+x2T = 0.05
+
+basis = 100.
+m2B = basis * x2B * MWb
+m2T = basis * x2T * MWt
+m2tot = m2B + m2T
+
+z2B = m2B/m2tot
+z2T = m2T/m2tot
+print('Z2Benzene = {0:5.3f} Z2Toluene = {1:5.3f} kg/kg'.format(z2B,z2T))
+
+# total mass flow rate
+SG = 0.872
+v1 = 2000  # l/h
+m1 = v1 * SG
+
+# benzene flow rates
+z1B = 0.45
+m3B = 0.08 * m1 * z1B
+m2B = 0.92 * m1 * z1B
+
+print('Mdot1 = {0:6.1f}  Mdot2B = {1:6.1f}   Mdot3B = {2:6.1f} kg/hr'.format(m1,m2B,m3B))
+
+# mass balances
+m2 = m2B/z2B
+m3 = m1 - m2
+print('Mdot2 = {0:6.1f}  Mdot3 = {1:6.1f} kg/hr'.format(m2,m3))
+
+# last gasp
+z3B = m3B/m3
+print('Z3Benzene = {0:5.3f}  Z3Toluene = {1:5.3f} kg/kg'.format(z3B,1-z3B))
+#+END_SRC
+
+#+RESULTS:
+: Z2Benzene = 0.942 Z2Toluene = 0.058 kg/kg
+: Mdot1 = 1744.0  Mdot2B =  722.0   Mdot3B =   62.8 kg/hr
+: Mdot2 =  766.8  Mdot3 =  977.2 kg/hr
+: Z3Benzene = 0.064  Z3Toluene = 0.936 kg/kg
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Diff-balance5.png]]
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Diff-balance6.png]]
+
+#+BEGIN_QUOTE
+*EXAMPLE* Integral balance on semi-batch, non-steady state process.  Air is bubbled through a tank of liquid hexane at a rate of 0.100 kmol/min.  The gas stream leaving the tank contains 10.0%(mol/mol) hexane vapor.
+The air is essentially insoluble in hexane.  Estimate the time required to vaporize \SI{10}{\meter\cubed} of the liquid.
+#+END_QUOTE
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Int-balance1.png]]
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Int-balance2.png]]
+
+- Does life always balance?  No!
+
+** Multi-unit processes
+- Real processes will contain multiple sub-processes
+- Can write a balance on any portion we can draw a box around
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Multiprocess.png]]
+
+#+BEGIN_QUOTE
+*EXAMPLE* The flow chart below is for a two step, steady-state process involving components A and B.  Find the unknown flow rates.
+#+END_QUOTE
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Two-unit-soln.png]]
+
+#+BEGIN_QUOTE
+*EXAMPLE* Multi-stage extraction-distillation.
+#+END_QUOTE
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Example442.png]]
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Soln442.png]]
+
+- Balance extractor pair
+  - Three unknowns
+  - Total mass + A balance: \(\dot{m}_1 = 145, \dot{m}_{2} = 86.8\)
+  - M balance: \(x_{M1} = 0.675 \)
+- Balance extractors individually
+- Balance mixing point
+  - \( \dot{m}_{A4} = 86.8, \dot{m}_{M4}= 174, \dot{m}_{W4}= 9.9\)
+- Balance column: 4 unknowns, 3 balances \to under-determined
+
+** Recycle and bypass
+- /Recycle/ and /bypass/ are ways to control the composition in a process
+- /Recycle/ a way to recover and re-feed unused reactants
+- Changes effective residence time in the process
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Recycle1.png]]
+
+#+BEGIN_QUOTE
+*EXAMPLE* Fresh, humid air, 4% \ce{H2O}, is to be cooled and dehumidified to 1.7%.  Some of the dehumidified air leaving the air conditioner is recycled into the inlet air.  The blended stream is 2.30% \ce{H2O}.  Water leaves as pure water.  Find all flow rates.
+#+END_QUOTE
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Recycle2.png]]
+
+- Mass or moles?
+- Basis? 100 mol/s outlet.
+- Overall balance
+  - \(\dot{n}_{1} = 102.4,\quad\dot{n}_{3} = 2.4\)
+- Mixing point balance
+  - \(\dot{n}_{2} = 392.5,\quad\dot{n}_{5}=290\)
+- Split point balance
+  - \(\dot{n}_{4} = 100 + \dot{n}_{5} = 390\)
+\newpage
+
+* Material balances on reactive systems
+** Revision idea
+- First introduce balance using single reaction and molecular balance
+- Then introduce extent
+- Then multiple reactions...
+** Stoichiometry
+- Chemical reaction: a transformation between between chemical species
+  - Conserves /mass/ and /atom numbers/
+  - Isomerization (e.g. /cis/- /trans/) \ce{A <=>B},
+  - Condensation (e.g. add \ce{H2O} to double bond) \ce{A+B <=> C}
+  - Combustion (e.g. methane) \ce{A + 2B -> C + 2 D}
+- Each has a distinct /stoichiometry/ that guarantees atom and mass conservation
+- Tells us /ratio/ consumption/generation
+
+#+BEGIN_QUOTE
+\hline
+*EXAMPLE* Balance SCR reaction.  Engine emits 0.02 mol NO/mile.  How many grams \ce{NH3} needed/mile?
+
+\ce{4 NH3 + 4 NO +  O2 -> 4 N2 + 6 H2O}
+\hline
+#+END_QUOTE
+
+
+- Reaction short-hand: species /j/ \to \(A_{j}\)
+- Stoichiometric coefficient:
+
+\begin{equation*}
+\nu_{j}= \left\{
+\begin{array}{rl}
+< 0 & \text{reactant}\\
+> 0 & \text{product}
+\end{array}
+\end{equation*}
+\begin{equation*}
+\sum_{j} \nu_{j} A_{j} = 0
+\end{equation*}
+
+- Can scale by arbitrary constant /c/
+** Reaction progress
+- Stoichiometry tells us how moles of reactants/products vary along course of reaction
+
+#+BEGIN_QUOTE
+*EXAMPLE* \ce{A -> B}.  Total moles conserved:
+\begin{eqnarray*}
+n_{tot} & = & n_{A0} + n_{B0} = n_{A} + n_{B}\\
+n_{B} & = & n_{tot} - n_{A}
+\end{eqnarray*}
+
+Plot \(n_{B}\) vs. \(n_{A}\).
+#+END_QUOTE
+
+- Illustrate "ICE" procedure for SCR reaction
+- Reaction advancement/extent \xi:
+
+\begin{equation*}
+n_{j} = n_{j0} + \nu_{j} \xi
+\end{equation*}
+
+- we define \xi to be extensive, units of "moles" or "moles/time"
+
+#+BEGIN_QUOTE
+\hline
+*EXAMPLE* Stoichiometric SCR mixture.  Plot moles of each species as a function of advancement.
+\hline
+#+END_QUOTE
+#+BEGIN_SRC python
+import matplotlib.pyplot as plt
+import numpy as np
+
+nu = np.array([[-4, -6, -3, 5, 6]])
+n0 = np.array([[4, 6, 3, 0, 0]])
+
+xi = np.array([np.linspace(0,1)])
+
+n = np.transpose(n0) + np.dot(np.transpose(nu),xi)
+
+for i in range(5):
+    plt.plot(xi[0],n[i])
+
+plt.savefig('./figs/advancement1.png')
+#+END_SRC
+
+#+RESULTS:
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/advancement1.png]]
+
+
+- Must have \(n_{j} \ge 0\) for all /j/, or \( \xi \le -\frac{n_{j0}}{\nu_{j}}\):
+
+\begin{eqnarray*}
+\text{Forward: } \xi_{max} & =  & \min_\text{reactants} \left ( -\frac{n_{j0}}{\nu_{j}}\right ) \\
+\text{Reverse: } \xi_{min} & = & \max_\text{products}\left (-\frac{n_{j0}}{\nu_{j}} \right )
+\end{eqnarray*}
+
+\begin{equation*}
+\xi_{min} \le \xi \le \xi_{max}
+\end{equation*}
+
+#+BEGIN_QUOTE
+\hline
+Air oxidation of \ce{NH3}.
+
+\ce{4 NH3 + 5 O2 -> 4 NO + 6 H2O}
+
+0.1 g/s \ce{NH3} and 0.95 g/s air flow into a reactor.  What is limiting reagent?  How much \ce{NH3} at completion?
+\hline
+#+END_QUOTE
+
+#+BEGIN_SRC python
+MWNH3 = 17; MWO2 = 32; MWN2 = 28;
+MWair = 0.79 * MWN2 + 0.21 * MWO2
+
+mNH30 = 0.1; mair0 = 0.95
+nNH30 = mNH30 / MWNH3
+nO20 = (mair0 / MWair) * 0.21
+
+print('ndot NH3 = {0:6.4f}  ndot O2= {1:6.4f} mol/s\n'.format(nNH30,nO20))
+
+nuNH3 = -4.0; nuO2 = -5.0;
+
+xiNH3 = -nNH30/nuNH3; xiO2 = -nO20/nuO2
+
+print('ndot/nu NH3 = {0:7.5f}  ndot/nu O2 = {1:7.5f}\n'.format(xiNH3,xiO2))
+
+print('O2 limiting\n')
+
+xilim = xiO2
+
+nNH3 = nNH30 + nuNH3 * xilim; nO2 = nO20 + nuO2 *xilim
+
+print('ndot NH3 = {0:7.5f}  ndotO2 = {1:7.5f}\n'.format(nNH3,nO2))
+
+fNH3 = 100*(nNH30 - nNH3)/nNH30
+print('Fraction NH3 consumed = {0:4.2f}%'.format(fNH3))
+#+END_SRC
+
+#+RESULTS:
+: ndot NH3 = 0.0059  ndot O2= 0.0069 mol/s
+:
+: ndot/nu NH3 = 0.00147  ndot/nu O2 = 0.00138
+:
+: O2 limiting
+:
+: ndot NH3 = 0.00035  ndotO2 = 0.00000
+:
+: Fraction NH3 consumed = 94.08%
+
+- /conversion/ often used to measure consumption of a species:
+
+\[X_{j} = \frac{n_{j0}-n_{j}}{n_{j0}} = -\frac{\nu_{j}\xi}{n_{j0}} \]
+
+- conventional to define "the" conversion in terms of limiting reagent:
+
+\[X = 1 - \frac{n_{\text{lim}}}{n_{\text{lim},0}} = -\frac{\nu_{j}\xi}{n_{j0}} \]
+
+\[ \xi = -X \frac{n_{\text{lim},0}}{\nu_{\text{lim}}} \]
+
+- /X/ is unitless and (for forward reaction) \( 0 \le X \le 1\)
+- all \(n_{j}\) can be written in terms of /X/:
+
+\[n_{j} = n_{j0} - X n_{\text{lim},0} * \frac{\nu_{j}}{\nu_{\text{lim}}}\]
+
+#+BEGIN_QUOTE
+\hline
+*EXAMPLE* \ce{NH3} oxidation goes to 50% completion.  What is composition of exit stream?
+\hline
+#+END_QUOTE
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+species = ('NH3', 'N2', 'O2', 'NO', 'H2O')
+nu = np.array([[-4, 0, -6, 5, 6]])
+
+MWNH3 = 17; MWO2 = 32; MWN2 = 28;
+MWair = 0.79 * MWN2 + 0.21 * MWO2
+
+mNH30 = 0.1; mair0 = 0.95
+nNH30 = mNH30 / MWNH3
+nO20 = (mair0 / MWair) * 0.21
+nN20 = (mair0 / MWair) * 0.79
+
+n0 = np.array([[nNH30, nN20, nO20, 0, 0]])
+
+X = 0.5
+
+n = n0 - (nu/nu[0,2]) * n0[0,2] * X
+
+print(species)
+print(n,' mol/s')
+
+X = np.array([np.linspace(0,1)])
+
+n = np.transpose(n0) - np.dot(n0[0,2]*np.transpose(nu/nu[0,2]),X)
+
+ntot= 0
+
+for i in range(5):
+    plt.plot(X[0],n[i],label=species[i])
+    ntot =ntot + n[i]
+legend = plt.legend()
+
+plt.plot(X[0],ntot)
+plt.xlabel('Conversion')
+plt.ylabel('flow rate (mol/s)')
+
+plt.savefig('./figs/conversion1.png')
+
+#+END_SRC
+
+#+RESULTS:
+: ('NH3', 'N2', 'O2', 'NO', 'H2O')
+: [[ 0.00357653  0.02602288  0.00345874  0.00288228  0.00345874]]  mol/s
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/conversion1.png]]
+
+** Multiple reactions
+- \ce{NH3} oxidation and SCR together, for example, are parallel reactions
+- competition between the two
+- each species has a stoichiometric coefficient in each parallel reaction
+
+\begin{center}
+\ce{4 NO + 4 NH3 + O2 -> 4 N2 + 6 H2O} \\
+\ce{4 NH3 + 5 O2 -> 4 NO + 6 H2O}\\
+\vspace{1em}
+\ce{-4 NO  -4 NH3  -1 O2 + 4 N2 + 6 H2O\ = 0} \\
+\ce{ 4 NO  -4 NH3  -5 O2 + 0 N2 + 6 H2O}\ = 0\\
+\end{center}
+
+- reaction expression:
+
+\begin{equation}
+\left (
+\begin{array}{rrrrr}
+-4 & -4 & -1 & 4 & 6 \\
+4 & -4 & -5 & 0 & 6
+\end{array}
+\right )
+\left (
+\begin{array}{rr}
+A_{1} \\
+A_{2} \\
+A_{3} \\
+A_{4} \\
+A_{5}
+\end{array}
+\right ) = 0
+\end{equation}
+
+- In general \( \sum_{j} \nu_{ij} A_{j} = 0\)
+
+- each parallel reaction has its own advancement \(\xi_{i}\) (/i/ for reactions, /j/ for species)
+
+\[ n_{j} = n_{j0} + \sum_{i} \nu_{ij} \xi_{i} \]
+
+- /yield/ defined as amount (molar) of desired product over maximum possible amount of desired product
+
+- /selectivity/ (often) defined as amount of desired product over amount of
+  undesired.  Be careful with this one.
+
+#+ATTR_LATEX: :environment shaded
+#+BEGIN_QUOTE
+\hline
+*Selectivity and yield*  Ethane cracking. Feed contains 85.0% (mol/mol) ethane, balance inerts. 50.1% of ethane is converted, and ethylene yield is 47.1%.  Molar composition of gases and selectivity to ethylene?
+\begin{center}
+\ce{C2H6 -> C2H4 + H2}
+
+\ce{C2H6 + H2 -> 2 CH4}
+\end{center}
+\hline
+#+END_QUOTE
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Multirxn1.png]]
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Multirxn2.png]]
+
+- DOF analysis: 5 flow rates + 2 reactions - 5 species - 2 constraints = 0 DOFs
+- Example of a balance on a reactive system
+
+** Reactive balances
+- General balance expression:
+\begin{framed}
+output = input + generation - consumption - accumulation
+\end{framed}
+
+- can write balances on /molecular species/:
+
+\[ \dot{n}_{A} = \dot{n}_{A0} - \dot{n}_{e} - \frac{1}{2}\dot{n}_{m} \]
+
+  - for more than one reaction, this gets messy
+
+- extent of reaction
+  - each /independent/ extent becomes an additional unknown (linearly independent extents)
+  - each species balance becomes an equation
+  - species balances must include /generation/ and /consumption/
+
+\[\dot{n}_{A} = \dot{n}_{A0} + \sum_{i}\nu_{iA}\xi_{i}\]
+
+- atomic species
+  - one equation for each reactive /atomic species/
+  - No generation or consumption;  /input/ = /output/
+
+C balance: \(2 \dot{n_{A0}} = 2 \dot{n_{A}} 2 \dot{n_{e}} + \dot{n_{m}}\)
+
+H balance: \(4 \dot{n}_{A0} = 6\dot{n}_{A} + 4\dot{n}_{e} + 4\dot{n}_{m} + 2\dot{n}_{H} \)
+
+  - one equation for each non-reactive species
+
+#+BEGIN_QUOTE
+\hline
+*Reactive balances*  Methane is burned in air to make CO and \ce{CO2}:
+\begin{center}
+\ce{CH4 + 3/2 O2 -> CO + 2 H2O}
+
+\ce{CH4 + 2 O2 -> CO2 + 2 H2O}
+\end{center}
+Feed contains 7.8%(mol/mol) \ce{CH4} and balance air (19.4% \ce{O2}, 72.8% \ce{N2}).  Methane conversion is 90.0% and exit contains 8 mol \ce{CO2}/\ce{CO}.  Calculate composition of exit stream.
+\hline
+#+END_QUOTE
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Reactive.png]]
+
+** Reactive balances on multi-unit processes
+- Can do extent or atomic balances on any part of a process
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Example472.png]]
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/ReactiveRecycle.png]]
+
+- Compare single-pass and overall conversion
+- Separation and recycle allows reactor to run at lower conversion at cost of separation unit and larger flows through reactor
+
+** Purge
+- Recycle example above works because system is continuously fed pure reactant
+- If system fed unreactive species, unless it is removed at same rate it enters, it will build up and eventually kill the process
+- Purge stream used to bleed off that species
+
+#+BEGIN_QUOTE
+*Purge Example*  \ce{CO2} to methanol.  Single pass 60.0% \ce{H2} conversion.
+#+END_QUOTE
+[[./figs/Purge.png]]
+- Reactor balance, 4 DOFs - 3 balances - 1 conversion:
+
+|----------+---------+------------+----------|
+| \ce{CO2} | \ce{H2} | \ce{CH3OH} | \ce{H2O} |
+|     14.0 |    28.0 |       14.0 |     14.0 |
+|----------+---------+------------+----------|
+
+- Condenser balance, simple split, BUT, inert concentration goes up!!!!
+|----------+---------+-------|
+| \ce{CO2} | \ce{H2} | Inert |
+|     14.0 |    28.0 |     2 |
+|----------+---------+-------|
+
+- mixing point, non-reactive, 4 DOFs - 3 balances - 1 total
+
+|---------+---------|
+| n\(_0\) | n\(_r\) |
+|    61.4 |    38.6 |
+|---------+---------|
+
+- purge split \(n_{5} = n_{r} + n_{p}\)
+
+|---------|
+| n\(_p\) |
+|     5.4 |
+|---------|
+
+** Combustion in air
+\newpage
+
+* Properties of single-phase systems
+- Can't design a reactor around masses and moles; have to know sizes, volumes
+- \(\rho = \rho(T,P,x_{i}) \), example of what is called an equation of state
+- Material balances often require we know the physical properties (e.g, densities, thermal expansion coefficient, ...) of pure substance and of mixtures
+- Where to get this information?
+  - Look it up (Perry's handbook, literature)
+  - Measure it (laboratory)
+  - Estimate from physical property models
+  - Compute from molecular models
+
+** Liquid and solid densities
+- Liquids and solids generally incompressible and small coefficients of thermal expansion
+- Pure densities from measurement or estimate
+- Mixture densities depend...
+- Ideal solution (MeOH and \ce{H2O}) has additive molar volumes:
+\[ v \text{ (l/mol)} = \sum_{i} x_{i} v_{i} \]
+- or equivalently additive inverse densities (\(\omega_{i}\) are mass fractions):
+\[ \frac{1}{\bar{\rho}} = \sum_{i}^{n} \frac{\omega_{i}}{\rho_{i}} \]
+- Many solutions *not* ideal, e.g., ethanol/methyl formate positive deviation; methanol/methyl formate negative deviation
+-  Sometimes other empirical relations are observed
+\[ \bar{\rho} = \sum_{i}^{n} x_{i}\rho_{i}\]
+- See [[http://library.nd.edu/engineering/][Perry's Handbook]] for data
+
+** Ideal gas
+
+es
+- Gas volumes are much more sensitive to temperature and pressure
+- Relationship captured in an "equation of state"
+- Ideal gas equation of state very familiar
+
+\[ P V = n R T \text{ or } P v = R T \text{ or } v = \frac{RT}{P} \]
+
+- /R/ = gas constant is a fundamental physical constant of nature, closely related to concept of temperature
+
+|R | 8.314472 J / (K mol) | 0.082057 atm l / (K mol) | 1.3806504e-23 J / K |
+- \(v\) replaced by \(\dot{v}\) in flow context
+
+#+BEGIN_QUOTE
+\hline
+*Ideal gas Flow* Butane at \SI{360}{\celsius} and 3.0 atm absolute pressure flows into a reactor at \SI{1100}{\kilogram\per\hour}.  Volumetric flow rate?
+\hline
+#+END_QUOTE
+#+BEGIN_SRC python
+R = 0.082057 # l atm/mol K
+MW = (4*12.00 + 10 * 1.008)/1000 # kg/mol
+
+T = 360 + 273.15 # K
+P = 3.00 # atm
+mdot = 1100 # kg/hr
+
+vdot = (mdot/MW) * (R * T / P)
+print('{0:6.2f} l/hr'.format(vdot))
+#+END_SRC
+
+#+RESULTS:
+: 327994.88 l/hr
+
+
+#+BEGIN_QUOTE
+\hline
+*Ideal gas ratios* \SI{10}{ft\cubed} of air at 70 F and 1.00 atm is heated to 610 F and compressed to 2.50 atm.  Final volume?
+\hline
+#+END_QUOTE
+#+BEGIN_SRC python
+V0 = 10.
+T0 = 70 + 459.67 # R
+T = 610 + 459.67
+P0 = 1. # atm
+P = 2.50 # atm
+
+V = V0*(P0/P)*(T/T0)
+print('{0:6.2f} ft3'.format(V))
+#+END_SRC
+
+#+RESULTS:
+:   8.08 ft3
+
+- \(v\) is only a function of $T$ and $P$, suggests "standard" volume at "standard" conditions, typically 273 K and 1 atm for SI/cgs, 32 F and 1 atm for English.
+
+\[ v_{s} = 22.415~\text{L/mol} = 0.022415~\text{m}^{3}\text{/mol} = 359.05 \text{ ft}^{3}\text{/lb-mol}\]
+
+#+BEGIN_QUOTE
+\hline
+*Standard gas* The flow rate of methane at 285 F and 1.30 atm absolute is reported to be \(3.95\times 10^5\) SCFH.  Molar flow rate?  Volumetric flow rate?
+\hline
+#+END_QUOTE
+#+BEGIN_SRC python
+VSCFH = 3.95e5 # std ft3/hr
+PS = 1.0 #
+P = 1.30 #
+TS = 459.67 + 32 # R
+T = TS + 285.
+
+Vs = 359.05 # std ft3/lb-mol
+
+ndot = VSCFH /Vs  # lb-mol/hr
+
+V = VSCFH * ( PS/P) * (T/TS)
+
+print('{0:6.2e} mol/hr   {1:6.2e} ft^3/hr'.format(ndot,V))
+
+#+END_SRC
+
+#+RESULTS:
+: 1.10e+03 mol/hr   4.80e+05 ft^3/hr
+
+** Ideal gas mixture
+- ideal mixture \to volumes are additive:
+
+\[ V(N,T,P) = V_{1}(N_{1},T,P) + V_{2}(N_{2},T,P) \]
+
+- Called "Amagat's Law," applies \approx both ideal and non-ideal gases
+
+- individual components ideal gas \to mixture is ideal gas:
+\begin{eqnarray*}
+V(N,T,P) & =  & \frac{N_{1} R T}{P} + \frac{N_{2} R T}{P} \\
+         & =  & \frac{(N_{1}+ N_{2}) R T}{P} \\
+         & =  & \frac{N R T}{P}
+\end{eqnarray*}
+
+- "Partial pressures" additive:
+\begin{eqnarray*}
+ P & = & \frac{N_{1} R T}{V} + \frac{N_{2} R T}{V}\\
+   & = & P_{1} + P_{2}
+\end{eqnarray*}
+
+- Partial pressure proportional to mole fraction:
+
+\[ \frac{P_{1}}{P} = \frac{N_{1} RT/V}{N RT/V} = y_{1}\]
+
+- Volume fraction proportional to mole fraction:
+
+\[ \frac{V_{1}}{V} = \frac{N_{1}}{N} = y_{1} \]
+
+- Use mole fraction and volume fraction and partial pressure interchangeably for ideal gas mixture
+
+#+BEGIN_QUOTE
+\hline
+*Partial Pressures*  Acetone and nitrogen mixed in an evaporator and flowed through a compressor.  Liquid acetone enters system at a flow rate of \SI{400}{\liter\per\minute} and exits at a partial pressure (gauge) of 501 mm Hg at \SI{325}{\celsius}.  Total pressure of exit is 6.2 atm (gauge).  What is flow rate and composition of exit?  Atmospheric pressure is 763 mm Hg.
+\hline
+#+END_QUOTE
+
+#+ATTR_LATEX: :width 0.95\textwidth
+[[./figs/PartialPressure.png]]
+
+#+BEGIN_SRC python
+rho_acetone = 0.791 # g/cm3
+vdot_acetone = 400. # l/min
+MW_acetone = 58.08 # g/mol
+
+ndot_acetone = vdot_acetone * 1000. * rho_acetone / MW_acetone
+
+print('acetone = {0:6.0f} mol/min'.format(ndot_acetone))
+
+P_atm = 763.
+P_exit = 6.2 * 760. + P_atm  # mm Hg
+P_acetone = 501. + P_atm # mm Hg
+P_N2 = P_exit - P_acetone
+y_N2 = P_N2/P_exit; y_acetone = P_acetone/P_exit
+
+print('acetone = {0:5.3f}  N2 = {1:5.3f} mol/mol'.format(y_acetone,y_N2))
+
+n_exit = ndot_acetone * (1 + y_N2/y_acetone) # mol/min
+
+T_exit = 325 + 273.15  # K
+
+R = 62.36 # L mm Hg/mol K
+
+V_exit = n_exit * R * T_exit /P_exit
+
+print('exit {0:6.1f} mol/min  {1:6.1f} l/min'.format(n_exit,V_exit))
+#+END_SRC
+
+#+RESULTS:
+: acetone =   5448 mol/min
+: acetone = 0.231  N2 = 0.769 mol/mol
+: exit 23596.5 mol/min  160760.4 l/min
+
+** Real equations of state
+*** Ideal gas
+- No condensation
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+R = 0.0821 # l atm/mol K
+v = np.logspace(-0.2,1)
+
+for T in np.arange(100.,1000,100):
+    P = R * T *(1/v)
+    plt.plot(v,P,label=T)
+
+legend = plt.legend()
+
+plt.xlabel('Volume (L/mol)')
+plt.ylabel('Pressure (atm)')
+
+plt.savefig('./figs/idealgas.png')
+
+#+END_SRC
+
+#+RESULTS:
+
+[[./figs/idealgas.png]]
+#+RESULTS:
+
+*** van der Waals model
+- molecules have volume: \(v\) \to \(v - b\)
+- molecules attract: \(P\) \to \( P - a/v^{2} \)
+
+\[ P_{\text{vdW}} = \frac{RT}{v-b} - \frac{a}{v^{2}} \]
+
+- "cubic" equation of state:
+\[ v^{3} - \left (b + \frac{RT}{P}\right ) v^{2}+\frac{a}{P}v - \frac{ab}{P} \]
+
+- /b/ has units of volume/mole
+
+- /a/ has units of pressure * (volume/mol)\(^{2}\) = energy * volume/mol
+
+|----------+-----------------+-----------|
+|          | a ((L/mol)2 bar | b (L/mol) |
+|----------+-----------------+-----------|
+| \ce{H2}  |          0.2476 |   0.02661 |
+| \ce{N2}  |           1.370 |    0.0387 |
+| \ce{CH4} |           2.283 |   0.04278 |
+| \ce{CO2} |           3.640 |   0.04267 |
+|----------+-----------------+-----------|
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+R = 0.0821 # l atm/mol K
+
+a = 3.640; b = 0.04267;
+
+vc = 3 * b; Tc = (8./9.)*a /(R * vc); Pc = (R * Tc)/(vc-b) - a/(vc*vc);
+
+vr = np.logspace(-0.5,1.)
+
+plt.figure(1)
+for Tr in np.arange(0.87,1.3,0.13):
+    Pr = 8 * Tr/(3 * vr -1) - 3 *(1/vr) *(1/vr)
+    plt.plot(vr*vc,Pr*Pc,label=Tr*Tc)
+
+plt.title('CO2 van der Waals isotherms')
+plt.ylim([.1*Pc,4*Pc])
+plt.xlim([.3*vc,6*vc])
+plt.xlabel('Volume (l/mol)')
+plt.ylabel('Pressure (atm)')
+legend=plt.legend()
+
+plt.savefig('./figs/vdWgas.png')
+
+plt.figure(2)
+for Tr in np.arange(0.87,1.3,0.13):
+    Pr = 8 * Tr/(3 * vr -1) - 3 *(1/vr) *(1/vr)
+    plt.loglog(vr*vc,Pr*Pc,label=Tr*Tc,basex=10)
+
+legend = plt.legend()
+
+plt.ylim([.1*Pc,100*Pc])
+plt.xlim([.3*vc,10*vc])
+plt.xlabel('Log volume (l/mol)')
+plt.ylabel('Log pressure (atm)')
+plt.title('CO2 van der Waals isotherms')
+
+plt.savefig('./figs/logvdWgas.png')
+
+#+END_SRC
+
+#+RESULTS:
+
+[[./figs/vdWgas.png]]
+
+[[./figs/logvdWgas.png]]
+
+- At higher temperature, pressure and volume vary approximately inversely (gas)
+- At lower temperature, follow isotherm, reach region where compressing causes $P$ to go /down/, unphysical,
+  - form two phases, dense (liquid) and dilute (vapor)
+  - middle intersection point unphysical
+  - One pressure and temperature at which two phases coexist (same chemical potential)
+  - Called "saturation pressure," \(P_{sat}(T)\)
+  - Given volumes, easy to solve for \(P_{sat}\), other way not so easy (\(\mu_{v} = \mu_{l}\))
+
+- Transition point between the two regions, called the "critical point"
+- \(T > T_{c}\), \(P>P_{c}\) called "supercritical"
+- At critical point, density of liquid and vapor are the same
+- As move below the critical point, the densities/volumes move apart
+
+- Critical constants related to /a/ and /b/:
+
+\[b = v_{c}/3\quad\quad a = \frac{9}{8}R T_{c} v_{c}\]
+
+- common to refer to the "reduced" temperature, pressure, volume, unitless, scaled to the critical values.  As we see below, many species behave the same in reduced variables
+
+\[ T_{r} = T/T_{c}\quad P_{r} = P/P_{c}\quad v_{r}=v/v_{c}\]
+
+*** Other cubic equations of state
+- vdW model qualitatively and theoretically important, practically not so accurate
+- more elaborate equations necessary to model real fluids more reliably
+- /all/ are approximations to reality
+- Soave-Redlich-Kwong (SRK) one common example (Peng-Robinson another)
+
+\[P_{\text{SRK}} = \frac{RT}{v-b} - \frac{\alpha(T) a}{v(v+b)} \]
+
+- still cubic in /v/, so same qualitative form, but more parameters to fit
+
+\begin{eqnarray*}
+a & = & 0.42747 \frac{(R T_{c})^{2}}{P_{c}} \\
+b & = & 0.08664 \frac{R T_{c}}{P_{c}} \\
+m & = & 0.48508 + 1.55171 \omega - 0.1561 \omega^{2}\\
+\alpha & = & \[1+m (1-\sqrt{T_{r}})\]^2
+\end{eqnarray*}
+
+- \omega is so-called Pitzer "acentric" factor, compiled along with critical constants
+
+\[\omega = -\log \left ( \frac{P_{sat}}{P_{c}} \right ) \Big|_{T_{r}=0.7} -1 \]
+
+|----------+---------------+--------+----------|
+|          | Pitzer factor | Tc (K) | Pc (atm) |
+|----------+---------------+--------+----------|
+| \ce{N2}  |         0.037 | 126.20 |  33.5    |
+| \ce{CH4} |         0.011 | 190.7  |  45.8    |
+| \ce{CO2} |         0.225 | 304.2  |  72.9    |
+|----------+---------------+--------+----------|
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+Tc =304.2; Pc = 72.9; omega = 0.225;
+R = 0.0821 # l atm/mol K
+
+a = 0.42747 * (R * Tc)**2 / Pc
+
+b = 0.08664 * (R * Tc) /Pc
+
+m = 0.48508 + (1.55171 - 0.1561 * omega )* omega
+
+v = np.logspace(-1.5,0.)
+
+plt.figure(1)
+for T in np.arange(268,390,40):
+    alpha = 1 + m * (1 - (T / Tc)**0.5)
+    Psrk = R * T /(v-b) - alpha * a / (v* (v+b))
+    Pig = R * T /v
+    plt.plot(v,Psrk,label=T)
+    plt.plot(v,Pig,label=T,ls='--')
+
+plt.title('CO2 SRK isotherms')
+plt.ylim([0,300])
+plt.xlim([0.02,0.8])
+plt.xlabel('Volume (l/mol)')
+plt.ylabel('Pressure (atm)')
+legend=plt.legend()
+
+plt.savefig('./figs/SRKgas.png')
+
+# plt.figure(2)
+# for T in np.arange(268,390,40):
+#     alpha = 1 + m * (1 - (T / Tc)**0.5)
+#     Psrk = R * T /(v-b) - alpha * a / (v* (v+b))
+#     plt.loglog(v,Psrk,label=T,basex=10)
+
+# legend = plt.legend()
+
+# plt.ylim([1e1,1e4])
+# plt.xlim([0.01,1.1])
+# plt.xlabel('Log volume (l/mol)')
+# plt.ylabel('Log pressure (atm)')
+# plt.title('CO2 SRK vs. Ideal Gas isotherms')
+
+# plt.savefig('./figs/logSRKgas.png')
+
+#+END_SRC
+
+#+RESULTS:
+
+[[./figs/SRKgas.png]]
+
+# [[./figs/logSRKgas.png]]
+
+- errors largest at low /v/, low /T/
+- given /T/ and /v/, easy to find /P/
+- given /T/ and /P/, harder to find /v/; solve numerically
+
+*** Virial expansion
+
+\[ P= \frac{RT}{v} \left ( 1 + \frac{B_{2}(T)}{v} + \frac{B_{3}(T)}{v^{2}} + \cdots \right ) \]
+*** Law of corresponding states
+- Observed empirically that \(PvT\) properties of many fluids behave similarly when expressed in terms of reduced variables
+- Reflects common competition between size/entropy and interaction/energy
+- Define unitless /compressibility/:
+\[ Z = \frac{P(v,T) v}{RT} \]
+
+- \(Z_{ig} = 1 \)
+- \( Z_{c} = 0.27 \) for many common fluids
+- Plot of /Z/ vs. \(P_{r}\) for various \(T_{r}\)
+  - Negative deviations at low /P/, attractions reduce pressure relative to ideal gas
+  - Positive deviations at high /P/, repulsive regime due to short-range repulsion
+  - Deviations increase with decreasing \(T_{r}\)
+
+[[./figs/AirCompressibility.png]]
+
+- Algorithm: given two of \(PvT\) and corresponding critical constants, convert to reduced values, read unknown value off of compressibility chart, and back-convert to real value.
+- Rather arcane, not-computer-friendly way of getting /PvT/ information
+
+** Real gas mixtures
+- Even messier problem
+- Mixing rules to combine parameters from individual components
+\newpage
+
+* Two-phase systems
+Very often interested in systems in which two distinct phases are present, e.g. /l/-/g/.  Common in separations problems, including my favorite, extracting tasty coffee from coffee beans, and second favorite, \ce{CO2} from flue gas.
+
+** One-component phase diagrams
+- Pure substances can exist in multiple "phases."  /s/, /l/, /v/ familiar, but can have e.g. multiple solid phases, example C
+- Stable phase at any given condition is a function of /T/ and /P/
+- Captured in a "phase diagram," which shows which phase is stable at a give condition
+- Have already talked about properties of single phases
+- Often interested in /phase transitions/, boundaries between two phases
+- Give example from vdW isotherm; for given /T/, only one /P/ at which both phases
+- Mention heat flow
+- In two-phase region, temperature sets one and only one saturation pressure
+- Mention /latent heat/
+- Change the temperature, change the saturation pressure
+
+- \ce{CO2} phase diagram representative:
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/CO2-Phase-Diagram.jpg]]
+
+- Key features:
+  - boiling point
+  - "normal" boiling point
+  - critical point and supercritical region
+  - melting/freezing point
+  - sublimation point
+  - "triple" point
+
+- \ce{H2O} diagram somewhat anomalous:
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/H2O-Phase-Diagram.jpg]]
+
+- Will find tabulations of boiling/freezing points, critical points, triple points in Perry's Handbook, CRC, [[http://webbook.nist.gov]]
+
+*** Clapeyron equation
+- Thermodynamics gives us a relationship for the slope of a coexistence line:
+\[ \frac{d P^{*}}{dT} = \frac{\Delta H_{\text{latent}}}{T(v_{b}-v_{a})} \]
+
+- Applied to liquid \to vapor transition, ignoring liquid volume, and treating vapor as ideal gives the Clausius-Clapeyron equation:
+
+\begin{eqnarray*}
+\frac{d P^{*}}{dT} & = & \frac{\Delta H_{\text{vap}}}{T(v_{g}-v_{l})} \\
+           & \approx & \frac{\Delta H_{\text{vap}}}{T v_{g}} \\
+          & \approx & \frac{P \Delta H_{\text{vap}}}{R T^{2}} \\
+\frac{d \ln P}{d 1/T} = - \frac{\Delta H_{\text{vap}}}{R}
+\end{eqnarray*}
+
+- Assuming \(\Delta H_{\text{vap}}\) is not a function of /T/, integrates to
+
+\[ \ln \frac{P^{*}_{2}}{P^{*}_{1}} = -\frac{\Delta H_{\text{vap}}}{R}\left ( \frac{1}{T_{2}} - \frac{1}{T_{1}} \right ) \]
+
+- Plot of \(\ln P\) vs. \(1/T\) is approximately linear with slope related to latent enthalpy
+
+#+BEGIN_QUOTE
+*Clausius-Clapeyron example* Benzene normal boiling point is 353.2 K at 760 Torr.  Heat of vaporization is \SI{30.8}{\kilo\joule\per\mole}.  What is saturation pressure at 373.2 K?
+#+END_QUOTE
+
+#+BEGIN_SRC python
+import numpy as np
+
+R = 8.314
+T1 = 353.2
+T2 = 373.2
+deltaH = 30800.
+
+lnP = -(deltaH/R)*(1/T2 - 1/T1) + np.log(760)
+
+P = np.exp(lnP)
+
+print('ln P = {0:6.2f}  P = {1:6.0f} torr'.format(lnP,P))
+print('Experiment = 1360 torr')
+#+END_SRC
+
+#+RESULTS:
+: ln P =   7.20  P =   1333 torr
+: Experiment = 1360 torr
+
+*** Antoine equation
+- Approximations underlying Clausius-Clapeyron are too severe for engineering work
+-  Antoine equation is a modification empirically observed to fit saturation pressure/temperature data better:
+
+\[ \log_{10}P^{*} = A - \frac{B}{T+C} \]
+
+- Values of /A/, /B/, and /C/ are tabulated in standard references
+- Pay attention to units!
+- Because this is empirical, only apply within range of fit
+** Gibbs phase rule
+- In single-phase region, can specify both /T/ and /P/---2 DOFs
+- At phase-boundary, only /T/ or /P/ is independent---1 DOF
+- Reflects Gibbs phase rule:
+
+\[ DOF = c - \Pi - r + 2\]
+
+- DOF are number of /intensive/ variables that can be freely set and still satisfy the composition conditions
+- Applies more generally to mixtures, including ones in which chemical reactions can occur
+
+** Single-component VLE
+- Common situation to have a liquid A (e.g. \ce{H2O}) in equilibrium with a vapor mixture (e.g. moist air)
+- Important in humidification, dehumidification, drying, evaporation, \ldots
+- At equilibrium, vapor is said to be "saturated"
+- DOF = 2 - 2 + 2 = 2; any two of \(T, P, y_{1}\)
+
+*** Raoult's Law
+- Pretty reliable relationship between variables is that partial pressure of volatile component is equal to saturation pressure:
+
+\[ P_{i} = y_{i}P = P_{i}^{*}(T) \]
+
+#+BEGIN_QUOTE
+*Raoult's Law Example*  Saturation pressure of \ce{H2O} is 289 mmHg at \SI{75}{\celsius} (See Appendix of book).  What is equilibrium composition of air at this temperature?  (This would correspond to 100% relative humidity.  Wet!)
+#+END_QUOTE
+
+#+BEGIN_SRC python
+psat = 289.
+yH2O = psat/760.
+yair = 1. - yH2O
+yN2 = 0.79*yair
+yO2 = 0.21*yair
+
+print('H2O = {0:3.0f}%  N2 = {1:3.0f}%  O2 = {2:3.0f}%'.format(yH2O*100,yN2*100,yO2*100))
+#+END_SRC
+
+#+RESULTS:
+: H2O =  38%  N2 =  49%  O2 =  13%
+
+- Raoult's Law applies to equilibrium.  Change any constraint, other variables must adjust to restore equilibrium
+- Often two-phase systems are *not* at equilibrium
+- Uncommon for vapor composition to be greater than equilibrium---vapor would just condense
+- Opposite is possible, if there isn't enough liquid phase to saturate the vapor
+- A "superheated" vapor is one that is below its saturation pressure
+
+\[ y_{i} P < P_{i}^{*}(T) \]
+
+- Called superheated because vapor would have to be cooled at constant pressure and composition to reach equilibrium
+- Or compressed at constant /T/; at least one of three variables has to change
+- (Lower) temperature at which a superheated vapor would start to condense at constant /P/ is called "dew point temperature"
+
+\[ y_{i} P = P_{i}^{*}(T_{\text{dewpt}}) \]
+
+-  \( T - T_{\text{dewpt}} =\) degrees of superheat
+
+[[./figs/Superheat.png]]
+
+#+BEGIN_QUOTE
+*Superheat example*  A stream of air is at \SI{100}{\celsius}, 5260 mmHg, and contains 10.0% \ce{H2O}.  (1) Dewpoint?  (2) Degrees of superheat?  (3) Fraction of vapor that condenses and final gas phase composition if cooled to \SI{80}{\celsius} at constant /P/?  (4) Ditto if air is isothermally compressed to 8500 mmHg.
+#+END_QUOTE
+
+#+BEGIN_SRC python
+import scipy.optimize as opt
+
+T0 = 100.        # C
+P0 = 5260.       # mmHg
+yH2O0 = 0.10
+Psat = 760.      # duh!  Psat = Patm at 100 C!  We all know that.
+
+PH2O = P0 * yH2O0
+
+print('Partial pressure of H2O = {0:4.0f} mmHg'.format(PH2O))
+
+dewpoint = 90.0   # from table
+superheat = T0 - dewpoint
+print('Dew point = {0:4.0f} degC    Superheat = {1:4.0f} degC'.format(dewpoint,superheat))
+
+# Cool isobarically to 80 C
+Psat80 = 355.1  # mmHg
+yH2O80 = 355.1/5250
+
+# draw a condenser feed and do mass balance on both streams
+n0H2O = 0.1*100; n0air = 0.9*100;
+
+# air balance
+ndotv = 100 * 0.9 / (1 - yH2O80)
+
+# H2O balance
+
+ndotH2O = 100* 0.1 - ndotv * yH2O80
+
+deltaH2O = (ndotH2O)/n0H2O
+
+print('80 C composition ={0:6.4f}'.format(yH2O80))
+
+print('Fraction of water condensed ={0:3.0f}%\n'.format(deltaH2O*100))
+
+# Compress isothermally to 8500 mmHg at 100 C
+Pcomp = 8500
+PH2O = yH2O0 * 8500
+
+print('Partial pressure of H2O = {0:4.0f} mmHg'.format(PH2O))
+
+yH2Ocomp = Psat/Pcomp
+
+# air balance
+ndotv = 100 * 0.9 / (1 - yH2Ocomp)
+
+# H2O balance
+
+ndotH2O = 100* 0.1 - ndotv * yH2Ocomp
+
+deltaH2O = (ndotH2O)/n0H2O
+
+print('8500 mmHg composition ={0:6.4f}'.format(yH2Ocomp))
+
+print('Fraction of water condensed ={0:3.0f}%\n'.format(deltaH2O*100))
+
+#+END_SRC
+
+#+RESULTS:
+: Partial pressure of H2O =  526 mmHg
+: Dew point =   90 degC    Superheat =   10 degC
+: 80 C composition =0.0676
+: Fraction of water condensed = 35%
+:
+: Partial pressure of H2O =  850 mmHg
+: 8500 mmHg composition =0.0894
+: Fraction of water condensed = 12%
+:
+
+- If \(P^{*} < P\), liquid /evaporates/ from surface
+- If \(P^{*} \ge P\), liquid /boils/ throughout
+
+*** Humidity
+- These concepts very often applied to \ce{H2O}, in which we refer to \ce{H2O} vapor as /humidity/
+- Common to define /relative humidity/, fraction of maximum \ce{H2O} in air at given /T/
+
+\[ RH(T) = P_{\ce{H2O}}/P^{*}_{\ce{H2O}}(T) \]
+
+#+BEGIN_QUOTE
+\hline
+*Relative humidity example* Humid air at \SI{75}{\celsius}, 1.1 bar, and 30% RH is fed into a process unit at \SI{1000}{\meters\cubed\per\hour}.  Determine molar flow rate of all components.
+\hline
+#+END_QUOTE
+#+BEGIN_SRC python
+Psat75 = 289.  # mmHg
+RH = 0.30
+P = 1.1 * 760 / 1.01325 # torr
+
+PH2O = RH*Psat75
+
+print('PH2O = {0} torr'.format(PH2O))
+
+yH2O = PH2O/P
+yN2  = (1-yH2O)*0.79
+yO2  = (1-yH2O)*0.21
+
+print('H2O = {0}  N2 = {1}  O2 = {2} mol/mol'.format(yH2O,yN2,yO2))
+
+# MWavg = (18. * yH2O + 28 * yN2 + 32 * yO2)/1000.   # kg/mol
+
+R = 8.314
+T = 75 + 273
+P = 1.1e5         # Pa
+vdot = 1000.      # m3/hr
+ndot = P * vdot / ( R * T)
+
+print('H2O = {0}  N2 = {1}  O2 = {2} mol/hr'.format(yH2O*ndot,yN2*ndot,yO2*ndot))
+
+
+#+END_SRC
+
+#+RESULTS:
+: PH2O = 86.7 torr
+: H2O = 0.10508226674641148  N2 = 0.7069850092703349  O2 = 0.18793272398325359 mol/mol
+: H2O = 3995.147826441919  N2 = 26879.03211994477  O2 = 7145.05917112456 mol/hr
+
+** Multi-component VLE
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/VLE.png]]
+
+- Combine two liquids, both of which have finite (but different) Psat at given
+  /T/, in a closed container
+- Vapor composition will in general be different from liquid.
+- Given a liquid composition (/x/), "bubble point" is /P/ or /T/ at which first bit of vapor appears
+- Given a vapor composition (/y/), "dew point" is /P/ or /T/ at which first bit of condensate appears
+
+*** Raoult's Law
+- One model for VLE, most appropriate for majority material \to 100%
+- Partial pressure is saturation pressure scaled by fraction of molecules at surface:
+
+\[ x_{A} P^{*}_{A}(T) = P_{A} = y_{A} P \]
+
+- Assumes ideal liquid mixture and ideal gas mixture
+
+- If liquid only contains condensable components (\(\sum_{i} x_{i} = 1\))
+
+\[ P_{\text{bubble}} = \sum x_{i} P_{i}^{*} \]
+
+- Given \(x_{i}\), /P/, can find \(y_{i}\):
+
+\[ y_{i} = x_{i} P_{i}^{*} / P \]
+
+- If we know the vapor composition \(y_{i}\), can determine the dew point by substitution from
+
+\[ \sum_{i} x_{i} = 1  \to P_{\text{dew}} = \left ( \sum_{i}\frac{y_{i}}{P_{i}^{*}} \right )^{-1} \]
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+xB = np.linspace(0,1)
+PAs = 10
+PBs = 5
+
+PB = xB * PBs
+PA = (1-xB) * PAs
+P = PA + PB
+
+yB = PB/P
+
+plt.plot(xB,P,yB,P)
+# plt.plot(xB,PB,xB,PA,xB,P)
+plt.ylabel('Pressure')
+plt.xlabel('x_B, y_B')
+plt.title('Isothermal compression')
+plt.legend(['Bubble (x)','Dew (y)'])
+
+plt.savefig('./figs/PressureVLE.png')
+
+#+END_SRC
+
+#+RESULTS:
+
+[[./figs/PressureVLE.png]]
+
+- Go up in pressure starting from 50:50 mix, hit dew line, first drop of liquid forms
+- Called dew pressure
+- Has composition of bubble line
+- Keep going up, vapor gradually condenses, composition follows dew line, liquid follows bubble line
+- Finally at bubble pressure last bit of vapor disappears
+- Call /Px/ diagram
+
+#+BEGIN_QUOTE
+\hline
+*Bubble pressure example* 15% benzene and 10% toluene in \ce{N2} at \SI{80}{\celsius}.  At what pressure does vapor condense, and what is its composition?  Answer: condenses when partial pressure matches dew point.
+\hline
+#+END_QUOTE
+#+BEGIN_SRC python
+PBs = 756  # torr
+PTs = 291  # torr
+yB  = 0.15
+yT  = 0.10
+
+# eliminate xB
+P = 1/((yB/PBs) + (yT/PTs))
+
+xB = yB * P /PBs
+
+print('Dew point pressure = {0:5.0f}  Benzene fraction = {1:5.3f}'.format(P,xB))
+#+END_SRC
+
+#+RESULTS:
+: Dew point pressure =  1845  Benzene fraction = 0.366
+
+- Can similarly create /Tx/ diagram at constant /P/
+- Need model for how saturation pressure varies with /T/
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import fsolve
+
+def PAs(T):
+    A = 6.89272; B= 1203.531; C=219.888 # benzene Antoine
+    logP = A - B/(T+C)
+    return 10**logP
+#    PA0 = 10
+#    H = 800
+#    return PA0 * np.exp(-H/T)
+
+def PBs(T):
+    A = 6.95805; B= 1346.773; C=219.693 # toluene Antoine
+    logP = A - B/(T+C)
+    return 10**logP
+
+Pressure = 760.0
+
+def PAsopt(T):
+    return PAs(T) - Pressure
+
+def PBsopt(T):
+    return PBs(T) - Pressure
+
+TA = fsolve(PAsopt,100)
+TB = fsolve(PBsopt,100)
+
+print(TA,TB)
+
+T = np.linspace(TA,TB)
+
+xB = (Pressure - PAs(T))/(PBs(T) - PAs(T))
+
+yB = xB * PBs(T)/Pressure
+
+plt.plot(xB,T,yB,T)
+plt.xlim(0,1)
+plt.ylabel('Temperature')
+plt.xlabel('x_B, y_B')
+plt.title('Isobaric heating')
+plt.legend(['Bubble (x)','Dew (y)'])
+
+plt.savefig('./figs/TemperatureVLE.png')
+
+
+print(PAs(90)/760,PBs(90)/760)
+#+END_SRC
+
+#+RESULTS:
+: [ 80.10179978] [ 110.62216089]
+: 1.343213901504202 0.5351810463458321
+
+[[./figs/TemperatureVLE.png]]
+
+*** Henry's Law
+- Model appropriate for a dilute solute
+
+\[ x_{A} H_{A}(T) = P_{A} = y_{A} P \]
+
+#+ATTR_LATEX: :width 0.8\textwidth
+[[./figs/Henry.png]]
+
+- Henry's constants are measured and tabulated
+
+*** Tabulations
+
+#+BEGIN_QUOTE
+\hline
+*VLE example from tabulation* In this example, partial pressures of \ce{H2O} and \ce{SO2} over a solution of a given composition and temperature are read from a compilation.
+\hline
+#+END_QUOTE
+
+#+ATTR_LATEX: :width 1.0\textwidth
+[[./figs/VLE1.png]]
+
+#+ATTR_LATEX: :width 1.0\textwidth
+[[./figs/VLE2.png]]
+
+** Solid-liquid
+*** Solubility
+- Solids have limited solubility in liquids, called solubility limit.  Strong function of /T/ and of what exactly precipitates (anhydrous, hydrate, ...)
+*** Colligative properties
+- influence of solute on properties of solvent, depends on number but not type of solute
+- vapor pressure lowering \to boiling point elevation
+- vapor pressure lowering \to melting point lowering
+- combine Raoult's Law and Clausius-Clapeyron equation:
+
+\[\Delta T_{b} = \frac{R T_{b}^{2}}{\Delta H^{*}_{vap}}x \]
+
+\[\Delta T_{m} = \frac{R T_{m}^{2}}{\Delta H^{*}_{m}}x \]
+
+- Can run in both directions, know composition, predict /T/ change, know /T/ change, compute /x/
+
+#+BEGIN_QUOTE
+\hline
+*EXAMPLE* 5.000 g solute in 100.0 g \ce{H2O} at 1 atm boils at \SI{100.421}{\celsius}.  Molecular weight of solute?
+\hline
+#+END_QUOTE
+
+#+BEGIN_SRC python
+R = 8.31441
+Hb = 40656.   # J/mol
+Tb = 273.16 + 100.   # K
+dT = 100.421 - 100.
+
+x = dT * Hb / (R * Tb * Tb ) # mol fraction solute
+
+nH2O = 100.0 / 18.011   # mol
+
+nSol = nH2O * x /(1-x)
+
+MW = 5.000/nSol
+
+print('Moles solute = {0:5.3f}   MW = {1:5.3f} g/mol'.format(nSol,MW))
+#+END_SRC
+
+#+RESULTS:
+: Moles solute = 0.083   MW = 60.014 g/mol
+
+** Liquid-liquid
+- Two liquids that can be mixed in any proportions (ethanol and \ce{H2O}) are called /miscible/
+- Two that do not mix (hexane and \ce{H2O}) are called /immiscible/
+- Two that mix in only some proportions are called /partially miscible/
+- Often expressed in terms of a /partition coefficient/ of a solute between two solvents
+- Or on a ternary phase diagram
+- Gibbs phase rule: dof = 3-2 + 2 = 3
+  - /T/, /P/, one composition variable fixes all the others
+- Basis of liquid-liquid extraction
+  - A = \ce{H2O}, B = acetone, C = MIBK
+
+#+ATTR_LATEX: :width 0.6\textwidth
+[[./figs/Ternary.png]]
+
+** Solid-gas
+- isotherms
+
+\newpage
+* Energy balances
+** What's energy?
+- kinetic (\(E_{K}\)), translational or rotational energy
+  \[ E_{K} = \frac{1}{2} m v^{2}\]
+- potential  (\(E_{V}\)), due to position with respect to an external field (gravitational, electric, magnetic)
+  \[ E_{grav} = m g h \]
+- internal energy (\(U\)), stored in bonds, in motion of molecules relative to one another, ...
+  - /thermal/ energy is one subset of internal
+  - strong function of chemical composition, of phase, of /T/, usually weak function of /P/
+- energy is /additive/, so \( E_{tot} = E_{K} + E_{V} + U \)
+- energy is /conserved/, so for all processes, \(\Delta E_{\text{universe}} = 0\)
+  - First Law of Thermodynamics!
+
+** Closed system (little different from thermo definition)
+- distinguish /system/ from /surroundings/
+- no /material/ crosses boundary
+- /energy/ can be transferred as heat (/q/) - positive when added to a system
+- /energy/ can be transferred by doing work (/w/) - positive when done on a system
+- basic balance for a closed system:
+
+\[ \Delta E_{sys} + \Delta E_{sur} = 0\]
+
+\[ \Delta U + \Delta E_{K} + \Delta E_{V} - q - w = 0 \]
+
+- If system is not accelerating, \(\Delta E_{K} = 0 \)
+- If system is not rising or falling, \(\Delta E_{V} = 0 \)
+- /adiabatic/ process has \( q = 0 \)
+- If no mechanical interactions with surroundings (shaft, piston, magnetic rotor) \( w = 0 \)
+
+\begin{framed}
+\noindent \textbf{EXAMPLE} Gas in a cylinder.  (a) Add 2~kcal of heat and temperature rises from 25 to \SI{100}{\celsius} while piston is fixed.  (b) Piston is released, does 100 J of work, temperature of gas is constant.
+
+(a) \(\Delta E_{K} = \Delta E_{V} = w = 0\).  \(q = 2 * 1000 * 4.184 = 8368~\text{J}\).  \(\Delta U = 8368~\text{J}\).
+
+(b) \(\Delta E_{K} = \Delta E_{V} = 0\).  \(\Delta U = 0 \) if gas is ideal.  \(w = -100~\text{J} \) \to \(q = 100~\text{J} \).
+\end{framed}
+
+** Open system, steady state
+- In open system at steady-state, energy balance changes to a power balance:
+
+\[ \Delta\dot{U} + \Delta\dot{E}_{K} + \Delta \dot{E}_{V} - \dot{q} - \dot{w} = 0 \]
+
+- Each delta is a sum over all the output less all the input streams.  Let's take these pieces apart.
+
+
+
+*** Flow and shaft work
+When material flows through a system, work is done /on/ the system as material is pushed in and done /by/ the system as material is pushed back out.  Helpful to define some terms.
+
+- /shaft work/ (\(\dot{W}_{s}\))is work done by a moving part on a system (like a turbine or rotor)
+- /flow work/ (\(\dot{W}_{f}\)) is difference between work done by fluid moving in and out of system
+
+\[ \dot{W}_{f} = P_{\text{in}}\dot{V}_{\text{in}}-P_{\text{out}}\dot{V}_{\text{out}} \]
+
+- If fluid is incompressible and there are frictional losses, what must be true about \( \dot{V}\)?  What is true about \( P_{in} - P_{out}\)?
+
+- Conventional to define a new thermodynamic function, /enthalpy/, to include the flow work:
+
+\[ H = U + PV \]
+
+- energy balance becomes
+
+\[ \Delta\dot{H} + \Delta\dot{E}_{K} + \Delta{E}_{P} = \dot{q} + \dot{W}_{s} \]
+
+*** Specific properties
+- /specific/ property is (extensive) property per unit mass or per unit moles. Book uses both, so watch!
+
+- specific volume \(\hat{V} = 1/\rho \)  l/g
+
+- related to flow rate via mass flow rate
+\[ \dot{V} = \dot{m}\hat{V} \]
+
+- /U/ and /H/ are properties of the chemical species but not time, tabulated on a per mole or per mass basis
+- If on a per mole basis, related to molar flow rate
+\[\dot{U} = \hat{U}\dot{n}\quad \dot{H} = \hat{H}\dot{n}  \]
+
+\begin{framed}
+\noindent \textbf{EXAMPLE} Specific internal energy and volume of He at 300 K and 1 atm are 3800 J/mol and 24.63 L/mol, respectively.  What are specific enthalpy and enthalpy rate when flowed at 250 kmol/h?
+\end{framed}
+
+#+BEGIN_SRC python
+Uhat = 3800 # J/mol
+
+P = 1         # atm
+Vhat = 24.63  # L/mol
+
+Ratm = 0.0821  # L atm /mol K
+RJ = 8.314     # J/mol K
+
+Hhat = Uhat + P * Vhat * (RJ/Ratm)
+
+Vdot = 250000  # mol/h
+
+Hdot = Hhat * Vdot
+
+print('Hhat = {0:6.1f} J/mol    Hdot = {1:6.3e} J/h'.format(Hhat,Hdot))
+#+END_SRC
+
+#+RESULTS:
+: Hhat = 6294.2 J/mol    Hdot = 1.574e+09 J/h
+
+*** Kinetic energy
+ - related to mass flow rates, where /u/ is linear velocity
+
+\[ \dot{E}_{K} = \frac{1}{2}\dot{m} u^{2}\]
+
+
+*** Potential energy
+
+- If we consider only gravitational PE, then related to height /z/ relative to some reference
+
+\[ \dot{E}_{V} = \dot{m} g z \]
+
+\begin{framed}
+\noindent \textbf{EXAMPLE}  500 kg/hr steam drive a turbine.  Steam enters at 44 atm, \SI{450}{\celsius}, and \SI{60}{\meter\per\second}, leaves at a point 5 m lower, at 1 atm and at \SI{360}{\meter\per\second}.  Shaft work delivered is 70 kW and heat loss is \(10^{4}\) kcal/hr.  Change in enthalpy of steam?
+\end{framed}
+
+[[./figs/Turbine1.png]]
+
+** Thermodynamic data
+- Internal energy and enthalpy are /state functions/: they depend only on the intensive properties (/T/, /P/), composition, and state of a material
+- Because they are /energies/, they have no absolute value.  Rather, can only measure/know /changes/ in these properties between two states
+- /Measured/ by contriving an experiment in which all energy changes other then \(\Delta{U}\) or \(\Delta{H}\) are known.
+- Generally tabulated relative to some (stated or unstated) /reference state/, which is defined to have a value of zero
+- Tabulated in /Perry's/, on line, see Table B.8
+- Or NIST, [[http://webbook.nist.gov/chemistry/fluid/]]
+
+- Because \ce{H2O} is so important to power generation and other chemical engineering processes, thermodynamic properties of water are tabulated  in /steam tables/
+- Table B.5: saturated steam (on phase equilibrium line), in increments of /T/
+- Table B.6: saturated steam (on phase equilibrium line), in increments of /P/
+- Table B.7: superheated steam (beyond phase equilibrium)
+
+\begin{framed}
+\noindent \textbf{EXAMPLE} Pressure, specific internal energy, and enthalpy of saturated steam at \SI{133.5}{\celsius}?
+\\
+\noindent (Table B.6): 3.0 bar, 2543.0 kJ/kg, 2724.7 kJ/kg
+\end{framed}
+
+
+\begin{framed}
+\noindent \textbf{EXAMPLE} Specific volume, internal energy, and enthalpy of steam at \SI{400}{\celsius} and 10 bar, relative to triple point.
+\\
+\noindent At 10 bar, saturation temperature is \SI{179.9}{\celsius} (dew point, Table B.6).  Thus, this must be superheated steam.
+
+(Table B.7): 0.307 m3/kg, 2958 kJ/kg, 3264 kJ/kg
+\end{framed}
+
+- Note that energies are stronger function of /T/ than /P/.
+
+[[./figs/TableB7.png]]
+
+\begin{framed}
+\noindent \textbf{EXAMPLE} Steam at 10 bar absolute and \SI{190}{\celsius} superheat enters turbine at \(\dot{m}= 2000\) kg/hr.  Turbine is adiabatic, and effluent is saturated steam at 1 bar.  Work output of turbine?
+\\
+\noindent Found above that kinetic and potential energy changes are small, so neglect here.
+
+\[ \dot{W}_{s} = \Delta\dot{H} = \dot{m}\Delta\hat{H} \]
+
+\end{framed}
+
+#+BEGIN_SRC python
+Pin = 10.  # bar
+Tdew = 180. # celsius
+Tin = 190. + Tdew
+
+H350= 3159.  # kJ/kg
+H400= 3264.  # kJ/kg
+
+Hin = H350 + 20. * (H400 - H350)/(400. - 350.)
+
+print('Interpolated Hin = {0:5.1f} kJ/kg'.format(Hin))
+
+Hout = 2675.
+mdot = 2000. # kg/hr
+
+Work = mdot * (Hout - Hin)/3600    # kW
+
+print('Shaft work = {0:5.1f} kW'.format(Work))
+#+END_SRC
+
+#+RESULTS:
+: Interpolated Hin = 3201.0 kJ/kg
+: Shaft work = -292.2 kW
+
+** Combined mass and energy balances
+
+- Example 7.6-1
+[[./figs/Example761a.png]]
+
+[[./figs/Example761b.png]]
+
+- Example 7.6-3
+[[./figs/Example763.png]]
+
+** Mechanical balances
+- Examples to this point emphasize changes involving either change in /T/ or chemical composition.  Such processes are often dominated by \(\Delta H\); work, kinetic, and potential terms are generally small
+- Opposite extreme is isothermal, no chemical reaction, e.g. when pumping/moving fluids around
+
+- General energy balance
+
+\[ \Delta\dot{U} + \Delta\dot{E}_{K} + \Delta \dot{E}_{V} - \dot{q} - \dot{W}_{s} -\dot{W}_{f} = 0 \]
+
+- If we have a single, incompressible fluid (\( \rho = \dot{m}/\dot{V} \) is constant), can simplify energy balance:
+
+\[ \frac{1}{2}\dot{m} \Delta u^{2} + \dot{m}g\Delta z + \left( \Delta\dot{U} - \dot{q}\right) - \dot{W}_{s} + \dot{V}\Delta P = 0\]
+
+- Third term always has a positive friction component:
+
+\[ \frac{1}{2}\dot{m} \Delta u^{2} + \dot{m}g\Delta z + \dot{m}\hat{F} - \dot{W}_{s} + \frac{\dot{m}}{\rho}\Delta P = 0\]
+
+- Neglecting friction and shaft work gives /Bernoulli equation/:
+
+\begin{framed}
+\[ \frac{1}{2} \Delta u^{2} + g\Delta z  + \frac{1}{\rho}\Delta P = 0\]
+\end{framed}
+
+\begin{framed}
+\noindent \textbf{Example 7.7-1} Pressure required to push \SI{20}{\liter\per\minute} water 50 m uphill from a 0.5 cm pipe into a 1 cm pipe.
+\end{framed}
+
+[[./figs/Example771.png]]
+
+- Siphon
+
+\begin{framed}
+\noindent \textbf{Example 7.7-2} Estimate time to siphon 5 gallons out of a gas tank through a 1/4 in i.d. plastic tube.  Assume top tank is large, so its surface doesn't move, and hose end is 2.5 ft below upper fluid level.
+\end{framed}
+
+[[./figs/Example772.png]]
+
+- Water turbine
+
+[[./figs/Example773.png]]
+
+\newpage
+* Energy balances on non-reactive systems
+** State function
+- Can use any path we want to compute the energy/enthalpy difference between any two well defined points
+- \( A(T_{2},P_{2}) = A(T_{1},P_{1}) + (A(T_{1},P_{2}) -A(T_{1},P_{1})) +  (A(T_{2},P_{2}) -A(T_{1},P_{2})) \)
+  - single component, single phase
+  - single component, two phase
+  - two component, two phase, only one condensible
+  - two component, single phase
+  - two component, two phase
+** Isothermal pressure dependence
+- Ideal gas energy/enthalpy /only/ a function of /T/
+- Real gas has weak dependence, use tabulation or EOS
+- The volumes of solids and liquids are roughly independent of /P/
+  - \(U(T,P_{2}) - U(T,P_{1}) \approx 0\)
+  - \(H(T,P_{2}) - H(T,P_{1}) \approx \hat{V}\Delta P\)
+
+\begin{framed}
+\noindent Is it safe to ignore pressure effect in \ce{C2H6} (g, 25C, 1 atm) \ce{-> C2H6} (g, 25C, 30 atm)?  Consider reduced /T/, /P/.
+\end{framed}
+
+#+BEGIN_SRC python
+Tc = 305.4 # K
+Pc = 48.2  # atm
+
+T = 25 + 273 # K
+P = 30       # atm
+
+Tr = T/Tc
+Pr = P/Pc
+
+print('Tr = {0:5.2f}  Pr = {1:5.2f}'.format(Tr,Pr))
+#+END_SRC
+
+#+RESULTS:
+: Tr =  0.98  Pr =  0.62
+
+- Generalized compressibility chart
+
+[[./figs/compress.png]]
+
+** Isochoric temperature dependence
+- Energy stronger function of temperature
+- Dependence defined as /heat capacity/, heat flow is /sensible heat/
+- Constant volume heat capacity often tabulated as a polynomial
+
+\[ C_{v}(T) = \left ( \frac{\partial\hat{U}}{\partial T} \right )_{v} \]
+
+\[ \hat{U}(T_{2}) - \hat{U}(T_{1}) = \int_{T_{1}}^{T_{2}}C_{v}(T) dT \]
+
+\begin{framed}
+\noindent \textbf{Heat capacity example.}  Heat necessary to warm 200 kg \ce{N2O} from 20 to \SI{150}{\celsius} in constant volume vessel?
+
+\[ C_{v} = a + b T, \quad a = 0.855 \text{kJ/kg C}, \quad b = 9.42\times 10^{-4} \text{kJ/kg C}^{2}\]
+
+Integrate!  \(q = \Delta U = 24200\) kJ
+\end{framed}
+
+- Heat flow at constant /pressure/ similarly related to enthalpy:
+
+\[ C_{p}(T) = \left ( \frac{\partial\hat{H}}{\partial T} \right )_{p} \]
+
+\[ \hat{H}(T_{2}) - \hat{H}(T_{1}) = \int_{T_{1}}^{T_{2}}C_{p}(T) dT \]
+
+- For liquids and solids, \(C_{p} \approx C_{v}\)
+- For ideal gas, \(C_{p} = C_{v} + R\)
+- For real gas, need an equation, tabulation, or computer program to evaluate
+
+** No data?
+- Correlations, e.g. "Kopp's rule"
+- For mixtures, assume additive
+
+\[ C_{p}(T) \approx \sum_{i} y_{i} C_{p,i}(T) \]
+
+- Or if dilute, treat as pure
+
+[[./figs/gasheat.png]]
+
+** Phase change
+- phase change involves change in enthalpy at constant /T/ and /P/
+- termed "latent" heat of transition
+  - melting/fusion
+  - vaporization/condensation
+- tend to be large relative to heat capacity
+- like heat capacity, strong function of /T/, weak function of /P/
+  - recall steam tables
+
+[[./figs/Latent.png]]
+
+- Recall latent heats can be gotten rigorously from the Clapeyron equation and approximately from Clausius-Clapeyron
+- Trouton's rule an example of a /correlation/.  Note positive correlation between boiling point and enthalpy
+\[
+\Delta H_{v}(\text{kJ/mol}) \approx \left \{ \begin{array}{lcr}
+0.088 T_{b} & \text{(K)}& \text{(non-polar liquids)} \\
+0.109 T_{b} & \text{(K)}& \text{(water and small alcohols)}
+\end{array} \right
+\]
+- many other correlations can be found
+- how might you make such a correlation???
+
+** Phase change + mass balance
+[[./figs/MassEnergy1.png]]
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import fsolve
+
+def PBs(T):
+    A = 6.89272; B= 1203.531; C=219.888 # benzene Antoine, C and mmHg
+    logP = A - B/(T+C)
+    return 10**logP
+
+def PTs(T):
+    A = 6.95805; B= 1346.773; C=219.693 # toluene Antoine, C and mmHg
+    logP = A - B/(T+C)
+    return 10**logP
+
+T = 50.
+
+xB = 0.4; xT=1-xB
+
+P = xB*PBs(T) + xT*PTs(T)
+
+yB = xB*PBs(T)/P; yT = xT*PTs(T)/P
+
+print('Raoult's Law Pressure = {0:6.1f} mmHg'.format(P))
+print('Vapor yB,yT)
+#+END_SRC
+
+#+RESULTS:
+: Pressure =  163.8 mmHg
+: 0.6625107083992408 0.33748929160075913
+
+[[./figs/MassEnergy2.png]]
+
+** Psychrometric charts
+- Alternative way of representing VLE data
+- Recall phase rule: an air-water vapor mixture has \(2-1+2 = 3\) DOFs, commonly /T/, /P/, /y/
+- Hard to measure /y/, easier to measure "wet bulb temperature," \(T_{wb}\)
+  - Temperature of a thermometer with its bulb swathed in wet gauze.  /T/ differences measures distance of air from saturation.
+  - At dew point, \(T_{wb} = T\)
+  - At less than saturation, \(T_{wb} < T\)
+- Psychrometric chart summarizes these relationships and other properties of air-water vapor at fixed total /P/
+
+[[./figs/PsychrometricChart.png]]
+
+- Choose /T/ and \(T_{wb}\)
+  - Find RH
+  - Find density
+  - Find mixture composition/absolute humidity (all the way to the right)
+  - Find dew point (all the way to the left)
+  - Find enthalpy of saturated air
+  - Find enthalpy at point: follow enthalpy at saturation line; accurate calculations include a small deviation term that we won't worry about
+- Paths left and right correspond to cooling and heating air at fixed composition
+
+\begin{framed}
+\noindent \textbf{Example: air conditioning.} Air at \SI{25}{\celsius}, 80\% RH, and 1 atm is isobarically cooled to \SI{10}{\celsius}.  Calculate the fraction of \ce{H2O} vapor that condenses and the heat removal rate to deliver \SI{1}{\meter\cubed\per\minute} of humid air.
+\end{framed}
+
+[[./figs/AC1.png]]
+
+ [[./figs/AC2.png]]
+
+** Non-ideal mixtures
+- Enthalpies additive in ideal mixture
+- Real mixture, \(\hat{H}_{soln} \neq \sum \hat{H}_{i}\)
+- Differential interactions, \ce{H2SO4 + H2O}, or \ce{NaOH + H2O}
+- Can be tabulated as /integral heat of solution/
+  - enthalpy to dissolve 1 mole solute in /r/ moles solvent (draw picture)
+
+#+CAPTION: integral heat of solution of HCl(g) in \ce{H2O} (l)
+|----------------+------------------------------------|
+| \ce{H2O} (mol) | \(\Delta\hat{H}(r)_{soln}\)(298 K) |
+|----------------+------------------------------------|
+|              1 |                             -26.22 |
+|             10 |                             -69.49 |
+|            100 |                             -73.85 |
+|           1000 |                             -74.68 |
+|          10000 |                             -74.99 |
+|        100,000 |                             -75.10 |
+|         \infty |                             -75.14 |
+|----------------+------------------------------------|
+
+- Table reports \(\hat{H}_{soln}\) relative to pure components
+- Alternative reference possible, e.g. \(\hat{H} = \hat{H}(r) - \hat{H}(\infty)\) references infinite dilution
+
+\begin{framed}
+\noindent \textbf{EXAMPLE solution.}  Adsorb HCl (g) in \ce{H2O} (l).  HCl(g) at \SI{100}{\celsius} and \ce{H2O} at \SI{25}{\celsius} fed to produce \SI{1000}{\kilogram\per\hour} 20.0\%(w/w) HCl at \SI{40}{\celsius}.
+\end{framed}
+
+[[./figs/Mixture1.png]]
+
+[[./figs/Mixture2.png]]
+
+- Enthalpy-concentration chart, normalized to total amount of solution rather than amount of solute
+
+ [[./figs/Formation.png]]
+
+[[./figs/TieLine.png]]
+
+** Two-phase, non-ideal mixtures
+- Two two-component phases in equilibrium have \(2-2+2=2\) DOF, e.g. /P/ and /T/ or some /x/
+  - Determines all other properties, e.g. enthalpies
+  - Summarized in enthalpy chart like that above, but now lines for liquid and vapor, connected by "tie lines"
+
+#+CAPTION: Enthalpy-composition diagram for \ce{H2O}/\ce{NH3} system
+
+[[./figs/EnthalpyComposition.png]]
+
+\begin{framed}
+\noindent \textbf{EXAMPLE:} Two-phase \ce{H2O}/\ce{NH3} system at 160 F. What are compositions of two phases?  Enthalpies?  Total enthalpy if 95\% of mass is liquid?
+\end{framed}
+
+- Given total composition of system, "lever rule" tells us relative fractions of two phases (short segment \to lots of that fraction)
+
+\[ \frac{l}{v} = \frac{x_{v} - x_{T}}{x_{T}-x_{l}} \]
+
+\begin{framed}
+\noindent \textbf{EXAMPLE: Flash} Aqueous \ce{NH3} stream "flashed" to lower pressure. Very simple unit op to lower \textit{T} and enrich liquid/vapor phases.
+\end{framed}
+
+[[./figs/Flash.png]]
+
+
+* Energy balances on reactive systems
+** Heats of reaction
+- Rearrangements of bonds \to change in enthalpy
+- "heat of reaction" defined for specific reaction stoichiometry and (generally) for pure species in specified states
+
+\[\ce{CaC2(s) + 2 H2O (l) -> Ca(OH)2 (s) + C2H2 (g)}   \quad \Delta H_{r}(\SI{25}{\celsius},\SI{1}{\atmosphere}) = \SI{-125.4}{\kilo\joule\per\mole}\]
+
+- Define /endo/ and /exothermic/
+- \(\Delta H_{r}\) function of state and conditions
+  - Weak function of /P/, strong function of /T/ and state
+
+\[\ce{CH4(g) + 2 O2 (g) -> CO2(g) + 2 H2O (l)} \quad \Delta H_{r} = \SI{-890}{\kilo\joule\per\mole} \]
+
+\[\ce{CH4(g) + 2 O2 (g) -> CO2(g) + 2 H2O (g)} \quad \Delta H_{r} = \SI{-802.3}{\kilo\joule\per\mole} \]
+
+- /Standard/ heat of reaction defined as everything in their most stable states at \SI{25}{\celsius} and 1 atm
+
+- Enthalpy algebra
+
+\[ \sum_{j} \nu_{j}A_{j}=0  \quad \Delta H_{r}(T_{0},P_{0}) \]
+
+\[ n_{j} = n_{j0} + \nu_{j}\xi \]
+
+- For specific amount of reaction
+
+\[ \Delta H = \Delta H_{r} \frac{n_{j}-n_{j0}}{\nu_{j}} = \Delta H_{r} \xi \]
+
+- Flow context, same idea
+
+\[ \dot{n}_{j} = \dot{n}_{j0} + \nu_{j}\xi \]
+
+\[ \Delta \dot{H} = \Delta H_{r} \frac{\dot{n}_{j}-\dot{n}_{j0}}{\nu_{j}} = \Delta H_{r} \xi \]
+
+\begin{framed}
+\noindent \textbf{EXAMPLE: Enthalpy of reaction}.  Butane combustion:
+
+\[ \ce{C4H10 (g) + 13/2 O2(g) -> 4 CO2(g) + 5 H2O (l)}\quad \Delta H_{r} =\SI{-2878}{\kilo\joule\per\mole} \]
+\end{framed}
+
+[[./figs/RxnEnthalpy.png]]
+
+- Example of /Hess's Law/ - reaction enthalpies are additive
+** Formation and combustion reactions
+- In the context of chemical energies, everyone has agreed on a reference state convention
+- Define a "formation reaction" to be the (hypothetical) formation of a compound from the constituent elements at \SI{25}{\celsius} and 1 atm
+- Enthalpy of this reaction defined to the  "heat of formation," \(\Delta \hat{H}_{f}\)
+
+\[\ce{N2(g) + 2 H2(g) + 3/2 O2 (g) -> NH4NO3 (s)}\quad\Delta \hat{H}^{\circ}_{f}= \SI{-365.14}{\kilo\joule\per\mole}\]
+
+- By this convention, the enthalpy of formation of the elements is zero
+- Heats of formation measured indirectly, widely tabulated (Table B.1)
+- Easy to show
+
+\[ \Delta H^{\circ}_{r} = \sum_{j} \nu_{j} \Delta \hat{H}_{f,j}^{\circ} \]
+
+- Various methods exist to estimate \(\Delta H_{f}\)
+  - bond additivity, quantum mechanics
+
+- Similar concept applies to combustion reaction, defined as enthalpy of complete combustion with all species at standard conditions
+
+\[ \ce{C2H5OH (l) + 3 O2(g) -> 2 CO2(g) + 3H2O(l)}\quad \Delta\hat{H}^{\circ}_{c} = \SI{-1366.9}{\kilo\joule\per\mole} \]
+
+- Similarly tabulated, follows similar additive rule to find enthalpy of any reaction (note sign change):
+
+\[ \Delta H^{\circ}_{r} = -\sum_{j} \nu_{j} \Delta \hat{H}_{c,j}^{\circ} \]
+
+** Energy balances
+- "Heat of reaction" method
+  - Choose a convenient reference state for each reactant and product, typically ones for with the heat of reaction is known
+  - Construct path reactant state \to standard reactants \to standard products \to product state
+  - Easy for single reaction
+
+\[ \Delta \dot{H} = \xi\Delta\hat{H}^{\circ}_{r} + \sum_{out}\dot{n}_{out}\hat{H}_{out}-\sum_{in}\dot{n}_{in}\hat{H}_{in} \]
+
+  - Requires solving for multiple advancements for parallel reactions
+
+\[ \Delta \dot{H} = \sum_{i}\xi_{i}\Delta\hat{H}^{\circ}_{r} + \sum_{out}\dot{n}_{out}\hat{H}_{out}-\sum_{in}\dot{n}_{in}\hat{H}_{in} \]
+
+[[./figs/RxnEnthalpy1.png]]
+
+- "Heat of formation" method
+  - Choose elements in their standard states as reference
+
+\[ \Delta \dot{H} = \sum_{out}\dot{n}_{out}\hat{H}_{out}-\sum_{in}\dot{n}_{in}\hat{H}_{in} \]
+
+[[./figs/RxnEnthalpy2.png]]
+
+- "Heat of formation" method nice for multiple reactions
+
+** Adiabatic reactors
+
+- Sometimes faced with unknown final /T/
+
+[[./figs/Adiabatic.png]]
+
+- Or combined mass and energy
+
+[[./figs/MassEnergy2-1.png]]
+
+** Other applications
+- Heats of solution
+- Combustion
+
+* Transient processes
+- General balance around any system or element of a system
+
+\begin{framed}
+output = input + (generation - consumption) - accumulation
+\end{framed}
+
+- In general can vary with time.  Each term has units amount/time
+
+\[ \dot{F}_{out}(t) = \dot{F}_{in}(t) + r_{F}(t) - \frac{dF}{dt} \]
+
+- For total mass, simplifies because mass cannot be created or destroyed
+
+\[ \dot{m}_{out}(t) = \dot{m}_{in}(t) - \frac{dm}{dt} \]
+
+- Differential equation.  Needs a boundary condition to be solvable.
+
+\begin{framed}
+\noindent \textbf{Balance on a filling tank}
+\end{framed}
+
+- For chemical reaction, rate related to chemical reaction rate.
+* Introduction to Python :no_export:
+
+Python is a programming language which we will use to solve many of the homework problems, especially density functional theory calculations using VASP (homeworks 5, homework 6, and probably your class project). It is therefore important that you familiarize yourself with using it. The numerical and plotting features in python are mostly similar to =MATLAB=, with a few subtle differences. I would recommend that you try to solve the first problem in homework 2 using python. A few examples are below, adapted (a fancy way of saying pretty much copied) from John Kitchin's example files. We won't cover all of these, but you can use them for reference. To execute a code block type ~C-c C-c~.
+
+** Simple calculations
+
+A good overview of basic python operators can be found at http://www.tutorialspoint.com/python/python_basic_operators.htm
+
+Here are some simple examples
+#+BEGIN_SRC python
+print(2+3)
+print 4-6
+print 2*7
+print 4.0 / 6.0
+#+END_SRC
+
+#+RESULTS:
+
+
+Division is a little tricky. Python distinguishes between integer division and float division. In the first line we have integer division, where the remainder is discarded and an integer is returned. If any number is a float (indicated by a decimal or because it is converted to a float) then a float is returned.
+
+#+BEGIN_SRC python
+print 2/3
+print 2./3.
+print 2/3.
+print 2/float(3)  # the float function casts the integer to a float
+#+END_SRC
+
+#+RESULTS:
+: 0
+: 0.666666666667
+: 0.666666666667
+: 0.666666666667
+
+#+BEGIN_SRC python
+print 2*3
+print 2*3.0
+#+END_SRC
+
+#+RESULTS:
+: 6
+: 6.0
+
+We can also do powers with =**=
+
+#+BEGIN_SRC python
+print 2**3
+print 2**0.5
+print 2^4    # Binary XOR operator!
+#+END_SRC
+
+#+RESULTS:
+: 8
+: 1.41421356237
+: 6
+
+The modulus operator (%) divides the left hand operand by the right hand operand and returns the remainder.
+
+#+BEGIN_SRC python
+print 5 % 4
+print 5. % 4.
+#+END_SRC
+
+#+RESULTS:
+: 1
+: 1.0
+
+
+** Formatted printing
+http://docs.python.org/library/stdtypes.html#string-formatting-operations
+
+We will usually want to print more than a number, e.g. some descriptive text and the number. We also will want to format numbers so we do not see 9 decimal places all the time. We use string formatting for that. Here are some typical examples.
+
+In a string we can specify where to put numbers with positional arguments like {0}. That says take the first argument (python starts counting at zero) and put it in place of {0}.
+
+#+BEGIN_SRC python
+a = 4.5 + 2
+print 'The answer is {0}'.format(a)
+#+END_SRC
+
+#+RESULTS:
+: The answer is 6.5
+
+
+We can have more than one number to format like this.
+#+BEGIN_SRC python
+a = 5**3
+b = 23
+print 'a = {1} and b = {0}'.format(b,a)
+#+END_SRC
+
+#+RESULTS:
+: a = 125 and b = 23
+
+Alternatively, we can use named arguments to specify the values. It is your choice which one to do. Named arguments require more typing, but are easier to understand.
+#+BEGIN_SRC python
+a = 5**3
+b = 23
+print 'a = {ans0} and b = {ans1}'.format(ans0=a,
+                                         ans1=b)
+#+END_SRC
+
+#+RESULTS:
+: a = 125 and b = 23
+
+To do formatting, we need additional syntax. We use {i:format} to specify how the value should be formatted. Here we show how to specify only three decimal places on a results. See [[http://docs.python.org/library/stdtypes.html#string-formatting-operations][this link]] for a lot more details of formatting strings.
+#+BEGIN_SRC python
+a = 2./3.
+print 'a = {0}'.format(a)
+print 'a = {0:1.3f}'.format(a)
+#+END_SRC
+
+#+RESULTS:
+: a = 0.666666666667
+: a = 0.667
+
+
+** Data types
+Numeric types http://docs.python.org/library/stdtypes.html#numeric-types-int-float-long-complex
+
+Strings http://docs.python.org/library/stdtypes.html#string-methods
+
+
+*** lists/tuples
+
+Lists and tuples are similar in that they are both sets of data. A list is delimited by [] (square brackets) and a tuple is delimited by () (parentheses). The difference between them is a list can be changed after it is created (it is mutable), but a tuple cannot (it is immutable).
+
+#+BEGIN_SRC python
+# short list example
+a = [1, 2, 3, 4] # a list
+print a
+print len(a)
+print a[0] # first element
+print a[-1] # last element
+print a[3]  # also last element
+print 2*a   # surprise!!!
+#+END_SRC
+
+#+RESULTS:
+: [1, 2, 3, 4]
+: 4
+: 1
+: 4
+: 4
+: [1, 2, 3, 4, 1, 2, 3, 4]
+
+We can create a list with the =range= command:
+
+#+BEGIN_SRC python
+a = range(4)
+print a
+
+b = range(4,10)
+print b
+
+print a + b  # surprise again!!!
+#+END_SRC
+
+#+RESULTS:
+: [0, 1, 2, 3]
+: [4, 5, 6, 7, 8, 9]
+: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+Note that algebraic/math operations are not defined for lists the way they are for Matlab. We have to use =numpy.array= for that, which we will see later.
+
+#+BEGIN_SRC python
+# short list example
+a = [1, 2, 3, 4] # a list
+print a
+a[1] = 56 # change the value of 2nd element
+print a
+#+END_SRC
+
+#+RESULTS:
+: [1, 2, 3, 4]
+: [1, 56, 3, 4]
+
+Tuples are like lists except they cannot be modified after creation.
+
+#+BEGIN_SRC python
+a = (1,2,3,4)
+print len(a)
+print a[0]
+print a[-1]
+a[1] = 56 #this is not allowed!
+#+END_SRC
+
+#+RESULTS:
+
+
+** Conditional statements
+conditional operators http://docs.python.org/library/stdtypes.html#comparisons
+
+Python has the standard conditional operators for testing if a quantity is equal to (==), less than (<), greater than (>), lessthan or equal to (<=) greater than or equal to (>=) and not equal (!=). These generally work on numbers and strings.
+
+#+BEGIN_SRC python
+print 4 == 2.
+print 'a' != 'A'
+print 4 > 3
+print 4 <= 3
+print 'a' < 'b' # hmmm....
+#+END_SRC
+
+#+RESULTS:
+: False
+: True
+: True
+: False
+: True
+
+We use these conditional operators to determine whether conditional statements should be run or not.
+
+#+BEGIN_SRC python
+a = 4
+b = 5
+
+if a < b:
+    print 'a is less than b'
+#+END_SRC
+
+#+RESULTS:
+: a is less than b
+
+In this next example we use an =else= statement. Note the logic is not complete, if a=b in this case, we would get the statement "a is less than b" printed.
+#+BEGIN_SRC python
+a = 14
+b = 5
+
+if a > b:
+    print 'a is greater than b'
+else:
+    print 'a is less than b'
+#+END_SRC
+
+#+RESULTS:
+: a is greater than b
+
+Here is a more complete logic that uses =elif= to add an additional logic clause.
+#+BEGIN_SRC python
+a = 4
+b = 4
+if a > b:
+    print 'a is greater than b'
+elif a == b:
+    print 'a is equal to b'
+else:
+    print 'a is less than b'
+#+END_SRC
+
+#+RESULTS:
+: a is equal to b
+
+Finally, to illustrate that the first conditional statement that evaluates to True is evaluated, consider this example:
+#+BEGIN_SRC python
+a = 4
+b = 4
+if a > b:
+    print 'a is greater than b'
+elif a >= b:
+    print 'a is greater than or equal to b'
+elif a == b:
+    print 'a is equal to b'
+elif a <= b:
+    print 'a is less than or equal to b'
+else:
+    print 'a is less than b'
+#+END_SRC
+
+#+RESULTS:
+: a is greater than or equal to b
+
+
+** Loops
+http://docs.python.org/tutorial/datastructures.html#looping-techniques
+for
+while/break/continue
+enumerate, zip
+
+#+BEGIN_SRC python
+for i in [0,1,2,3]:
+    print i
+
+
+for i in range(4):
+    print i
+#+END_SRC
+
+#+RESULTS:
+: 0
+: 1
+: 2
+: 3
+: 0
+: 1
+: 2
+: 3
+
+
+** functions
+http://docs.python.org/tutorial/controlflow.html#defining-functions
+
+We can define functions with the =def= statement, and specify what they =return=
+#+BEGIN_SRC python
+def myfunc(x):
+    return x*x
+
+print myfunc(3)
+print myfunc(x=3)
+#+END_SRC
+
+#+RESULTS:
+: 9
+: 9
+
+
+** Classes and objects
+http://docs.python.org/tutorial/classes.html
+
+
+** Modules
+http://docs.python.org/tutorial/modules.html
+
+The default Python environment has minimal functionality. We can =import= additional functionality from modules. The full standard library is documented at http://docs.python.org/library/. It is not likely you will use everything there, but it is helpful to be familiar with what is available so you do not reinvent solutions.
+
+We import modules, and then we can access functions inthe module with the =.= operator.
+
+#+BEGIN_SRC python
+# list contents of current directory
+import os
+for item in os.listdir('.'):
+    print item
+#+END_SRC
+
+#+RESULTS:
+: lab1.org
+: lab1.pdf
+: lab1.tex
+
+You can import exactly what you need also with the =from/import= syntax
+#+BEGIN_SRC python
+# list contents of current directory
+from os import listdir
+for item in listdir('.'):
+    print item
+#+END_SRC
+
+#+RESULTS:
+: lab1.org
+: lab1.pdf
+: lab1.tex
+
+Finally, you can change the name of a module. This may be done for readability, or to shorten the amount of typing.
+#+BEGIN_SRC python
+# list contents of current directory
+import os as operating_system
+for item in operating_system.listdir('.'):
+    print item
+#+END_SRC
+
+#+RESULTS:
+: lab1.org
+: lab1.pdf
+: lab1.tex
+
+*** Some common standard modules
+http://docs.python.org/tutorial/stdlib.html
+os, sys, glob,  re
+
+
+** file I/O
+reading, writing files
+http://docs.python.org/library/stdtypes.html#file-objects
+
+
+** Error handling
+http://docs.python.org/tutorial/errors.html
+
+Errors happen, and when they do they usually kill your script. Sometimes that is not desirable, and it is nice to catch errors, handle them, and keep on going. When errors occur in python, an Exception is raised. We can use =try/except= code blocks to try some code, and then respond to any exceptions that occur.
+
+#+BEGIN_SRC python
+try:
+    1/0
+except ZeroDivisionError, e:
+    print e
+    print 'an error was found'
+#+END_SRC
+
+#+RESULTS:
+: integer division or modulo by zero
+: an error was found
+
+
+** Numerical Python (Numpy)
+
+*** The basics
+http://docs.scipy.org/doc/numpy/reference/
+
+#+BEGIN_SRC python
+import numpy as np
+a = np.array([1,2,3,8])
+
+print a*a          # element-wise operation
+print np.dot(a,a)  # linear-algebra dot product
+#+END_SRC
+
+#+RESULTS:
+: [ 1  4  9 64]
+: 78
+
+Numpy defines lots of functions that operate element-wise on arrays.
+
+#+BEGIN_SRC python
+import numpy as np
+a = np.array([1, 2, 3, 4])
+print a**2
+print np.sin(a)
+print np.exp(a)
+print np.sqrt(a)
+#+END_SRC
+
+#+RESULTS:
+: [ 1  4  9 16]
+: [ 0.84147098  0.90929743  0.14112001 -0.7568025 ]
+: [  2.71828183   7.3890561   20.08553692  54.59815003]
+: [ 1.          1.41421356  1.73205081  2.        ]
+
+#+BEGIN_SRC python
+import numpy as np
+a = np.array([1, 2, 3, 4])
+print a.min(), a.max()
+print a.sum()  # sum of elements
+print a.mean() # average
+print a.std()  # standard deviation
+#+END_SRC
+
+#+RESULTS:
+: 1 4
+: 10
+: 2.5
+: 1.11803398875
+
+
+Below are some recipes for doing linear algebra and polynomials.
+
+
+*** Linear algebra
+=numpy.linalg= provides a lot of the linear algebra functionality we need. See http://docs.scipy.org/doc/numpy/reference/routines.linalg.html for details of all the things that are possible. For example, given these linear equations:
+
+$x + y = 3$,
+$x - y = 1$
+
+we can represent these equations in matrix form $A x = b$ and solve them.
+
+#+BEGIN_SRC python
+import numpy as npx
+import numpy.linalg as la
+
+A = np.array([[1, 1],
+              [1, -1]])
+
+b = np.array([3, 1])
+
+print la.solve(A, b)
+#+END_SRC
+
+#+RESULTS:
+: [ 2.  1.]
+
+You might be familiar with the following solution:
+
+$x = A^{-1} b$
+
+We can also compute that:
+
+#+BEGIN_SRC python
+import numpy as np
+import numpy.linalg as la
+
+A = np.array([[1, 1],[1, -1]])
+b = np.array([3, 1])
+
+print np.dot(la.inv(A), b)
+#+END_SRC
+
+#+RESULTS:
+: [ 2.  1.]
+
+Finally, we can do linear least squares easily. Suppose we have these three equations, and two unknowns:
+
+$x + y = 3$,
+
+$x - y = 1$,
+
+$x - y = 0.9$
+
+#+BEGIN_SRC python
+import numpy as np
+import numpy.linalg as la
+
+A = np.array([[1, 1],
+              [1, -1],
+              [1, -1]])
+b = np.array([3, 1, 0.9])
+
+[x, residuals, rank, s] = la.lstsq(A,b)
+print x
+#+END_SRC
+
+#+RESULTS:
+: [ 1.975  1.025]
+
+
+*** Polynomials
+=numpy= can do polynomials too. We express polynomials by the coefficients in front of the powers of $x$, e.g. $4 x^2 + 2x - 1 = 0$ is represented by [4, 2, -1].
+
+#+BEGIN_SRC python
+import numpy as np
+p = [1, 2, 1]
+print(np.roots(p))
+#+END_SRC
+
+#+RESULTS:
+: [-1. -1.]
+
+#+BEGIN_SRC python
+import numpy as np
+p = [4, 2, -1]
+print np.polyder(p) # coefficients of the derivative
+print np.polyint(p)
+#+END_SRC
+
+#+RESULTS:
+
+We can also readily evaluate polynomials at specific points:
+#+BEGIN_SRC python
+import numpy as np
+p = [4,2,-1]
+print np.polyval(p,[0, 1, 2])
+#+END_SRC
+
+#+RESULTS:
+: [-1  5 19]
+
+Polynomials are very convenient functions to fit to data. the =numpy.polyfit= command does this, and returns the coefficients.
+
+#+BEGIN_SRC python
+import numpy as np
+x = [0, 2, 3, 4]
+y = [1, 5, 7, 9]
+p = np.polyfit(x, y, 1)
+print 'slope = {0}\nintercept = {1}'.format(*p)
+print p
+#+END_SRC
+
+#+RESULTS:
+: slope = 2.0
+: intercept = 1.0
+: [ 2.  1.]
+
+
+** Scientific Python (Scipy)
+http://docs.scipy.org/doc/scipy/reference/
+
+=scipy= provides all the functionality we need for [[http://docs.scipy.org/doc/scipy/reference/tutorial/integrate.html][integration]], [[http://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html][optimization]], [[http://docs.scipy.org/doc/scipy/reference/tutorial/interpolate.html][interpolation]], [[http://docs.scipy.org/doc/scipy/reference/tutorial/stats.html][statistics]], and [[http://docs.scipy.org/doc/scipy/reference/tutorial/io.html][File I/O]]. You should look up the link on integration. It might be useful for homework 2.
+
+
+*** Solving Equations
+Here is a typical usage for solving the equation $x^2 = 2$ for $x$. We have to define a function that is $f(x) = 0$, and then use the =scipy.optimize.fsolve= function to solve it with an initial guess.
+
+#+BEGIN_SRC python
+from scipy.optimize import fsolve
+
+def f(x):
+    y = 2 - x**2
+    return y
+
+x0 = 1.4 # Intitial Guess
+x = fsolve(f, x0)
+print x
+print type(x)
+#+END_SRC
+
+#+RESULTS:
+: [ 1.41421356]
+: <type 'numpy.ndarray'>
+
+
+
+*** Integration Example
+
+**** Using Quad
+#+BEGIN_SRC python
+from scipy.integrate import quad
+import numpy as np
+
+def integrand(x):
+    return (1 - np.cos(x))**2
+
+ans, err = quad(integrand, 0, 2)
+print ans
+#+END_SRC
+
+#+RESULTS:
+: 0.992204522522
+
+
+**** Using trapz
+
+#+BEGIN_SRC python
+import numpy as np
+
+# Array of 100 points between 0 and 2
+x2 = np.linspace(0, 2, 100)
+y2 = x2**3
+
+print np.trapz(y2, x2)
+#+END_SRC
+
+#+RESULTS:
+: 4.00040812162
+
+
+** Plotting with Python (Matplotlib)
+http://matplotlib.sourceforge.net/
+=matplotlib= is the prime plotting module for python. The syntax is similar to Matlab. The best way to learn matplotlib is to visit the gallery (http://matplotlib.sourceforge.net/gallery.html) and look for examples that do what you want. Here is a simple example.
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+Lambda0 = 4.36468820535  # Angstroms
+k = 1.3806504e-23   # J / K
+#    8.617343e-5          # eV/K
+h = 6.62606896e-34  #  J s
+#    4.125667e-15         # eV s
+c = 299792458       #  m / s
+u = 1.660538782e-27 #  kg/amu
+eV = 6.24150964712e18 # eV/J
+
+
+T = np.linspace(10,1000)
+
+# ideal gas
+M = 15.9994 *u    # O atom, kg
+Lambda0 = h/np.sqrt(2 *np.pi * M * k)  #
+Lambda = Lambda0/np.sqrt(T) * 1e10    # Angstroms
+
+density = (1/2)**2       # /Ang**2
+G =  k* T* (np.log(Lambda*density*Lambda)+1) * eV # eV
+
+# harmonic oscillator (in 2 dimensions)
+nu = 380                 # cm**-1
+theta_vib = h * c * 100 * nu/k
+print(theta_vib)
+
+qvib=1/(1 - np.exp(-theta_vib/T))
+Gvib = - 2*k * T * np.log(qvib) + 0.5*h*c*nu*100
+Gvib = Gvib*eV
+
+plt.figure()
+plt.plot(T,Lambda)
+
+plt.title('O Adatom Thermal Wavelength',fontsize=24)
+plt.xlabel('$T$ (K)',fontsize=18)
+plt.ylabel('$\Lambda (\AA)$',fontsize=18)
+
+plt.savefig('Lambda.png')
+
+plt.figure()
+plt.plot(T,G)
+plt.title('O Adatom  Free Energy ($1/(2\AA)^{2}$)',fontsize=24)
+plt.xlabel('$T$ (K)',fontsize=18)
+plt.ylabel('$G^{\circ}(T)$ (eV)',fontsize=18)
+plt.savefig('Gideal.png')
+# plt.show()
+
+plt.figure()
+plt.plot(T,G,T,Gvib)
+plt.legend(['Ideal gas','Harmonic oscillator'])
+plt.xlabel('$T$ (K)',fontsize=18)
+plt.ylabel('$G(T)$ (eV)',fontsize=18)
+plt.savefig('Gvib.png')
+
+#+END_SRC
+
+#+RESULTS:
+: 546.7345608638099
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+EHxy = [ 144,144, 132, 132, 116, 116, 190, 190, 173, 173, 111, 111, 91, 91, 207, 207, 199, 199, 110, 110, 83, 83]
+RDxy = [152, 150, 141, 134, 117, 117, 204, 202, 184, 183, 123, 118, 94, 96, 225, 224, 213, 213, 114, 115, 89, 93]
+
+m, b, rsq, p, e = stats.linregress(EHxy,RDxy)
+print(m,b,rsq,p,e)
+
+nu = np.linspace(80,230)
+fit = m * nu + b
+
+plt.scatter(EHxy,RDxy)
+plt.plot(nu,fit)
+plt.xlim((50,250))
+plt.ylim((50,250))
+plt.xlabel('Effective harmonic frequencies (cm$^{{-1}}$)')
+plt.ylabel('Relaxed displacement frequencies (cm$^{{-1}}$)')
+plt.savefig('freq.png')
+
+#+END_SRC
+
+#+RESULTS:
+: 1.08962211596 -4.08654658558 0.997656272069 8.93726168613e-25 0.0167106735007

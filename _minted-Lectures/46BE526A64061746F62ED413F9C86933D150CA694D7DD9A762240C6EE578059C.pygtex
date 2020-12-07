@@ -1,0 +1,51 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{scipy.optimize} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{opt}
+
+\PYGemacs{n}{T0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{100.}        \PYGemacs{c}{\PYGemacsZsh{} C}
+\PYGemacs{n}{P0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{5260.}       \PYGemacs{c}{\PYGemacsZsh{} mmHg}
+\PYGemacs{n}{yH2O0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.10}
+\PYGemacs{n}{Psat} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{760.}      \PYGemacs{c}{\PYGemacsZsh{} duh!  Psat = Patm at 100 C!  We all know that.}
+
+\PYGemacs{n}{PH2O} \PYGemacs{o}{=} \PYGemacs{n}{P0} \PYGemacs{o}{*} \PYGemacs{n}{yH2O0}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Partial pressure of H2O = \PYGemacsZob{}0:4.0f\PYGemacsZcb{} mmHg\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{PH2O}\PYGemacs{p}{))}
+
+\PYGemacs{n}{dewpoint} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{90.0}   \PYGemacs{c}{\PYGemacsZsh{} from table}
+\PYGemacs{n}{superheat} \PYGemacs{o}{=} \PYGemacs{n}{T0} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{dewpoint}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Dew point = \PYGemacsZob{}0:4.0f\PYGemacsZcb{} degC    Superheat = \PYGemacsZob{}1:4.0f\PYGemacsZcb{} degC\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{dewpoint}\PYGemacs{p}{,}\PYGemacs{n}{superheat}\PYGemacs{p}{))}
+
+\PYGemacs{c}{\PYGemacsZsh{} Cool isobarically to 80 C}
+\PYGemacs{n}{Psat80} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{355.1}  \PYGemacs{c}{\PYGemacsZsh{} mmHg}
+\PYGemacs{n}{yH2O80} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{355.1}\PYGemacs{o}{/}\PYGemacs{l+m+mi}{5250}
+
+\PYGemacs{c}{\PYGemacsZsh{} draw a condenser feed and do mass balance on both streams}
+\PYGemacs{n}{n0H2O} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.1}\PYGemacs{p}{;} \PYGemacs{n}{n0air} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.9}\PYGemacs{p}{;}
+
+\PYGemacs{c}{\PYGemacsZsh{} what\PYGemacsZsq{}s water amount to give new composition?  yH2O = nH2O/(nH2O + n0air); n0air fixed}
+\PYGemacs{k}{def} \PYGemacs{n+nf}{f}\PYGemacs{p}{(}\PYGemacs{n}{w}\PYGemacs{p}{,}\PYGemacs{n}{a}\PYGemacs{p}{,}\PYGemacs{n}{y}\PYGemacs{p}{):}
+    \PYGemacs{k}{return} \PYGemacs{n}{y} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{w}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{n}{a}\PYGemacs{o}{+}\PYGemacs{n}{w}\PYGemacs{p}{)}
+
+\PYGemacs{n}{nH2O} \PYGemacs{o}{=} \PYGemacs{n}{opt}\PYGemacs{o}{.}\PYGemacs{n}{newton}\PYGemacs{p}{(}\PYGemacs{n}{f}\PYGemacs{p}{,}\PYGemacs{l+m+mf}{0.1}\PYGemacs{p}{,}\PYGemacs{n}{args}\PYGemacs{o}{=}\PYGemacs{p}{(}\PYGemacs{n}{n0air}\PYGemacs{p}{,}\PYGemacs{n}{yH2O80}\PYGemacs{p}{))}
+
+\PYGemacs{n}{deltaH2O} \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{n}{nH2O} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{n0H2O}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{n}{n0H2O}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}80 C composition =\PYGemacsZob{}0:6.4f\PYGemacsZcb{}\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{yH2O80}\PYGemacs{p}{))}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Fraction of water condensed =\PYGemacsZob{}0:3.0f\PYGemacsZcb{}\PYGemacsZpc{}}\PYGemacs{l+s+se}{\PYGemacsZbs{}n}\PYGemacs{l+s}{\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{deltaH2O}\PYGemacs{o}{*}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{))}
+
+\PYGemacs{c}{\PYGemacsZsh{} Compress isothermally to 8500 mmHg at 100 C}
+\PYGemacs{n}{Pcomp} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{8500}
+\PYGemacs{n}{PH2O} \PYGemacs{o}{=} \PYGemacs{n}{yH2O0} \PYGemacs{o}{*} \PYGemacs{l+m+mi}{8500}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Partial pressure of H2O = \PYGemacsZob{}0:4.0f\PYGemacsZcb{} mmHg\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{PH2O}\PYGemacs{p}{))}
+
+\PYGemacs{n}{yH2Ocomp} \PYGemacs{o}{=} \PYGemacs{n}{Psat}\PYGemacs{o}{/}\PYGemacs{n}{Pcomp}
+
+\PYGemacs{n}{nH2O} \PYGemacs{o}{=} \PYGemacs{n}{opt}\PYGemacs{o}{.}\PYGemacs{n}{newton}\PYGemacs{p}{(}\PYGemacs{n}{f}\PYGemacs{p}{,}\PYGemacs{l+m+mf}{0.1}\PYGemacs{p}{,}\PYGemacs{n}{args}\PYGemacs{o}{=}\PYGemacs{p}{(}\PYGemacs{n}{n0air}\PYGemacs{p}{,}\PYGemacs{n}{yH2Ocomp}\PYGemacs{p}{))}
+
+\PYGemacs{n}{deltaH2O} \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{n}{nH2O} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{n0H2O}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{n}{n0H2O}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}8500 mmHg composition =\PYGemacsZob{}0:6.4f\PYGemacsZcb{}\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{yH2Ocomp}\PYGemacs{p}{))}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Fraction of water condensed =\PYGemacsZob{}0:3.0f\PYGemacsZcb{}\PYGemacsZpc{}}\PYGemacs{l+s+se}{\PYGemacsZbs{}n}\PYGemacs{l+s}{\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{deltaH2O}\PYGemacs{o}{*}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{))}
+\end{Verbatim}

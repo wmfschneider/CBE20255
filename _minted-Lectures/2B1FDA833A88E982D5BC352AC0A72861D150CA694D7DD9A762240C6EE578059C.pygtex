@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+
+\PYGemacs{n}{Week} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{array}\PYGemacs{p}{([}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{2}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{3}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{4}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{5}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{6}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{7}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{8}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{9}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{10}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{11}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{12}\PYGemacs{p}{])}
+\PYGemacs{n}{Y} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{array}\PYGemacs{p}{([}\PYGemacs{l+m+mi}{17}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{27}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{18}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{18}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{23}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{19}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{18}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{21}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{20}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{19}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{21}\PYGemacs{p}{,}  \PYGemacs{l+m+mi}{18} \PYGemacs{p}{])}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{scatter}\PYGemacs{p}{(}\PYGemacs{n}{Week}\PYGemacs{p}{,}\PYGemacs{n}{Y}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylim}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{30}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Week\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Fails out of 500\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{savefig}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}./figs/QA.png\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{n}{N} \PYGemacs{o}{=} \PYGemacs{n}{Y}\PYGemacs{o}{.}\PYGemacs{n}{size}
+\PYGemacs{n}{Sum} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{sum}\PYGemacs{p}{(}\PYGemacs{n}{Y}\PYGemacs{p}{)}
+\PYGemacs{n}{Average} \PYGemacs{o}{=} \PYGemacs{n}{Sum}\PYGemacs{o}{/}\PYGemacs{n}{N}
+
+\PYGemacs{n}{Variance} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{sum}\PYGemacs{p}{((}\PYGemacs{n}{Y} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{Average}\PYGemacs{p}{)}\PYGemacs{o}{**}\PYGemacs{l+m+mi}{2}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{n}{N}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)}
+\PYGemacs{n}{StdDev} \PYGemacs{o}{=} \PYGemacs{n}{Variance}\PYGemacs{o}{**}\PYGemacs{l+m+mf}{0.5}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}N   Sum   Average  Variance  Std. Dev\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}\PYGemacsZob{}0:3d\PYGemacsZcb{} \PYGemacsZob{}1:4d\PYGemacsZcb{} \PYGemacsZob{}2:5.2f\PYGemacsZcb{}   \PYGemacsZob{}3:5.2f\PYGemacsZcb{}   \PYGemacsZob{}4:5.2f\PYGemacsZcb{}\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{N}\PYGemacs{p}{,}\PYGemacs{n}{Sum}\PYGemacs{p}{,}\PYGemacs{n}{Average}\PYGemacs{p}{,}\PYGemacs{n}{Variance}\PYGemacs{p}{,}\PYGemacs{n}{StdDev}\PYGemacs{p}{))}
+
+\PYGemacs{n}{Shutdown} \PYGemacs{o}{=} \PYGemacs{n}{Average} \PYGemacs{o}{+} \PYGemacs{l+m+mi}{3} \PYGemacs{o}{*} \PYGemacs{n}{StdDev}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Shutdown if Y \PYGemacsZgt{} \PYGemacsZob{}0:5.2f\PYGemacsZcb{}\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{Shutdown}\PYGemacs{p}{))}
+\end{Verbatim}

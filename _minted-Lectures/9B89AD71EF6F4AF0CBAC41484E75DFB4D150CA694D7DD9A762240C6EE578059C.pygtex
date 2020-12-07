@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+\PYGemacs{n}{x} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{arange}\PYGemacs{p}{(}\PYGemacs{l+m+mf}{40.}\PYGemacs{p}{)}
+\PYGemacs{n}{sigma} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.}
+\PYGemacs{n}{T} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{25.} \PYGemacs{o}{+} \PYGemacs{n}{sigma}\PYGemacs{o}{*}\PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{random}\PYGemacs{o}{.}\PYGemacs{n}{randn}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{40}\PYGemacs{p}{)}
+\PYGemacs{n}{T1} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{20.} \PYGemacs{o}{+} \PYGemacs{o}{.}\PYGemacs{l+m+mi}{2} \PYGemacs{o}{*} \PYGemacs{n}{x} \PYGemacs{o}{+} \PYGemacs{n}{sigma}\PYGemacs{o}{*}\PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{random}\PYGemacs{o}{.}\PYGemacs{n}{randn}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{40}\PYGemacs{p}{)}
+\PYGemacs{n}{T2} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{25.} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{4.} \PYGemacs{o}{*} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{sin}\PYGemacs{p}{(}\PYGemacs{n}{x}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{4.}\PYGemacs{p}{)} \PYGemacs{o}{+} \PYGemacs{n}{sigma}\PYGemacs{o}{*}\PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{random}\PYGemacs{o}{.}\PYGemacs{n}{randn}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{40}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{subplot}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{311}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{scatter}\PYGemacs{p}{(}\PYGemacs{n}{x}\PYGemacs{p}{,}\PYGemacs{n}{T}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylim}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{15}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{35}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlim}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{40}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Temperature (C)\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{subplot}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{312}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{scatter}\PYGemacs{p}{(}\PYGemacs{n}{x}\PYGemacs{p}{,}\PYGemacs{n}{T1}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylim}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{15}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{35}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlim}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{40}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Temperature (C)\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{subplot}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{313}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{scatter}\PYGemacs{p}{(}\PYGemacs{n}{x}\PYGemacs{p}{,}\PYGemacs{n}{T2}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylim}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{15}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{35}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlim}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{40}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Sample (hour)\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Temperature (C)\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{savefig}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}./figs/random.png\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}

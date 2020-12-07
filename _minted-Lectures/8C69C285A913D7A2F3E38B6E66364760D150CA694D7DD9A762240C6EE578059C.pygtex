@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+
+\PYGemacs{n}{nu} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{matrix}\PYGemacs{p}{([}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mi}{4}\PYGemacs{p}{,} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{l+m+mi}{6}\PYGemacs{p}{,} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mi}{3}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{5}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{6}\PYGemacs{p}{])}
+\PYGemacs{n}{n0} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{array}\PYGemacs{p}{([}\PYGemacs{l+m+mi}{4}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{6}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{3}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{0}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{0}\PYGemacs{p}{])}
+
+\PYGemacs{c}{\PYGemacsZsh{}nu = \PYGemacsZhy{}4}
+\PYGemacs{c}{\PYGemacsZsh{}n0 = 4.0}
+
+\PYGemacs{n}{xi} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{linspace}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{nu}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{n0}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{transpose}\PYGemacs{p}{(}\PYGemacs{n}{n0}\PYGemacs{p}{))}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}xi dim:\PYGemacsZsq{}}\PYGemacs{p}{,} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{size}\PYGemacs{p}{(}\PYGemacs{n}{xi}\PYGemacs{p}{))}
+
+\PYGemacs{n}{n} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{transpose}\PYGemacs{p}{(}\PYGemacs{n}{nu}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{matrix}\PYGemacs{p}{(}\PYGemacs{n}{xi}\PYGemacs{p}{)}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{n}\PYGemacs{p}{[}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,:])}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{size}\PYGemacs{p}{(}\PYGemacs{n}{n}\PYGemacs{p}{[}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{][}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,:]))}
+\PYGemacs{c}{\PYGemacsZsh{}plt.plot(xi,n[0,:]) [[np.array(n[[1],:]))]]}
+\PYGemacs{c}{\PYGemacsZsh{}plt.savefig(\PYGemacsZsq{}./figs/advancement1.png\PYGemacsZsq{})}
+\end{Verbatim}

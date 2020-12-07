@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{Pin} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{10.}  \PYGemacs{c}{\PYGemacsZsh{} bar}
+\PYGemacs{n}{Tdew} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{180.} \PYGemacs{c}{\PYGemacsZsh{} celsius}
+\PYGemacs{n}{Tin} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{190.} \PYGemacs{o}{+} \PYGemacs{n}{Tdew}
+
+\PYGemacs{n}{H350}\PYGemacs{o}{=} \PYGemacs{l+m+mf}{3159.}  \PYGemacs{c}{\PYGemacsZsh{} kJ/kg}
+\PYGemacs{n}{H400}\PYGemacs{o}{=} \PYGemacs{l+m+mf}{3264.}  \PYGemacs{c}{\PYGemacsZsh{} kJ/kg}
+
+\PYGemacs{n}{Hin} \PYGemacs{o}{=} \PYGemacs{n}{H350} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{20.} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{H400} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{H350}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{l+m+mf}{400.} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{l+m+mf}{350.}\PYGemacs{p}{)}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Interpolated Hin = \PYGemacsZob{}0:5.1f\PYGemacsZcb{} kJ/kg\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{Hin}\PYGemacs{p}{))}
+
+\PYGemacs{n}{Hout} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{2675.}
+\PYGemacs{n}{mdot} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{2000.} \PYGemacs{c}{\PYGemacsZsh{} kg/hr}
+
+\PYGemacs{n}{Work} \PYGemacs{o}{=} \PYGemacs{n}{mdot} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{n}{Hout} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{Hin}\PYGemacs{p}{)}\PYGemacs{o}{/}\PYGemacs{l+m+mi}{3600}    \PYGemacs{c}{\PYGemacsZsh{} kW}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Shaft work = \PYGemacsZob{}0:5.1f\PYGemacsZcb{} kW\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{Work}\PYGemacs{p}{))}
+\end{Verbatim}

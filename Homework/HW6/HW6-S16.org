@@ -1,0 +1,84 @@
+#+BEGIN_OPTIONS
+#+AUTHOR: William F. Schneider
+#+TITLE: CBE 60553 Outline
+#+EMAIL: wschneider@nd.edu
+#+LATEX_CLASS_OPTIONS: [11pt]
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{epstopdf}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\usepackage{hyperref}
+#+LATEX_HEADER:\usepackage[labelfont=bf]{caption}
+#+LATEX_HEADER:\usepackage{setspace}
+#+LATEX_HEADER:\setlength{\headheight}{10.2pt}
+#+LATEX_HEADER:\setlength{\headsep}{20pt}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+#+LATEX_HEADER:\chead{\bf{Introduction to Chemical Engineering (CBE 20255)\vspace{12pt}}}
+#+LATEX_HEADER:\lhead{\bf{Homework 6}}
+#+LATEX_HEADER:\rhead{\bf{Due March 18, 2016}}
+#+LATEX_HEADER:\usepackage{titlesec}
+#+LATEX_HEADER:\titlespacing*{\section}
+#+LATEX_HEADER:{0pt}{0.6\baselineskip}{0.2\baselineskip}
+#+LATEX_HEADER:\title{University of Notre Dame\\Introduction to Chemical Engineering\\(CBE 20255)}
+#+LATEX_HEADER:\author{Prof. William F.\ Schneider}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\usepackage{siunitx}
+
+#+OPTIONS: toc:nil
+#+OPTIONS: H:3 num:3
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+\noindent *Solve each problem on a separate sheets of Engineering Computation paper.  Carefully and neatly document your answers. Box your final answer, reporting it with the correct number of significant figures and units.  Use plotting software for all plots.*
+
+* Key ideas :no_export:
+- phase equilibrium
+- BP, MP
+- Clapeyron
+- critical point, triple point
+- phase rule
+- mixture w/one condensible component
+- bubble and dew points
+- humidity
+
+* I'm going through a phase (transition)
+The triple point of methanol (\ce{CH3OH}) is at 175.5 K and 0.187 Pa; it's critical point is at 513.1 K and 81 bar;
+it's normal melting and  boiling points are \SI{176}{\kelvin} and \SI{338}{\kelvin}, respectively.
+
+1. (6 pts) Sketch the phase diagram of methanol in as much detail as you can based on the available information.
+2. (2 pts) Does the melting temperature of methanol go up or down with increasing pressure?
+3. (4 pts) You take a bottle of methanol from the solvents cabinet and put it in an oil bath at \SI{100}{\celsius}.  (Why would you do this?  I don't know.) Assuming there is only methanol liquid and vapor in the bottle, estimate the pressure in the bottle.
+4. (4 pts) The Antoine equation is one way to more reliably estimate the pressure.  Use this equation with the parameters in the [[http://webbook.nist.gov/cgi/cbook.cgi?ID=C67561&Units=SI&Mask=4#Thermo-Phase][NIST webbook]] to determine the pressure in the bottle.
+5. (4 pts) In a separate experiment at \SI{100}{\celsius} the gauge pressure in the bottle is 1.5 atm.  Is the vapor superheated?  If so, by how many degrees?
+6. (2 pts) What is the dew pressure of the vapor from the previous question?
+
+* It's raining...rain!
+Air at \SI{90.0}{\celsius}, 1.00 atm absolute, and 10.0%(mol/mol) \ce{H2O} is fed into a compressor-condensor, in which the pressure is increased to 3.00 atm and temperature decreased to \SI{15.6}{\celsius}.  Liquid water is separated from the air stream.  The air stream is then heated at constant pressure to \SI{100.0}{\celsius}.  (For this problem refer to Table B.3 in your text or a similar tabulation of \ce{H2O} saturation pressures.)
+
+1. (6 pts) What fraction of \ce{H2O} is condensed from the air?
+2. (6 pts) What is the relative humidity of the final air stream?
+3. (4 pts) What is the ratio of outlet to inlet air volumetric flow rate?
+
+* Many components, many phases
+A liquid mixture comprising 50, 30, and 20%(mol/mol) of propane, /n/-butane, and /iso/-butane, respectively, is in a sealed container at \SI{20.0}{\celsius}. The saturation pressure of each component is well described by the Antoine equation, parameters in the NIST webbook, and the mixture can be assumed to obey Raoult's Law.
+
+1. (6 pts) What is the pressure in the container?
+2. (6 pts) What is the composition of the vapor phase?
+3. (4 pts) At about what temperature will the pressure exceed the safe operating pressure of 400 psig?
+4. (2 pts) One way to separate this mixture would be to freeze out the various components.  Is it possible for solids of all three components to be in equilibrium with the liquid mixture?
+
+* Dew drops
+A closed system contains an equimolar mixture of /n/-pentane and /iso/-pentane.
+1. (6 pts) Suppose the vessel is initially at \SI{120}{\celsius} and sufficiently  high pressure that only liquid is present.  As the pressure is lowered isothermally, determine the point at which the first bubble of vapor appears and the composition of that bubble.
+2. (6 pts) As the pressure is lowered further, determine the point at which the last drop of liquid is present, and the composition of that drop.
+3. (6 pts) Suppose instead the vessel is at 2.5 atm and at sufficiently high temperature that everything is present as vapor.  As the system is cooled at constant pressure, determine the temperature at which the first dew drop appears, and the composition of that drop.
+4. (6 pts) As the system is cooled further, determine the temperature at which the last bubble of vapor disappears and the composition of that bubble.

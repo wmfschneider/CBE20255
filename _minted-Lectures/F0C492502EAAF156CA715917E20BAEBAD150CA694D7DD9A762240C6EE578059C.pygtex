@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{F} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{4400} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mf}{1.}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{44.}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{l+m+mi}{2}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZdq{}\PYGemacsZob{}0:6.2f\PYGemacsZcb{} kmol O/hr\PYGemacsZdq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{F}\PYGemacs{p}{))}
+\end{Verbatim}

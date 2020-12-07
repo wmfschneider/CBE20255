@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{n}{rho} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{13.546} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{62.43}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Density = \PYGemacsZsq{}}\PYGemacs{p}{,}\PYGemacs{n}{rho}\PYGemacs{p}{,}\PYGemacs{l+s}{\PYGemacsZsq{} lbm/ft\PYGemacsZca{}3\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Volume = mass/density\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{volume} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{215} \PYGemacs{o}{*} \PYGemacs{p}{(}\PYGemacs{l+m+mf}{1.}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{0.454}\PYGemacs{p}{)} \PYGemacs{o}{/} \PYGemacs{n}{rho}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Volume =\PYGemacsZsq{}}\PYGemacs{p}{,}\PYGemacs{n}{volume}\PYGemacs{p}{,}\PYGemacs{l+s}{\PYGemacsZsq{}ft3\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}

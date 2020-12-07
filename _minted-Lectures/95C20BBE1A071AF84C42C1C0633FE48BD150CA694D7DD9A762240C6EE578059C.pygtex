@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+
+\PYGemacs{n}{species} \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}NH3\PYGemacsZsq{}}\PYGemacs{p}{,} \PYGemacs{l+s}{\PYGemacsZsq{}N2\PYGemacsZsq{}}\PYGemacs{p}{,} \PYGemacs{l+s}{\PYGemacsZsq{}O2\PYGemacsZsq{}}\PYGemacs{p}{,} \PYGemacs{l+s}{\PYGemacsZsq{}NO\PYGemacsZsq{}}\PYGemacs{p}{,} \PYGemacs{l+s}{\PYGemacsZsq{}H2O\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{nu} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{array}\PYGemacs{p}{([[}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mi}{4}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{0}\PYGemacs{p}{,} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mi}{6}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{5}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{6}\PYGemacs{p}{]])}
+
+\PYGemacs{n}{MWNH3} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{17}\PYGemacs{p}{;} \PYGemacs{n}{MWO2} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{32}\PYGemacs{p}{;} \PYGemacs{n}{MWN2} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{28}\PYGemacs{p}{;}
+\PYGemacs{n}{MWair} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.79} \PYGemacs{o}{*} \PYGemacs{n}{MWN2} \PYGemacs{o}{+} \PYGemacs{l+m+mf}{0.21} \PYGemacs{o}{*} \PYGemacs{n}{MWO2}
+
+\PYGemacs{n}{mNH30} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.1}\PYGemacs{p}{;} \PYGemacs{n}{mair0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.95}
+\PYGemacs{n}{nNH30} \PYGemacs{o}{=} \PYGemacs{n}{mNH30} \PYGemacs{o}{/} \PYGemacs{n}{MWNH3}
+\PYGemacs{n}{nO20} \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{n}{mair0} \PYGemacs{o}{/} \PYGemacs{n}{MWair}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{0.21}
+\PYGemacs{n}{nN20} \PYGemacs{o}{=} \PYGemacs{p}{(}\PYGemacs{n}{mair0} \PYGemacs{o}{/} \PYGemacs{n}{MWair}\PYGemacs{p}{)} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{0.79}
+
+\PYGemacs{n}{n0} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{array}\PYGemacs{p}{([[}\PYGemacs{n}{nNH30}\PYGemacs{p}{,} \PYGemacs{n}{nN20}\PYGemacs{p}{,} \PYGemacs{n}{nO20}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{0}\PYGemacs{p}{,} \PYGemacs{l+m+mi}{0}\PYGemacs{p}{]])}
+
+\PYGemacs{n}{X} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.5}
+
+\PYGemacs{n}{n} \PYGemacs{o}{=} \PYGemacs{n}{n0} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{p}{(}\PYGemacs{n}{nu}\PYGemacs{o}{/}\PYGemacs{n}{nu}\PYGemacs{p}{[}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{2}\PYGemacs{p}{])} \PYGemacs{o}{*} \PYGemacs{n}{n0}\PYGemacs{p}{[}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{2}\PYGemacs{p}{]} \PYGemacs{o}{*} \PYGemacs{n}{X}
+
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{species}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{n}{n}\PYGemacs{p}{,}\PYGemacs{l+s}{\PYGemacsZsq{} mol/s\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{n}{X} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{array}\PYGemacs{p}{([}\PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{linspace}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)])}
+
+\PYGemacs{n}{n} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{transpose}\PYGemacs{p}{(}\PYGemacs{n}{n0}\PYGemacs{p}{)} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{dot}\PYGemacs{p}{(}\PYGemacs{n}{n0}\PYGemacs{p}{[}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{2}\PYGemacs{p}{]}\PYGemacs{o}{*}\PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{transpose}\PYGemacs{p}{(}\PYGemacs{n}{nu}\PYGemacs{o}{/}\PYGemacs{n}{nu}\PYGemacs{p}{[}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{2}\PYGemacs{p}{]),}\PYGemacs{n}{X}\PYGemacs{p}{)}
+
+\PYGemacs{n}{ntot}\PYGemacs{o}{=} \PYGemacs{l+m+mi}{0}
+
+\PYGemacs{k}{for} \PYGemacs{n}{i} \PYGemacs{o+ow}{in} \PYGemacs{n+nb}{range}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{5}\PYGemacs{p}{):}
+    \PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{plot}\PYGemacs{p}{(}\PYGemacs{n}{X}\PYGemacs{p}{[}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{],}\PYGemacs{n}{n}\PYGemacs{p}{[}\PYGemacs{n}{i}\PYGemacs{p}{])}
+    \PYGemacs{n}{ntot} \PYGemacs{o}{=}\PYGemacs{n}{ntot} \PYGemacs{o}{+} \PYGemacs{n}{n}\PYGemacs{p}{[}\PYGemacs{n}{i}\PYGemacs{p}{]}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{plot}\PYGemacs{p}{(}\PYGemacs{n}{X}\PYGemacs{p}{[}\PYGemacs{l+m+mi}{0}\PYGemacs{p}{],}\PYGemacs{n}{ntot}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{savefig}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}./figs/conversion1.png\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}

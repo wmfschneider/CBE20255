@@ -1,0 +1,112 @@
+#+BEGIN_OPTIONS
+#+AUTHOR: William F. Schneider
+#+TITLE: CBE 60553 Outline
+#+EMAIL: wschneider@nd.edu
+#+LATEX_CLASS_OPTIONS:[11pt]
+#+LATEX_HEADER:\usepackage[left=1in, right=1in, top=1in, bottom=1in, nohead]{geometry}
+#+LATEX_HEADER:\geometry{margin=1.0in}
+#+LATEX_HEADER:\usepackage{amsmath}
+#+LATEX_HEADER:\usepackage{siunitx}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{epstopdf}
+#+LATEX_HEADER:\usepackage{fancyhdr}
+#+LATEX_HEADER:\usepackage{hyperref}
+#+LATEX_HEADER:\usepackage[labelfont=bf]{caption}
+#+LATEX_HEADER:\usepackage{setspace}
+#+LATEX_HEADER:\usepackage{sectsty}
+#+LATEX_HEADER:\subsectionfont{\rm}
+# #+LATEX_HEADER:\titlespacing*{\section}
+# #+LATEX_HEADER:{0pt}{0.6\baselineskip}{0.2\baselineskip}
+#+LATEX_HEADER:\setlength{\headheight}{5.2pt}
+#+LATEX_HEADER:\setlength{\headsep}{14pt}
+#+LATEX_HEADER:\def\dbar{{\mathchar'26\mkern-12mu d}}
+#+LATEX_HEADER:\pagestyle{fancy}
+#+LATEX_HEADER:\fancyhf{}
+#+LATEX_HEADER:\renewcommand{\headrulewidth}{0.5pt}
+#+LATEX_HEADER:\renewcommand{\footrulewidth}{0.5pt}
+#+LATEX_HEADER:\lfoot{\today}
+#+LATEX_HEADER:\cfoot{\copyright\ 2016 W.\ F.\ Schneider}
+#+LATEX_HEADER:\rfoot{\thepage}
+#+LATEX_HEADER:\rhead{\bf{ND CBE 20255}}
+#+LATEX_HEADER:\lhead{\bf{Quiz 3}}
+#+LATEX_HEADER:\chead{\bf{Spring 2016}}
+
+#+OPTIONS: toc:nil
+#+OPTIONS: H:2 num:3
+#+OPTIONS: ':t
+#+END_OPTIONS
+
+#+BEGIN_LaTeX
+\
+\vspace{2cm}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{../centered-2c-NDmark.pdf}
+\end{figure}
+\begin{center}
+{\LARGE\bf Introduction to Chemical Engineering\\(CBE 20255)}
+\vspace{0.5cm}
+
+{\Large Prof. William F.\ Schneider}
+\end{center}
+\vspace{2cm}
+\noindent\large{{\bf NAME (PRINT):}}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\begin{spacing}{1.2}
+\begin{tabular}{|p{5.5in}|}
+\hline
+{\em AS A MEMBER OF THE NOTRE DAME COMMUNITY, I WILL NOT PARTICIPATE IN OR
+TOLERATE ACADEMIC DISHONESTY } \\
+\hline
+\end{tabular}
+\end{spacing}
+\vspace{1.5cm}
+
+\noindent\large{{\bf SIGNED:}} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+\vspace{1cm}
+\noindent{\bf PLEASE SHOW YOUR WORK.  CLEARLY DEMONSTRATE YOUR SOLUTION PROCEDURE
+AND STATE ANY ASSUMPTIONS YOU MAKE.  WRITE YOUR SOLUTIONS IN THE SPACE
+PROVIDED.  BLANK PAGES ARE INCLUDED TO PROVIDE MORE ROOM FOR YOUR
+WORK.  ASK THE PROCTOR IF YOU NEED ADDITIONAL SCRATCH PAPER.}
+\newpage
+#+END_LaTeX
+
+* Key ideas :no_export:
+- energy balances
+- mechanical
+- steam tables..
+
+* Unsteamed
+A \SI{10.0}{\meter\cubed} tank contains steam at \SI{275}{\celsius} and 15.0 bar.  You consult a steam table and find that the steam is superheated at this condition, with specific properties  \(\hat{V}=\SI{0.1610}{\meter\cubed\per\kilogram}\), \(\hat{U}=\SI{2741}{\kilo\joule\per\kilo\gram}\), \(\hat{H}=\SI{2982}{\kilo\joule\per\kilo\gram}\).  The tank and its contents are cooled until the pressure drops to \SI{1.8}{\bar}.  Some of the steam condenses in the process.
+
+#+CAPTION: A Fragment of a Saturated Steam Table
+#+ATTR_LATEX: :width 0.8\textwidth :center
+[[./Quiz3.png]]
+
+** (2 pts) What is the total mass (kg) of \ce{H2O} in the tank?
+\newpage
+** (2 pts) What is the final temperature of the tank contents?
+\vspace{4cm}
+** (4 pts) How much steam (kg) condensed?
+\vspace{9cm}
+** (4 pts) How much heat (kJ) was transferred from the tank?
+\newpage
+
+
+* Keep the water flowing
+Water is to be delivered from an elevated reservoir into farm fields.  The water is to be delivered at a rate of \SI{4.00}{\meter\cubed\per\hour} through a pipe with cross-sectional area \SI{40}{\centi\meter\squared}, and the end of the pipe is \SI{300}{\meter} below the entrance.
+\\
+
+\noindent The Bernoulli equation might be helpful to remember:
+
+\[\frac{1}{2}\Delta u^{2}+g \Delta z + \frac{1}{\rho}\Delta P = 0 \]
+
+** (4 pts) What is the pressure difference between the exit and inlet of the pipe?
+\vspace{10cm}
+** (4 pts) How far below the surface of the reservoir is the pipe inlet?
+
+
+* Don't say you weren't told :no_export:
+** (4 pts) Prove that the constant pressure and constant volume heat capacities (in J/mol K) of an ideal gas are related by \(\hat{C}_{p} = \hat{C}_{v} + R\).

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Easy way...40.34 m H2O!\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{n}{rho} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1000.}   \PYGemacs{c}{\PYGemacsZsh{} kg/m3}
+\PYGemacs{n}{g} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{9.807}   \PYGemacs{c}{\PYGemacsZsh{} m/s2}
+\PYGemacs{n}{h} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{30.0}    \PYGemacs{c}{\PYGemacsZsh{} m}
+\PYGemacs{n}{P0} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{1.01325e5} \PYGemacs{c}{\PYGemacsZsh{} Pa}
+
+\PYGemacs{n}{pressure} \PYGemacs{o}{=} \PYGemacs{n}{P0} \PYGemacs{o}{+} \PYGemacs{n}{rho}\PYGemacs{o}{*}\PYGemacs{n}{g}\PYGemacs{o}{*}\PYGemacs{n}{h}  \PYGemacs{c}{\PYGemacsZsh{} Pa}
+\PYGemacs{n}{pressureatm} \PYGemacs{o}{=} \PYGemacs{n}{pressure} \PYGemacs{o}{*}\PYGemacs{p}{(} \PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{n}{P0}\PYGemacs{p}{)}
+\PYGemacs{n}{pressurepsi} \PYGemacs{o}{=} \PYGemacs{n}{pressureatm} \PYGemacs{o}{*} \PYGemacs{l+m+mf}{14.696}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Hard way...\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{k}{print}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}\PYGemacsZob{}0:5.2f\PYGemacsZcb{} bar   \PYGemacsZob{}1:5.2f\PYGemacsZcb{} atm    \PYGemacsZob{}2:5.2f\PYGemacsZcb{} psi\PYGemacsZsq{}}\PYGemacs{o}{.}\PYGemacs{n}{format}\PYGemacs{p}{(}\PYGemacs{n}{pressure}\PYGemacs{o}{/}\PYGemacs{l+m+mf}{1e5}\PYGemacs{p}{,}\PYGemacs{n}{pressureatm}\PYGemacs{p}{,}\PYGemacs{n}{pressurepsi}\PYGemacs{p}{))}
+\end{Verbatim}

@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{numpy} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{np}
+\PYGemacs{k+kn}{import} \PYGemacs{n+nn}{matplotlib.pyplot} \PYGemacs{k+kn}{as} \PYGemacs{n+nn}{plt}
+
+\PYGemacs{n}{R} \PYGemacs{o}{=} \PYGemacs{l+m+mf}{0.0821} \PYGemacs{c}{\PYGemacsZsh{} l atm/mol K}
+\PYGemacs{n}{vr} \PYGemacs{o}{=} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{logspace}\PYGemacs{p}{(}\PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mf}{0.5}\PYGemacs{p}{,}\PYGemacs{l+m+mf}{1.}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{figure}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)}
+\PYGemacs{k}{for} \PYGemacs{n}{Tr} \PYGemacs{o+ow}{in} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{arange}\PYGemacs{p}{(}\PYGemacs{l+m+mf}{0.87}\PYGemacs{p}{,}\PYGemacs{l+m+mf}{1.3}\PYGemacs{p}{,}\PYGemacs{l+m+mf}{0.13}\PYGemacs{p}{):}
+    \PYGemacs{n}{Pr} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{8} \PYGemacs{o}{*} \PYGemacs{n}{Tr}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{3} \PYGemacs{o}{*} \PYGemacs{n}{vr} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{l+m+mi}{3} \PYGemacs{o}{*}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{n}{vr}\PYGemacs{p}{)} \PYGemacs{o}{*}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{n}{vr}\PYGemacs{p}{)}
+    \PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{plot}\PYGemacs{p}{(}\PYGemacs{n}{vr}\PYGemacs{p}{,}\PYGemacs{n}{Pr}\PYGemacs{p}{,}\PYGemacs{n}{label}\PYGemacs{o}{=}\PYGemacs{n}{Tr}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{title}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}van der Waals isotherms\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylim}\PYGemacs{p}{([}\PYGemacs{o}{.}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{6}\PYGemacs{p}{])}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlim}\PYGemacs{p}{([}\PYGemacs{o}{.}\PYGemacs{l+m+mi}{3}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{6}\PYGemacs{p}{])}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Reduced volume\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Reduced pressure\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{legend}\PYGemacs{o}{=}\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{legend}\PYGemacs{p}{()}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{savefig}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}./figs/vdWgas.png\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{figure}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{2}\PYGemacs{p}{)}
+\PYGemacs{k}{for} \PYGemacs{n}{Tr} \PYGemacs{o+ow}{in} \PYGemacs{n}{np}\PYGemacs{o}{.}\PYGemacs{n}{arange}\PYGemacs{p}{(}\PYGemacs{l+m+mf}{0.87}\PYGemacs{p}{,}\PYGemacs{l+m+mf}{1.3}\PYGemacs{p}{,}\PYGemacs{l+m+mf}{0.13}\PYGemacs{p}{):}
+    \PYGemacs{n}{Pr} \PYGemacs{o}{=} \PYGemacs{l+m+mi}{8} \PYGemacs{o}{*} \PYGemacs{n}{Tr}\PYGemacs{o}{/}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{3} \PYGemacs{o}{*} \PYGemacs{n}{vr} \PYGemacs{o}{\PYGemacsZhy{}}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{)} \PYGemacs{o}{\PYGemacsZhy{}} \PYGemacs{l+m+mi}{3} \PYGemacs{o}{*}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{n}{vr}\PYGemacs{p}{)} \PYGemacs{o}{*}\PYGemacs{p}{(}\PYGemacs{l+m+mi}{1}\PYGemacs{o}{/}\PYGemacs{n}{vr}\PYGemacs{p}{)}
+    \PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{loglog}\PYGemacs{p}{(}\PYGemacs{n}{vr}\PYGemacs{p}{,}\PYGemacs{n}{Pr}\PYGemacs{p}{,}\PYGemacs{n}{label}\PYGemacs{o}{=}\PYGemacs{n}{Tr}\PYGemacs{p}{,}\PYGemacs{n}{basex}\PYGemacs{o}{=}\PYGemacs{l+m+mi}{10}\PYGemacs{p}{)}
+
+\PYGemacs{n}{legend} \PYGemacs{o}{=} \PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{legend}\PYGemacs{p}{()}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylim}\PYGemacs{p}{([}\PYGemacs{o}{.}\PYGemacs{l+m+mi}{1}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{100}\PYGemacs{p}{])}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlim}\PYGemacs{p}{([}\PYGemacs{o}{.}\PYGemacs{l+m+mi}{3}\PYGemacs{p}{,}\PYGemacs{l+m+mi}{10}\PYGemacs{p}{])}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{xlabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Log reduced volume\PYGemacsZsq{}}\PYGemacs{p}{)}
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{ylabel}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}Log reduced pressure\PYGemacsZsq{}}\PYGemacs{p}{)}
+
+\PYGemacs{n}{plt}\PYGemacs{o}{.}\PYGemacs{n}{savefig}\PYGemacs{p}{(}\PYGemacs{l+s}{\PYGemacsZsq{}./figs/logvdWgas.png\PYGemacsZsq{}}\PYGemacs{p}{)}
+\end{Verbatim}
